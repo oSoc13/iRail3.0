@@ -42,3 +42,7 @@ $RECYCLE.BIN/
 ### Composer
 
 vendor/
+
+
+### Config files
+web/php/config.php
