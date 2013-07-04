@@ -37,12 +37,3 @@ $RECYCLE.BIN/
 ### /Users/nik/.gitignore-boilerplates/Global/PhPStorm.gitignore
 
 .idea/
-
-
-### Composer
-
-vendor/
-
-
-### Config files
-web/php/config.php
