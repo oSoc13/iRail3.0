@@ -11,13 +11,26 @@
         <p>nb trains: {{ parseInt(route.vias.number, 10) + 1 }}</p>
         <h1>Details</h1>
         <ul>
-            <li>{{ route.departure.time * 1000 | date:'HH:mm' }} {{ route.departure.station }} {{ route.departure.platform }}</li>
-            <li ng-repeat="via in route.vias.via">
-                <p>{{ via.arrival.time * 1000 | date:'HH:mm' }} {{ via.station }} {{ via.arrival.platform }}</p>
-                <p>{{ via.vehicle }} Destination {{ via.direction.name }}</p>
-                <p>{{ via.departure.time * 1000 | date:'HH:mm' }} {{ via.station }} {{ via.departure.platform }}</p>
+            <li>
+                {{ route.departure.vehicle }} Destination {{ route.departure.direction.name }}
             </li>
-            <li>{{ route.arrival.time * 1000 | date:'HH:mm' }} {{ route.arrival.station }} {{ route.arrival.platform }}</li>
+            <li>
+                {{ route.departure.time * 1000 | date:'HH:mm' }} {{ route.departure.station }} {{ route.departure.platform }}
+            </li>
+            <div ng-repeat="via in route.vias.via">
+                <li>
+                    {{ via.arrival.time * 1000 | date:'HH:mm' }} {{ via.station }} {{ via.arrival.platform }}
+                </li>
+                <li>
+                    {{ via.vehicle }} Destination {{ via.direction.name }}
+                </li>
+                <li>
+                    {{ via.departure.time * 1000 | date:'HH:mm' }} {{ via.station }} {{ via.departure.platform }}
+                </li>
+            </div>
+            <li>
+                {{ route.arrival.time * 1000 | date:'HH:mm' }} {{ route.arrival.station }} {{ route.arrival.platform }}
+            </li>
         </ul>
     </li>
 </ul>

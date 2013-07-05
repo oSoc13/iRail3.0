@@ -23,7 +23,7 @@ function RouteCtrl($scope, $routeParams, $http, $rootScope){
     //call  iRail api
 
     $http.get(url).success(function(data){
-        $scope.possibleRoutes = data.connection;
+        $scope.possibleRoutes = parseVias(data.connection);
     });
 }
 
@@ -36,6 +36,23 @@ function StationDetailCtrl($scope){
 
 function TrainCtrl($scope){
 
+}
+
+
+//Changing the format of the returned json to something that is a bit more logical
+function parseVias(connectionData){
+    for(var i = 0; i < connectionData.length; i++){
+        var connection = connectionData[i];
+        var prevDirection = connection.arrival.direction;
+        for(var j = connection.vias.via.length - 1; j >= 0; j--){
+            var via = connection.vias.via[j];
+            var tempDirection = via.direction;
+            via.direction = prevDirection;
+            prevDirection = tempDirection;            
+        }
+    }
+
+    return connectionData;
 }
 
 
