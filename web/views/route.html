@@ -8,7 +8,7 @@
         <p>departure time: {{ route.departure.time * 1000 | date:'HH:mm' }}</p>
         <p>arrival time: {{ route.arrival.time * 1000 | date:'HH:mm' }}</p>
         <p>duration: {{ route.duration * 1000 | date:'HH:mm' }}</p>
-        <p>nb trains: {{ parseInt(route.vias.number, 10) + 1 }}</p>
+        <p>nb trains: {{ 1 + parseNbVias(route.vias) }}</p>
         <h1>Details</h1>
         <ul>
             <li>
