@@ -1,28 +1,44 @@
-<div id="header">
-    <div class="navbar navbar-static-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <a class="brand">iRail</a>
-                <ul class="nav pull-right">
-                    <li><a>Notifications</a></li>
-                    <li><a>Menu</a></li>
-                </ul>
+<div id="content">
+
+    <div class="span8 visible-desktop"><center><p class="lead">Hi, you're looking great today! Which travel information do you need?</p></center></div>
+
+    <div class="span8 underline">
+
+        <div class="tabbable"> <!-- Only required for left/right tabs -->
+            <ul class="nav nav-tabs custom">
+                <li class="active"><a href="#tab1" data-toggle="tab">Route</a></li>
+                <li class="other-tab"><a href="#tab2" data-toggle="tab">Station</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab1">
+                    <form novalidate ng-submit="submit()">
+                        <label for="from" class="cap">from</label>
+                        <input type="text" class="customwidth" name="from" id="from" ng-model="from" placeholder="Select departure station"/>
+                        <label for="to" class="cap">to</label>
+                        <input type="text" class="customwidth" name="from" id="to" ng-model="to" placeholder="Select destination"/>
+                        <label for="date" class="cap">date and time</label>
+                        <select class="select">
+                            <option>Departure</option>
+                            <option>Arrival</option>
+                        </select>
+
+                        <br/><br/>
+
+                        <input type="submit" value="Search" class="btn"/>
+                    </form>
+                    <br/>
+                </div>
+                <div class="tab-pane" id="tab2">
+                    <p>Howdy, I'm in Section 2.</p>
+                    <br/>
+                </div>
             </div>
         </div>
+
     </div>
-</div>
-
-<div id="content">
-    <form novalidate ng-submit="submit()">
-        <label for="from">From</label>
-        <input type="text" name="from" id="from" ng-model="from" required />
-        <label for="to">To</label>
-        <input type="text" name="from" id="to" ng-model="to" required />
-
-        <input type="submit" class="btn" value="search"/>
-    </form>
 
     <div>
+        <p>&nbsp;</p>
         <button class="btn btn-large btn-block" type="button">Sign in to MyRail</button>
     </div>
 </div>
