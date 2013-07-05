@@ -12,21 +12,37 @@
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    
+    <!-- Google Webfonts -->
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700' rel='stylesheet' type='text/css'>
 
     <link rel="stylesheet" href="css/style.css"/>
-    <title>Calculate Route - iRail.be</title>
+    <title>iRail.be - Plan uw treinreis</title>
 </head>
 
 <body>
 
 <div id="header">
-    <div class="navbar navbar-static-top">
+    <div class="navbar">
         <div class="navbar-inner">
             <div class="container">
-                <a class="brand">iRail</a>
+                <a class="brand custombrand" href="#">i<span class="emphasis">Rail</span></a>
                 <ul class="nav pull-right">
-                    <li><a>Notifications</a></li>
-                    <li><a>Menu</a></li>
+                	<li><a href="#" class="notifications"><img src="irail-small.png" alt="irail logo"></a></li>
+                    <li class="notifications"><a href="#" class="notifications"><span class="badge badge-important">2 <!-- PLACEHOLDER NOTIFICATION AMOUNT --></span></a></li>
+                    <li class="dropdown">
+                       <a class="dropdown-toggle"
+                          data-toggle="dropdown"
+                          href="#">
+                           Menu
+                           <b class="caret"></b>
+                         </a>
+                       <ul class="dropdown-menu">
+                        	<li><a href="#">Test</a></li>
+                        	<li><a href="#">Test</a></li>
+                        	<li><a href="#">Test</a></li>
+                       </ul>
+                     </li>
                 </ul>
             </div>
         </div>
@@ -34,16 +50,46 @@
 </div>
 
 <div id="content">
-    <form action="#">
-        <label for="from">From</label>
-        <input type="text" name="from" id="from"/>
-        <label for="to">To</label>
-        <input type="text" name="from" id="to"/>
 
-        <input type="submit" value="Search" class="btn"/>
-    </form>
+	<div class="span8 visible-desktop"><center><p class="lead">Hi, you're looking great today! Which travel information do you need?</p></center></div>
+	
+	<div class="span8 underline">
+	
+	<div class="tabbable"> <!-- Only required for left/right tabs -->
+	  <ul class="nav nav-tabs custom">
+	    <li class="active"><a href="#tab1" data-toggle="tab">Route</a></li>
+	    <li class="other-tab"><a href="#tab2" data-toggle="tab">Station</a></li>
+	  </ul>
+	  <div class="tab-content">
+	    <div class="tab-pane active" id="tab1">
+	      <form action="#">
+	              <label for="from" class="cap">from</label>
+	              <input type="text" class="customwidth" name="from" id="from" placeholder="Select departure station"/>
+	              <label for="to" class="cap">to</label>
+	              <input type="text" class="customwidth" name="from" id="to" placeholder="Select destination"/>
+	              <label for="date" class="cap">date and time</label>
+					<select class="select">
+					  <option>Departure</option>
+					  <option>Arrival</option>
+					</select>	              
+	              
+	              <br/><br/>
+	      
+	              <input type="submit" value="Search" class="btn"/>
+	          </form>
+	          <br/>
+	    </div>
+	    <div class="tab-pane" id="tab2">
+	      <p>Howdy, I'm in Section 2.</p>
+	      <br/>
+	    </div>
+	  </div>
+	</div>
+	
+	</div>
 
     <div>
+    <p>&nbsp;</p>
         <button class="btn btn-large btn-block" type="button">Sign in to MyRail</button>
     </div>
 </div>
