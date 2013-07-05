@@ -1,0 +1,9 @@
+<p>Train: {{ trainNumber }}</p>
+<h1>stops</h1>
+<ul>
+    <li ng-repeat="stop in stops.stop">
+        Station: {{ stop.station }}
+        Time: {{ stop.time * 1000 | date:'HH:mm' }}
+        Delay: {{ stop.delay * 1000 | date:'mm' }}
+    </li>
+</ul>

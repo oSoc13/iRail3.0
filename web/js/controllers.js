@@ -7,6 +7,8 @@
 //
 // If the javascript is to be minified, Uncomment the minifying code at the bottom of the file.
 
+
+// [/]
 function DirectionsCtrl($scope, $location){
     $scope.departure = true;
     $scope.date = new Date();
@@ -15,14 +17,20 @@ function DirectionsCtrl($scope, $location){
     }
 }
 
+// [/route/:fromStation/:toStation]
 function RouteCtrl($scope, $routeParams, $http, $rootScope){
-    $scope.arrivalStation = $routeParams.arrivalStation;
-    $scope.departureStation = $routeParams.departureStation;
+    $scope.toStation = $routeParams.toStation;
+    $scope.fromStation = $routeParams.fromStation;
     $scope.routeDate = new Date();
-    $scope.parseNbVias = parseNbVias;
+    $scope.parseNbVias = function(vias){
+        if(data){
+            return parseInt(data.number)
+        }
+        return 0;
+    };
 
 
-    url = $rootScope.iRailAPI + "/connections/?to=" + $routeParams.arrivalStation + "&from=" + $routeParams.departureStation + "&format=json";
+    url = $rootScope.iRailAPI + "/connections/?to=" + $routeParams.toStation + "&from=" + $routeParams.fromStation + "&format=json";
 
     //call  iRail api
     $http.get(url).success(function(data){
@@ -30,9 +38,11 @@ function RouteCtrl($scope, $routeParams, $http, $rootScope){
     });
 }
 
+// [/station]
 function StationCtrl($scope, $location){
 }
 
+// [/station/:stationName]
 function StationDetailCtrl($scope, $rootScope, $routeParams, $http){
     $scope.stationName = $routeParams.stationName;
 
@@ -44,8 +54,16 @@ function StationDetailCtrl($scope, $rootScope, $routeParams, $http){
     });
 }
 
-function TrainCtrl($scope){
+// [/train/:trainId]
+function TrainCtrl($scope, $routeParams, $http, $rootScope){
+    $scope.trainNumber = $routeParams.trainId;//todo regex to get only the number
 
+    url = $rootScope.iRailAPI + "/vehicle/?id=" + $routeParams.trainId + "&fast=true&format=json";
+
+    //call  iRail api
+    $http.get(url).success(function(data){
+        $scope.stops = data.stops;
+    });
 }
 
 
@@ -68,13 +86,6 @@ function parseConnectionData(connectionData){
     return connectionData;
 }
 
-function parseNbVias(data){
-    if(data){
-        return parseInt(data.number)
-    }
-    return 0;
-}
-
 
 //Use this when minifying
 
@@ -82,4 +93,4 @@ function parseNbVias(data){
 //RouteCtrl.$inject= ['$scope', '$routeParams', '$http', '$rootScope'];
 //StationCtrl.$inject= ['$scope', '$location'];
 //StationDetailCtrl.$inject= ['$scope','$rootScope', '$routeParams', '$http'];
-//TrainCtrl.$inject= ['$scope'];
+//TrainCtrl.$inject= ['$scope', '$routeParams', '$http', '$rootScope'];
