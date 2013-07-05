@@ -10,7 +10,7 @@ app.config(['$routeProvider', function($routeProvider){
             when('/route/:departureStation/:arrivalStation', {templateUrl: 'views/route.html', controller: RouteCtrl}).
             when('/train/:trainId', {templateUrl: 'views/train.html', controller: TrainCtrl}).
             when('/station', {templateUrl: 'views/station.html', controller: StationCtrl}).
-            when('/station/:stationId', {templateUrl: 'views/station-realtime.html', controller: StationDetailCtrl}).
+            when('/station/:stationName', {templateUrl: 'views/station-liveboard.html', controller: StationDetailCtrl}).
             otherwise({redirectTo: '/'});
     }]);
 

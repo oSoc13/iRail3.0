@@ -22,7 +22,7 @@ function RouteCtrl($scope, $routeParams, $http, $rootScope){
     $scope.parseNbVias = parseNbVias;
 
 
-    url = $rootScope.iRailAPI + "/connections/?format=json&to=" + $routeParams.arrivalStation + "&from=" + $routeParams.departureStation;
+    url = $rootScope.iRailAPI + "/connections/?to=" + $routeParams.arrivalStation + "&from=" + $routeParams.departureStation + "&format=json";
 
     //call  iRail api
     $http.get(url).success(function(data){
@@ -30,11 +30,18 @@ function RouteCtrl($scope, $routeParams, $http, $rootScope){
     });
 }
 
-function StationCtrl($scope){
+function StationCtrl($scope, $location){
 }
 
-function StationDetailCtrl($scope){
+function StationDetailCtrl($scope, $rootScope, $routeParams, $http){
+    $scope.stationName = $routeParams.stationName;
 
+    url = $rootScope.iRailAPI + "/liveboard/?station=" + $scope.stationName + "&fast=true&format=json";
+
+    //call  iRail api
+    $http.get(url).success(function(data){
+        $scope.liveboard = data.departures;
+    });
 }
 
 function TrainCtrl($scope){
@@ -73,6 +80,6 @@ function parseNbVias(data){
 
 //DirectionsCtrl.$inject= ['$scope', '$location'];
 //RouteCtrl.$inject= ['$scope', '$routeParams', '$http', '$rootScope'];
-//StationCtrl.$inject= ['$scope'];
-//StationDetailCtrl.$inject= ['$scope'];
+//StationCtrl.$inject= ['$scope', '$location'];
+//StationDetailCtrl.$inject= ['$scope','$rootScope', '$routeParams', '$http'];
 //TrainCtrl.$inject= ['$scope'];

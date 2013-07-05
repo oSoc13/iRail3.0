@@ -1,0 +1,10 @@
+
+<p>Station: {{ stationName }}</p>
+<ul>
+    <li ng-repeat="departure in liveboard.departure">
+        station: {{ departure.station }}
+        delay: {{ departure.delay | date:'mm'}}
+        time: {{ departure.time * 1000 | date:'HH:mm'}}
+        platform: {{ departure.platform }}
+    </li>
+</ul>
