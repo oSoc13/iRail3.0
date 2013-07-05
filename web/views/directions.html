@@ -11,15 +11,15 @@
         </div>
     </div>
 </div>
-testing
-<div id="content">
-    <form novalidate>
-        <label for="from">From</label>
-        <input type="text" name="from" id="from" ng-model="from" required/>
-        <label for="to">To</label>
-        <input type="text" name="from" id="to" ng-model="to" required/>
 
-        <button ng-click="submit()" class="btn">Search</button>
+<div id="content">
+    <form novalidate ng-submit="submit()">
+        <label for="from">From</label>
+        <input type="text" name="from" id="from" ng-model="from" required />
+        <label for="to">To</label>
+        <input type="text" name="from" id="to" ng-model="to" required />
+
+        <input type="submit" class="btn" value="search"/>
     </form>
 
     <div>

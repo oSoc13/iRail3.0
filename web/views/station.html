@@ -1,9 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+<div id="header">
+    <div class="navbar navbar-static-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand">iRail</a>
+                <ul class="nav pull-right">
+                    <li><a>Notifications</a></li>
+                    <li><a>Menu</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="content">
+    <form novalidate>
+        <label for="station">Station</label>
+        <input type="text" name="station" id="station" ng-model="station" required />
 
-</body>
-</html>
+        <button ng-click="submit()" class="btn">Search</button>
+    </form>
+</div>

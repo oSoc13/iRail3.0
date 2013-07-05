@@ -40,6 +40,9 @@ function RouteCtrl($scope, $routeParams, $http, $rootScope){
 
 // [/station]
 function StationCtrl($scope, $location){
+    $scope.submit = function(){
+        $location.path('/station/' + $scope.station);
+    }
 }
 
 // [/station/:stationName]
