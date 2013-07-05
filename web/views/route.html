@@ -1,0 +1,7 @@
+<p>Departure station : {{ departureStation }}</p>
+<p>Arrival station : {{ arrivalStation }}</p>
+
+
+<ul>
+    <li ng-repeat="route in possibleRoutes">departure: {{route.departure.station}}, arrival: {{ route.arrival.station }}</li>
+</ul>
