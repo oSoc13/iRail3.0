@@ -13,11 +13,15 @@ function DirectionsCtrl($scope){
 }
 
 function RouteCtrl($scope, $routeParams, $http, $rootScope){
-    $scope.departureStation = $routeParams.departureStation;
     $scope.arrivalStation = $routeParams.arrivalStation;
+    $scope.departureStation = $routeParams.departureStation;
+    $scope.routeDate = new Date();
 
-    //call to irail api
+
     url = $rootScope.iRailAPI + "/connections/?format=json&to=" + $routeParams.arrivalStation + "&from=" + $routeParams.departureStation;
+
+    //call  iRail api
+
     $http.get(url).success(function(data){
         $scope.possibleRoutes = data.connection;
     });

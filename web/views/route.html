@@ -1,7 +1,23 @@
 <p>Departure station : {{ departureStation }}</p>
 <p>Arrival station : {{ arrivalStation }}</p>
+<p>Date: {{ routeDate | date:'EEEE d MMMM y' }}</p>
 
 
 <ul>
-    <li ng-repeat="route in possibleRoutes">departure: {{route.departure.station}}, arrival: {{ route.arrival.station }}</li>
+    <li ng-repeat="route in possibleRoutes">
+        <p>departure time: {{ route.departure.time * 1000 | date:'HH:mm' }}</p>
+        <p>arrival time: {{ route.arrival.time * 1000 | date:'HH:mm' }}</p>
+        <p>duration: {{ route.duration * 1000 | date:'HH:mm' }}</p>
+        <p>nb trains: {{ parseInt(route.vias.number, 10) + 1 }}</p>
+        <h1>Details</h1>
+        <ul>
+            <li>{{ route.departure.time * 1000 | date:'HH:mm' }} {{ route.departure.station }} {{ route.departure.platform }}</li>
+            <li ng-repeat="via in route.vias.via">
+                <p>{{ via.arrival.time * 1000 | date:'HH:mm' }} {{ via.station }} {{ via.arrival.platform }}</p>
+                <p>{{ via.vehicle }} Destination {{ via.direction.name }}</p>
+                <p>{{ via.departure.time * 1000 | date:'HH:mm' }} {{ via.station }} {{ via.departure.platform }}</p>
+            </li>
+            <li>{{ route.arrival.time * 1000 | date:'HH:mm' }} {{ route.arrival.station }} {{ route.arrival.platform }}</li>
+        </ul>
+    </li>
 </ul>

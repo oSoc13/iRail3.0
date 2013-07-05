@@ -1,8 +1,6 @@
 // Copyright OKFN Belgium
 // Author: Nik Torfs
 
-
-
 var app = angular.module('iRail', []);
 
 //App routes definition
@@ -20,4 +18,6 @@ app.config(['$routeProvider', function($routeProvider){
 // Global (configuration) variables here.
 app.run(function($rootScope) {
     $rootScope.iRailAPI = "http://api.irail.be";
+    //this will add the parseInt method to the scope so templates can use it.
+    $rootScope.parseInt = parseInt;
 });
