@@ -11,20 +11,15 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="tab1">
-                    <form novalidate ng-submit="submit()">
+                    <form novalidate name="directionForm">
                         <label for="from" class="cap">from</label>
-                        <input type="text" class="customwidth" name="from" id="from" ng-model="from" placeholder="Select departure station"/>
+                        <input type="text" class="customwidth" name="from" id="from" ng-model="from" placeholder="Select departure station" required/>
                         <label for="to" class="cap">to</label>
-                        <input type="text" class="customwidth" name="from" id="to" ng-model="to" placeholder="Select destination"/>
-                        <label for="date" class="cap">date and time</label>
-                        <select class="select">
-                            <option>Departure</option>
-                            <option>Arrival</option>
-                        </select>
-
+                        <input type="text" class="customwidth" name="from" id="to" ng-model="to" placeholder="Select destination" required/>
+                        
                         <br/><br/>
 
-                        <input type="submit" value="Search" class="btn"/>
+                        <button ng-disabled="!directionForm.$valid" ng-submit="submit()">Search</button>
                     </form>
                     <br/>
                 </div>
