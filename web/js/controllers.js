@@ -22,6 +22,12 @@ function DirectionsCtrl($scope, $location, $rootScope, $http){
         $scope.stations = parseStationData(data.station);
     });
 
+    $scope.switchFromTo = function(){
+        var temp = $scope.from;
+        $scope.from = $scope.to;
+        $scope.to = temp;
+    }
+
     $scope.searchDirections = function(){
         var dayString = addLeadingZeroIfNeeded($scope.day);
         var monthString = addLeadingZeroIfNeeded($scope.month);
