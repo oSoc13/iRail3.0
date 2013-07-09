@@ -18,6 +18,7 @@
                         <label for="to" class="cap">to</label>
                         <input type="text" class="customwidth" name="to" id="to" ng-model="to" placeholder="Select destination" required/>
                         <span class="error" ng-show="directionForm.to.$error.required">Required!</span>
+
                         <br/><br/>
 
                         <button ng-disabled="!directionForm.$valid" ng-click="submit()"/>

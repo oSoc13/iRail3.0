@@ -10,7 +10,16 @@
 
 // [/]
 function DirectionsCtrl($scope, $location){
+    //initializing scope
     $scope.departure = true;
+    var date = new Date();
+    $scope.day = date.getDate() - 1;
+    $scope.month = date.getMonth();
+    $scope.year = date.getYear();
+    $scope.hour = date.getHours();
+    $scope.minutes = date.getMinutes();
+
+
     $scope.submit = function(){
         $location.path('/route/' + $scope.from + '/' + $scope.to);
     }
