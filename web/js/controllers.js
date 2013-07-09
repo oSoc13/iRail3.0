@@ -99,6 +99,15 @@ function TrainCtrl($scope, $routeParams, $http, $rootScope){
     });
 }
 
+//parse the station json to an array of stationNames
+function parseStationData(stationData){
+    var stationNames = [];
+    for(var i = 0; i<stationData.length; i++){
+        var station = stationData[i];
+        stationNames.push(station.name)
+    }
+    return stationNames;
+}
 
 //Changing the format of the returned json to something that is a bit more logical
 function parseConnectionData(connectionData){

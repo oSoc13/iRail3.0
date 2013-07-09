@@ -14,10 +14,16 @@ app.config(['$routeProvider', function($routeProvider){
     }]);
 
 app.directive('autoComplete', function($timeout) {
-    return function(scope, iElement, iAttrs) {
+    return function(scope, iElement) {
+
         setTimeout(function () {
             iElement.autocomplete({
-                source: scope[iAttrs.uiItems]
+                source: scope.stations,
+                select: function() {
+                    $timeout(function() {
+                        iElement.trigger('input');
+                    }, 0);
+                }
             });
         }, 100);
     };
