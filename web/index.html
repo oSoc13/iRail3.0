@@ -1,62 +1,69 @@
 <!DOCTYPE html>
-<html ng-app="iRail" id="ng-app">
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en" ng-app="iRail" id="ng-app"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en" ng-app="iRail" id="ng-app"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en" ng-app="iRail" id="ng-app"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en" ng-app="iRail" id="ng-app"> <!--<![endif]-->
 <head>
+
+    <!-- Basic Page Needs
+  ================================================== -->
+    <meta charset="utf-8">
+    <title>iRail.be</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
     <meta name="apple-mobile-web-app-capable"  content="yes" />
-    <meta charset="UTF-8">
-    <meta name="description" content="NMBS/SNCB mobile iPhone train route planner."/>
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Mobile Specific Metas
+  ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <!-- Bootstrap -->
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-    
-    <!-- Google Webfonts -->
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700' rel='stylesheet' type='text/css'>
+    <!-- CSS
+  ================================================== -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/layout.css">
 
-    <link rel="stylesheet" href="css/style.css"/>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+    <link href='http://fonts.googleapis.com/css?family=Lato:700' rel='stylesheet' type='text/css'>
 
     <!-- scripts -->
     <script src="js/angular.js"></script>
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
 
-    <title>iRail.be - Plan uw treinreis</title>
 </head>
-
 <body>
 
     <div id="header">
-        <div class="navbar">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="brand custombrand" href="#">i<span class="emphasis">Rail</span></a>
-                    <ul class="nav pull-right">
-                        <li><a href="#" class="notifications"><img src="irail-small.png" alt="irail logo"></a></li>
-                        <li class="notifications"><a href="#" class="notifications"><span class="badge badge-important">2 <!-- PLACEHOLDER NOTIFICATION AMOUNT --></span></a></li>
-                        <li class="dropdown">
-                           <a class="dropdown-toggle"
-                              data-toggle="dropdown"
-                              href="#">
-                               Menu
-                               <b class="caret"></b>
-                             </a>
-                           <ul class="dropdown-menu">
-                                <li><a href="#">Test</a></li>
-                                <li><a href="#">Test</a></li>
-                                <li><a href="#">Test</a></li>
-                           </ul>
-                         </li>
-                    </ul>
+        <div class="container">
+            <div class="sixteen columns">
+                <div class="nav">
+                    <span class="title">iRail</span>
+                    <span class="floatright"><a href="#" class="nav">Notifications <span class="white">(0)</span></a></span>
+                    <span class="floatright"><a href="#" class="nav">MyRail</a></span>
                 </div>
             </div>
         </div>
     </div>
 
-    <div ng-view></div>
-
-    <script src="http://code.jquery.com/jquery.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <div class="container">
+        <div class="sixteen columns">
+            <div class="extramargin">
+                <div ng-view></div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

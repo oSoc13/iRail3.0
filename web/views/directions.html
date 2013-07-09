@@ -1,41 +1,37 @@
-<div id="content">
+<form novalidate name="directionForm">
+    <span class="error" ng-show="directionForm.$error.required">
+        Fill in the required fields marked with a '*'
+    </span>
+    <label for="departing" class="label">From</label>
+    <input type="text" id="departing" class="home" placeholder="Departure station" ng-model="from" required/>
 
-    <div class="span8 visible-desktop"><center><p class="lead">Hi, you're looking great today! Which travel information do you need?</p></center></div>
+    <label for="destination" class="label">To</label>
+    <input type="text" id="destination" class="home" placeholder="Destination" ng-model="to" required/>
 
-    <div class="span8 underline">
+    <label class="label">Date <span class="smallcaps">(DD/MM/YY)</span></label>
+    <input type="text" id="day" class="homesmall" value="09"/>
+    <input type="text" id="month" class="homesmall" value="07"/>
+    <input type="text" id="year" class="homesmall" value="2013"/>
+    <br/>
 
-        <div class="tabbable"> <!-- Only required for left/right tabs -->
-            <ul class="nav nav-tabs custom">
-                <li class="active"><a href="#tab1" data-toggle="tab">Route</a></li>
-                <li class="other-tab"><a href="#tab2" data-toggle="tab">Station</a></li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane active" id="tab1">
-                    <form novalidate name="directionForm">
-                        <label for="from" class="cap">from</label>
-                        <input type="text" class="customwidth" name="from" id="from" ng-model="from" placeholder="Select departure station" required/>
-                        <span class="error" ng-show="directionForm.from.$error.required">Required!</span>
-                        <label for="to" class="cap">to</label>
-                        <input type="text" class="customwidth" name="to" id="to" ng-model="to" placeholder="Select destination" required/>
-                        <span class="error" ng-show="directionForm.to.$error.required">Required!</span>
+    <label class="label">Time <span class="smallcaps">(HH/MM)</span></label>
+    <input type="text" id="hours" class="homesmall" value="12"/>
+    <input type="text" id="minutes" class="homesmall" value="00"/>
+    <br/>
 
-                        <br/><br/>
+    <label for="timedeparture" class="label2">
+        <input type="radio" name="radios" id="timedeparture" value="radio 1" checked/>
+        Time of departure
+    </label>
+    <label for="timearrival" class="label2">
+        <input type="radio" name="radios" id="timearrival" value="radio 2" />
+        Time of arrival
+    </label>
 
-                        <button ng-disabled="!directionForm.$valid" ng-click="submit()"/>
-                    </form>
-                    <br/>
-                </div>
-                <div class="tab-pane" id="tab2">
-                    <p>Howdy, I'm in Section 2.</p>
-                    <br/>
-                </div>
-            </div>
-        </div>
+    <br/>
 
-    </div>
+    <button type="submit" class="edit" ng-disabled="!directionForm.$valid" ng-click="submit()">Search</button>
 
-    <div>
-        <p>&nbsp;</p>
-        <button class="btn btn-large btn-block" type="button">Sign in to MyRail</button>
-    </div>
-</div>
+</form>
+
+
