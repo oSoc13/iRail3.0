@@ -10,18 +10,29 @@
 
 // [/]
 function DirectionsCtrl($scope, $location){
-    //initializing scope
-    $scope.departure = true;
+    $scope.departure
     var date = new Date();
-    $scope.day = date.getDate() - 1;
-    $scope.month = date.getMonth();
-    $scope.year = date.getYear();
-    $scope.hour = date.getHours();
+    $scope.day = date.getDate();
+    $scope.month = date.getMonth() + 1; //human readable
+    $scope.year = date.getFullYear();
+    $scope.hours = date.getHours();
     $scope.minutes = date.getMinutes();
 
 
     $scope.searchDirections = function(){
-        $location.path('/route/' + $scope.from + '/' + $scope.to);
+        var dayString = addLeadingZeroIfNeeded($scope.day);
+        var monthString = addLeadingZeroIfNeeded($scope.month);
+        var yearString = $scope.year.toString().substr(2);
+        var hourString = addLeadingZeroIfNeeded($scope.hours);
+        var minuteString = addLeadingZeroIfNeeded($scope.minutes);
+        console.log($scope.departure);
+        $location.path('/route/' +
+            $scope.from + '/' +
+            $scope.to + '/' +
+            dayString + monthString + yearString + '/' +
+            hourString + minuteString + '/' +
+            $scope.departure
+        );
     }
 
     $scope.searchStations = function(){
@@ -36,6 +47,7 @@ function RouteCtrl($scope, $routeParams, $http, $rootScope){
     $scope.fromStation = $routeParams.fromStation;
     $scope.routeDate = new Date();
 
+    console.log($routeParams);
 
     $scope.parseNbVias = function(vias){
         if(vias){
@@ -45,9 +57,15 @@ function RouteCtrl($scope, $routeParams, $http, $rootScope){
     };
 
 
-    url = $rootScope.iRailAPI + "/connections/?to=" + $routeParams.toStation + "&from=" + $routeParams.fromStation + "&format=json";
+    url = $rootScope.iRailAPI + "/connections/?to=" + $routeParams.toStation +
+        "&from=" + $routeParams.fromStation +
+        "&date=" + $routeParams.dateString +
+        "&time=" + $routeParams.timeString +
+        "&timeSel=" + $routeParams.timeSelection +
+        "&format=json";
 
-    //call  iRail api
+    console.log(url);
+        //call  iRail api
     $http.get(url).success(function(data){
         $scope.possibleRoutes = parseConnectionData(data.connection);
     });
@@ -98,6 +116,13 @@ function parseConnectionData(connectionData){
     return connectionData;
 }
 
+function addLeadingZeroIfNeeded(data){
+    if(data < 10){
+        return "0" + data.toString();
+    }
+
+    return data.toString();
+}
 
 //Use this when minifying
 

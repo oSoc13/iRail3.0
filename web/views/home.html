@@ -9,22 +9,22 @@
             <input type="text" id="destination" class="home" placeholder="Destination" ng-model="to" required/>
 
             <label class="label">Date <span class="smallcaps">(DD/MM/YY)</span></label>
-            <input type="text" id="day" class="homesmall" value="09"/>
-            <input type="text" id="month" class="homesmall" value="07"/>
-            <input type="text" id="year" class="homesmall" value="2013"/>
+            <input type="text" id="day" class="homesmall" value="09" ng-model="day"/>
+            <input type="text" id="month" class="homesmall" value="07" ng-model="month"/>
+            <input type="text" id="year" class="homesmall" value="2013" ng-model="year"/>
             <br/>
 
             <label class="label">Time <span class="smallcaps">(HH/MM)</span></label>
-            <input type="text" id="hours" class="homesmall" value="12"/>
-            <input type="text" id="minutes" class="homesmall" value="00"/>
+            <input type="text" id="hours" class="homesmall" value="12" ng-model="hours"/>
+            <input type="text" id="minutes" class="homesmall" value="00" ng-model="minutes"/>
             <br/>
 
             <label for="timedeparture" class="label2">
-                <input type="radio" name="radios" id="timedeparture" value="radio 1" checked/>
+                <input type="radio" name="departure" id="timedeparture" value="depart" ng-model="departure" ng-checked="true" />
                 Time of departure
             </label>
             <label for="timearrival" class="label2">
-                <input type="radio" name="radios" id="timearrival" value="radio 2" />
+                <input type="radio" name="arrival" id="timearrival" value="arrive" ng-model="departure" />
                 Time of arrival
             </label>
 
