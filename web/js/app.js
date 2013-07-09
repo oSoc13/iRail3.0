@@ -13,6 +13,15 @@ app.config(['$routeProvider', function($routeProvider){
             otherwise({redirectTo: '/'});
     }]);
 
+app.directive('autoComplete', function($timeout) {
+    return function(scope, iElement, iAttrs) {
+        setTimeout(function () {
+            iElement.autocomplete({
+                source: scope[iAttrs.uiItems]
+            });
+        }, 100);
+    };
+});
 
 // Global (configuration) variables here.
 app.run(function($rootScope) {
