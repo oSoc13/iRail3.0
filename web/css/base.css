@@ -58,6 +58,7 @@
 		-webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
 		-webkit-text-size-adjust: 100%;
 		margin-bottom: 15px;
+		shape-rendering: auto;
  }
 
 
@@ -279,26 +280,20 @@
 		float: left;
 	}
 	
-	span.floatright{
-		float: right;
-		margin-left: 50px;
-		padding-top:20px;
-		font-size: 1em;
+	.float{
+	    float: left;
 	}
 	
-	img.logo{
-		margin-top: 30px;
+	span.floatright{
+		float: right;
+		margin-left: 40px;
+		padding-top:37px;
+		font-size: 1em;
 	}
 
 	span.white{
 		color: white;
 		font-weight: bold;
-	}
-	
-	span.title{
-		color: white ;
-		font-weight: bold;
-		font-size: 36px;
 	}
 
 	a.nav{
@@ -311,11 +306,11 @@
 	}
 	
 	a.nav:hover{
-		color: #6ec8c7;
+		color: #e74c3c;
 	}
 	
 	div.nav{
-		margin-top: 40px;
+		margin-top: 20px;
 	}
 	
 	div.extramargin{
@@ -400,4 +395,30 @@
 	.smallcaps{
 		font-variant: small-caps;
 		padding-left: 5px;
+	}
+	
+	img.logo{
+	    margin-top: 12px;
+	    width: 80px;
+	}
+	
+	img.icon-margin{
+	    margin-left: 6px;
+	    cursor:pointer;    
+	    float: right;
+	    -webkit-transition: 0.25s;
+	    -moz-transition: 0.25s;
+	    -o-transition: 0.25s;
+	    transition: 0.25s;
+	}
+	
+	img.icon-margin:hover{
+	    filter: alpha(opacity=50);
+		-moz-opacity:0.5;
+		-khtml-opacity: 0.5;
+		opacity: 0.5;
+	}
+	
+	div.special{
+	    max-width: 414px;
 	}
