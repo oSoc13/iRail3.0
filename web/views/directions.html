@@ -14,9 +14,10 @@
                     <form novalidate name="directionForm">
                         <label for="from" class="cap">from</label>
                         <input type="text" class="customwidth" name="from" id="from" ng-model="from" placeholder="Select departure station" required/>
+                        <span class="error" ng-show="directionForm.from.$error.required">Required!</span>
                         <label for="to" class="cap">to</label>
-                        <input type="text" class="customwidth" name="from" id="to" ng-model="to" placeholder="Select destination" required/>
-                        
+                        <input type="text" class="customwidth" name="to" id="to" ng-model="to" placeholder="Select destination" required/>
+                        <span class="error" ng-show="directionForm.to.$error.required">Required!</span>
                         <br/><br/>
 
                         <button ng-disabled="!directionForm.$valid" ng-submit="submit()">Search</button>
