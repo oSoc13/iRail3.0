@@ -11,10 +11,11 @@
 // [/]
 function DirectionsCtrl($scope, $location){
     $scope.departure = true;
-    $scope.date = new Date();
     $scope.submit = function(){
         $location.path('/route/' + $scope.from + '/' + $scope.to);
     }
+
+
 }
 
 // [/route/:fromStation/:toStation]
@@ -22,9 +23,11 @@ function RouteCtrl($scope, $routeParams, $http, $rootScope){
     $scope.toStation = $routeParams.toStation;
     $scope.fromStation = $routeParams.fromStation;
     $scope.routeDate = new Date();
+
+
     $scope.parseNbVias = function(vias){
-        if(data){
-            return parseInt(data.number)
+        if(vias){
+            return parseInt(vias.number)
         }
         return 0;
     };
