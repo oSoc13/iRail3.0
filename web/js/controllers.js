@@ -20,10 +20,13 @@ function DirectionsCtrl($scope, $location){
     $scope.minutes = date.getMinutes();
 
 
-    $scope.submit = function(){
+    $scope.searchDirections = function(){
         $location.path('/route/' + $scope.from + '/' + $scope.to);
     }
 
+    $scope.searchStations = function(){
+        $location.path('/station/' + $scope.station);
+    }
 
 }
 
@@ -50,12 +53,6 @@ function RouteCtrl($scope, $routeParams, $http, $rootScope){
     });
 }
 
-// [/station]
-function StationCtrl($scope, $location){
-    $scope.submit = function(){
-        $location.path('/station/' + $scope.station);
-    }
-}
 
 // [/station/:stationName]
 function StationDetailCtrl($scope, $rootScope, $routeParams, $http){
