@@ -9,8 +9,7 @@
 
 
 // [/]
-function DirectionsCtrl($scope, $location){
-    $scope.departure
+function DirectionsCtrl($scope, $location, $rootScope, $http){
     var date = new Date();
     $scope.day = date.getDate();
     $scope.month = date.getMonth() + 1; //human readable
@@ -18,6 +17,10 @@ function DirectionsCtrl($scope, $location){
     $scope.hours = date.getHours();
     $scope.minutes = date.getMinutes();
 
+    var url = $rootScope.iRailAPI + "/stations/?lang=en&format=json";
+    $http.get(url).success(function(data){
+        $scope.stations = parseStationData(data.station);
+    });
 
     $scope.searchDirections = function(){
         var dayString = addLeadingZeroIfNeeded($scope.day);
@@ -25,7 +28,7 @@ function DirectionsCtrl($scope, $location){
         var yearString = $scope.year.toString().substr(2);
         var hourString = addLeadingZeroIfNeeded($scope.hours);
         var minuteString = addLeadingZeroIfNeeded($scope.minutes);
-        console.log($scope.departure);
+
         $location.path('/route/' +
             $scope.from + '/' +
             $scope.to + '/' +
@@ -126,7 +129,7 @@ function addLeadingZeroIfNeeded(data){
 
 //Use this when minifying
 
-//DirectionsCtrl.$inject= ['$scope', '$location'];
+//DirectionsCtrl.$inject= ['$scope', '$location', '$rootScope', '$http'];
 //RouteCtrl.$inject= ['$scope', '$routeParams', '$http', '$rootScope'];
 //StationCtrl.$inject= ['$scope', '$location'];
 //StationDetailCtrl.$inject= ['$scope','$rootScope', '$routeParams', '$http'];
