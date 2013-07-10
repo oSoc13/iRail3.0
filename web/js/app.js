@@ -44,17 +44,28 @@ app.factory('stationService', function($resource, $cacheFactory, $rootScope) {
 });
 
 app.directive('autoComplete', function($timeout, stationService) {
+
+    /*
+     * Apply jquery autocomplete on given element with given data as resource
+     *
+     * @param data: autocomplete source
+     * @param iElement: jquery object
+     */
+    var addAutocompleteToElement = function(data, iElement){
+        iElement.autocomplete({
+            source: data,
+            minLength: 2,
+            select: function() {
+                $timeout(function() {
+                    iElement.trigger('input');
+                }, 0);
+            }
+        });
+    }
+
     return function(scope, iElement) {
         stationService.getResource(function(data){
-            iElement.autocomplete({
-                source: data,
-                minLength: 2,
-                select: function() {
-                    $timeout(function() {
-                        iElement.trigger('input');
-                    }, 0);
-                }
-            });
+            addAutocompleteToElement(data, iElement)
         });
     };
 });
