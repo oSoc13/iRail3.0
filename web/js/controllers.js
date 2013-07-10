@@ -9,18 +9,13 @@
 
 
 // [/]
-function DirectionsCtrl($scope, $location, $rootScope, $http){
+function DirectionsCtrl($scope, $location, stationService){
     var date = new Date();
     $scope.day = date.getDate();
     $scope.month = date.getMonth() + 1; //human readable
     $scope.year = date.getFullYear();
     $scope.hours = date.getHours();
     $scope.minutes = date.getMinutes();
-
-    var url = $rootScope.iRailAPI + "/stations/?lang=en&format=json";
-    $http.get(url).success(function(data){
-        $scope.stations = parseStationData(data.station);
-    });
 
     $scope.switchFromTo = function(){
         var temp = $scope.from;
@@ -55,8 +50,6 @@ function RouteCtrl($scope, $routeParams, $http, $rootScope){
     $scope.toStation = $routeParams.toStation;
     $scope.fromStation = $routeParams.fromStation;
     $scope.routeDate = new Date();
-
-    console.log($routeParams);
 
     $scope.parseNbVias = function(vias){
         if(vias){
@@ -144,8 +137,7 @@ function addLeadingZeroIfNeeded(data){
 
 //Use this when minifying
 
-//DirectionsCtrl.$inject= ['$scope', '$location', '$rootScope', '$http'];
-//RouteCtrl.$inject= ['$scope', '$routeParams', '$http', '$rootScope'];
-//StationCtrl.$inject= ['$scope', '$location'];
-//StationDetailCtrl.$inject= ['$scope','$rootScope', '$routeParams', '$http'];
-//TrainCtrl.$inject= ['$scope', '$routeParams', '$http', '$rootScope'];
+DirectionsCtrl.$inject= ['$scope', '$location', 'stationService'];
+RouteCtrl.$inject= ['$scope', '$routeParams', '$http', '$rootScope'];
+StationDetailCtrl.$inject= ['$scope','$rootScope', '$routeParams', '$http'];
+TrainCtrl.$inject= ['$scope', '$routeParams', '$http', '$rootScope'];
