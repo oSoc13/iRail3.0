@@ -30,6 +30,10 @@
         float: left;
     }
 
+    div.float-right{
+        float: right;
+    }
+
     .nav span.floatright{
         float: right;
         margin-left: 50px;
@@ -79,34 +83,59 @@
         font-size: 1em;
     }
 
-    label.label{
+    label{
         font: 1em/1.5 'Lato', sans-serif;
         margin-bottom: 6px;
         clear: both;
     }
 
-    label.label2{
-        font: 0.8em/1.3 'Lato', sans-serif;
-        margin-bottom: 6px;
-        clear: both;
+
+    .search-route{
+        max-width:400px;
     }
 
-    input.home{
+    .search-route input{
         width: 100%;
-        max-width: 400px;
-        height: 25px;
-
+        height: 39px;
         color: #757575;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
     }
 
-    input.homesmall{
+    .search-route select{
         width: 100%;
-        max-width: 80px;
-        margin-right: 10px;
+        height: 39px;
+        color: #757575;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+    }
+
+    .date-fieldset input{
+        height: 39px;
+        width: 30%;
         float: left;
-        height: 25px;
+    }
 
-        color: #757575;
+    .date-fieldset input.alpha{
+        margin-right: 5%;
+    }
+
+    .date-fieldset input.beta{
+        margin-left: 5%;
+    }
+
+    .time-fieldset input{
+        height: 39px;
+        width: 47.5%;
+        float: left;
+    }
+
+    .time-fieldset input.alpha{
+        margin-right: 2.5%;
+    }
+
+    .time-fieldset input.beta{
+        margin-left: 2.5%;
     }
 
     span.radio{

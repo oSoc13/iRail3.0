@@ -1,35 +1,36 @@
 <div class="sixteen columns">
     <div class="extramargin">
 
-        <form novalidate name="directionForm">
-            <label for="departing" class="label">From</label>
-            <input type="text" id="departing" class="home" placeholder="Departure station" ng-model="from" required auto-complete ui-items="stations">
+        <form class="search-route" novalidate name="directionForm">
 
+            <label for="departing" class="label">From</label>
+            <input type="text" id="departing" class="search-route__field" placeholder="Departure station" ng-model="from" required auto-complete />
+
+            <div class="float-right">
+                <a ng-click="switchFromTo()">switch</a>
+            </div>
 
             <label for="destination" class="label">To</label>
-            <input type="text" id="destination" class="home" placeholder="Destination" ng-model="to" required auto-complete ui-items="stations"/>
+            <input type="text" id="destination" class="search-route__field" placeholder="Destination" ng-model="to" required auto-complete />
 
-            <label class="label">Date <span class="smallcaps">(DD/MM/YY)</span></label>
-            <input type="text" id="day" class="homesmall" ng-model="day"/>
-            <input type="text" id="month" class="homesmall" ng-model="month"/>
-            <input type="text" id="year" class="homesmall" ng-model="year"/>
-            <br/>
+            <div class="date-fieldset">
+                <label class="label">Date <span class="smallcaps">(DD/MM/YY)</span></label>
+                <input type="text" id="day" class="alpha" ng-model="day"/>
+                <input type="text" id="month" ng-model="month"/>
+                <input type="text" id="year" class="beta" ng-model="year"/>
+            </div>
 
-            <label class="label">Time <span class="smallcaps">(HH/MM)</span></label>
-            <input type="text" id="hours" class="homesmall" ng-model="hours"/>
-            <input type="text" id="minutes" class="homesmall" ng-model="minutes"/>
-            <br/>
+            <div class="time-fieldset">
+                <label class="label">Time <span class="smallcaps">(HH/MM)</span></label>
+                <input type="text" id="hours" class="alpha" ng-model="hours"/>
+                <input type="text" id="minutes" class="beta" ng-model="minutes"/>
+            </div>
 
-            <label for="timedeparture" class="label2">
-                <input type="radio" name="departure" id="timedeparture" value="depart" ng-model="departure" ng-checked="true" />
-                Time of departure
-            </label>
-            <label for="timearrival" class="label2">
-                <input type="radio" name="arrival" id="timearrival" value="arrive" ng-model="departure" />
-                Time of arrival
-            </label>
-
-            <br/>
+            <label for="timeselect">Search on</label>
+            <select id="timeselect" ng-model="departure">
+                <option value="depart" ng-selected="true">Departure time</option>
+                <option value="arrive">Arrival time</option>
+            </select>
 
             <button type="submit" class="edit" ng-disabled="!directionForm.$valid" ng-click="searchDirections()">Search</button>
 
