@@ -116,6 +116,102 @@
         float: left;
     }
 
+    #searchtime{
+        display:table;
+        width:100%;
+    }
+
+    #timeselect{
+        float:left;
+
+        display: table-cell;
+        width:100%;
+    }
+    #timeselect select{
+        width: 100%;
+        margin-bottom:20px;
+    }
+
+#date-input,
+#time-input{
+    display: table-cell;
+}
+
+    #date-input .outer,
+    #time-input .outer{
+        width:100%;
+        float: left;
+        margin-bottom: 20px;
+    }
+
+    #date-input .inner,
+    #time-input .inner{
+        padding: 8px 4px 6px 4px;
+        height: 39px;
+        width:100%;
+        outline: 0;
+        text-align: center;
+        border:1px solid #ccc;
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+        background-color: #fff;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+    }
+
+    #date-input input.small{
+        width:20px;
+    }
+
+    #time-input .inner{
+
+    }
+
+    #date-input .inner.focused,
+    #time-input .inner.focused{
+        border: 1px solid #aaa;
+        color: #444;
+        outline: 0;
+        -moz-box-shadow: 0 0 3px rgba(0,0,0,.2);
+        -webkit-box-shadow: 0 0 3px rgba(0,0,0,.2);
+        box-shadow: 0 0 3px rgba(0,0,0,.2);
+    }
+
+    #date-input .divider,
+    #time-input .divider{
+        float:left;
+        height:auto;
+
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+    }
+
+    #date-input input,
+    #time-input input{
+        float: left;
+        width: 40px;
+        background: none;
+        text-align: inherit;
+        border: none;
+        height: 19px;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+    }
+
+    #time-input input{
+        width: 20px;
+    }
+
+    #date-input input:focus,
+    #time-input input:focus{
+        outline: 0;
+        border:0;
+        box-shadow: none;
+    }
+
     .date-fieldset input.alpha{
         margin-right: 5%;
     }

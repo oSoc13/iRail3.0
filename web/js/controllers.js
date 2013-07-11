@@ -9,7 +9,7 @@
 
 
 // [/]
-function DirectionsCtrl($scope, $location, stationService){
+function DirectionsCtrl($scope, $location){
     var date = new Date();
     $scope.day = date.getDate();
     $scope.month = date.getMonth() + 1; //human readable
@@ -42,7 +42,6 @@ function DirectionsCtrl($scope, $location, stationService){
     $scope.searchStations = function(){
         $location.path('/station/' + $scope.station);
     }
-
 }
 
 // [/route/:fromStation/:toStation]
@@ -137,7 +136,7 @@ function addLeadingZeroIfNeeded(data){
 
 //Use this when minifying
 
-DirectionsCtrl.$inject= ['$scope', '$location', 'stationService'];
+DirectionsCtrl.$inject= ['$scope', '$location'];
 RouteCtrl.$inject= ['$scope', '$routeParams', '$http', '$rootScope'];
 StationDetailCtrl.$inject= ['$scope','$rootScope', '$routeParams', '$http'];
 TrainCtrl.$inject= ['$scope', '$routeParams', '$http', '$rootScope'];

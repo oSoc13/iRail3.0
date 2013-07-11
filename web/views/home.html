@@ -4,33 +4,55 @@
         <form class="search-route" novalidate name="directionForm">
 
             <label for="departing" class="label">From</label>
-            <input type="text" id="departing" class="search-route__field" placeholder="Departure station" ng-model="from" required auto-complete />
+            <input type="text" id="departing"  placeholder="Departure station" tabindex="1" ng-model="from" required auto-complete />
 
             <div class="float-right">
-                <a ng-click="switchFromTo()">switch</a>
+                <a tabindex="3" ng-click="switchFromTo()">switch</a>
             </div>
 
             <label for="destination" class="label">To</label>
-            <input type="text" id="destination" class="search-route__field" placeholder="Destination" ng-model="to" required auto-complete />
+            <input type="text" id="destination" placeholder="Destination" tabindex="2" ng-model="to" required auto-complete />
 
-            <div class="date-fieldset">
-                <label class="label">Date <span class="smallcaps">(DD/MM/YY)</span></label>
-                <input type="text" id="day" class="alpha" ng-model="day"/>
-                <input type="text" id="month" ng-model="month"/>
-                <input type="text" id="year" class="beta" ng-model="year"/>
+            <label>Date &amp; Time</label>
+            <div id="searchtime">
+
+                <div id="timeselect">
+                    <select ng-model="departure">
+                        <option value="depart" ng-selected="true">Departure time</option>
+                        <option value="arrive">Arrival time</option>
+                    </select>
+                </div>
+
+
+                <div id="date-input">
+                    <div class="outer">
+                        <div class="inner" tabindex="-1">
+                            <input type="text" id="day" class="small" ng-model="day" maxlength="2" tabindex="4"/>
+                            <span class="divider">
+                                /
+                            </span>
+                            <input type="text" id="month" class="small" ng-model="month" maxlength="2" tabindex="5"/>
+                            <span class="divider">
+                                /
+                            </span>
+                            <input type="text" id="year" ng-model="year" maxlength="4" tabindex="6"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="time-input">
+                    <div class="outer">
+                        <div class="inner" tabindex="-1">
+                            <input type="text" id="hours" class="alpha" maxlength="2" tabindex="7" ng-model="hours"/>
+                            <span class="divider">
+                                :
+                            </span>
+                            <input type="text" id="minutes" class="beta" maxlength="2" tabindex="8" ng-model="minutes"/>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="time-fieldset">
-                <label class="label">Time <span class="smallcaps">(HH/MM)</span></label>
-                <input type="text" id="hours" class="alpha" ng-model="hours"/>
-                <input type="text" id="minutes" class="beta" ng-model="minutes"/>
-            </div>
-
-            <label for="timeselect">Search on</label>
-            <select id="timeselect" ng-model="departure">
-                <option value="depart" ng-selected="true">Departure time</option>
-                <option value="arrive">Arrival time</option>
-            </select>
 
             <button type="submit" class="edit" ng-disabled="!directionForm.$valid" ng-click="searchDirections()">Search</button>
 
