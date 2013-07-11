@@ -110,12 +110,13 @@
         -moz-box-sizing: border-box;
     }
 
-    .date-fieldset input{
-        height: 39px;
-        width: 30%;
-        float: left;
+    #tab-bar{
+        display: none;
     }
 
+    /*
+    Date and time input box
+    */
     #searchtime{
         display:table;
         width:100%;
@@ -132,25 +133,16 @@
         margin-bottom:20px;
     }
 
-#date-input,
-#time-input{
-    display: table-cell;
-}
+    #date-input,
+    #time-input{
+        display: table-cell;
+    }
 
     #date-input .outer,
     #time-input .outer{
         width:100%;
         float: left;
         margin-bottom: 20px;
-    }
-
-    #date-input .inner,
-    #time-input .inner{
-        padding: 8px 4px 6px 4px;
-        height: 39px;
-        width:100%;
-        outline: 0;
-        text-align: center;
         border:1px solid #ccc;
         -moz-border-radius: 2px;
         -webkit-border-radius: 2px;
@@ -158,14 +150,31 @@
         background-color: #fff;
         box-sizing: border-box;
         -moz-box-sizing: border-box;
+        padding: 8px 4px 6px 4px;
+        height: 39px;
+        outline: 0;
+        text-align: center;
+    }
+
+    #date-input .inner,
+    #time-input .inner{
+        height: 100%;
+        max-width: 90px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #time-input .inner{
+        max-width: 45px;
+    }
+
+    #date-input .inner span,
+    #time-input .inner span{
+        line-height: 17px;
     }
 
     #date-input input.small{
         width:20px;
-    }
-
-    #time-input .inner{
-
     }
 
     #date-input .inner.focused,
@@ -212,37 +221,38 @@
         box-shadow: none;
     }
 
-    .date-fieldset input.alpha{
-        margin-right: 5%;
+    /*
+    Buttons with icons
+    */
+    .icon-text{
+        display: block;
     }
 
-    .date-fieldset input.beta{
-        margin-left: 5%;
+    .icon-text img{
+        float:left;
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
     }
 
-    .time-fieldset input{
-        height: 39px;
-        width: 47.5%;
-        float: left;
+    .icon-text span{
+        padding-top: 5px;
+        float:left;
+
     }
 
-    .time-fieldset input.alpha{
-        margin-right: 2.5%;
-    }
 
-    .time-fieldset input.beta{
-        margin-left: 2.5%;
-    }
+
 
     span.radio{
 
         color: #757575;
     }
 
-    button.edit{
+    button {
         width: 200px;
         height: 40px;
-        font: 0.85em/1.5 'Lato', sans-serif;
+        font: 1em/1.5 'Lato', sans-serif;
         color: #757575;
         padding-top: 5px;
         background: #EAEAEA;
@@ -252,7 +262,7 @@
         transition: 0.25s;
     }
 
-    button.edit:hover{
+    button:hover{
         background: #f1f1f1;
     }
 
@@ -264,7 +274,7 @@
         text-align: left;
     }
 
-    img.beep{
+    img.icon{
         margin-left: 15px;
         margin-bottom: -12px;
     }
@@ -276,6 +286,21 @@
     .smallcaps{
         font-variant: small-caps;
         padding-left: 5px;
+    }
+
+    #searchtime{
+        margin-bottom: 20px;
+    }
+
+    #switch-from-to{
+        width:30px;
+        height:30px;
+        padding:5px;
+        margin: 0;
+    }
+
+    #myrail-features li{
+        margin-bottom: 30px;
     }
 
 /* Autocomplete
@@ -344,7 +369,19 @@ ui-autocomplete-item{
 	}
 
 	/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
-	@media only screen and (min-width: 480px) and (max-width: 767px) {}
+	@media only screen and (min-width: 480px) and (max-width: 767px) {
+        #tab-bar{
+            display: block;
+        }
+
+        div.page{
+            display: none;
+        }
+
+        div.page.active{
+            display: block;
+        }
+    }
 
 	/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 	@media only screen and (max-width: 479px) {
@@ -374,13 +411,9 @@ ui-autocomplete-item{
 		padding-right: 5px;
 	}
 
-    [type="text"], input[type="password"], input[type="email"], textarea, select{
+    [type="text"], input[type="password"], input[type="email"], textarea, select, #searchtime{
         margin-bottom: 10px;
     }
-	
-	input.home{
-		width: 290px;
-	}
 
     span.title{
         font-size: 25px;
