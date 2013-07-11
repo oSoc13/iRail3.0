@@ -10,82 +10,84 @@
         </div>
 
         <div class="eight columns alpha">
-        <div class="page active">
-            <form class="search-route" novalidate name="directionForm">
+            <div class="page active">
+                <form class="search-route" novalidate name="directionForm">
 
-                <label for="departing" class="label">From</label>
-                <input type="text" id="departing"  placeholder="Departure station" tabindex="1" ng-model="from" required auto-complete />
+                    <label for="departing" class="label">From</label>
+                    <input type="text" id="departing"  placeholder="Departure station" tabindex="1" ng-model="from" required auto-complete />
 
-
-
-                <label for="destination" class="label float">To</label>
-                <div id="switch-button">
-                    <button id="switch-from-to" tabindex="3" ng-click="switchFromTo()"><img src="../images/arrow.svg" alt="switch"/> </button>
-                </div>
-                <input type="text" id="destination" placeholder="Destination" tabindex="2" ng-model="to" required auto-complete />
-
-                <label>Date &amp; Time</label>
-                <div id="searchtime">
-
-                    <div id="timeselect">
-                        <select ng-model="departure">
-                            <option value="depart" ng-selected="true">Departure time</option>
-                            <option value="arrive">Arrival time</option>
-                        </select>
+                    <label for="destination" class="label float">To</label>
+                    <div id="switch-button">
+                        <button id="switch-from-to" tabindex="3" ng-click="switchFromTo()"><img src="../images/arrow.svg" alt="switch"/> </button>
                     </div>
+                    <input type="text" id="destination" placeholder="Destination" tabindex="2" ng-model="to" required auto-complete />
+
+                    <label>Date &amp; Time</label>
+                    <div id="searchtime">
+
+                        <div id="timeselect">
+                            <select ng-model="departure">
+                                <option value="depart" ng-selected="true">Departure time</option>
+                                <option value="arrive">Arrival time</option>
+                            </select>
+                        </div>
 
 
-                    <div id="date-input">
-                        <div class="outer" tabindex="-1">
-                            <div class="inner">
-                                <input type="text" id="day" class="small" ng-model="day" ng-format="" maxlength="2" tabindex="4"/>
-                                <span class="divider">
-                                    /
-                                </span>
-                                <input type="text" id="month" class="small" ng-model="month" maxlength="2" tabindex="5"/>
-                                <span class="divider">
-                                    /
-                                </span>
-                                <input type="text" id="year" ng-model="year" maxlength="4" tabindex="6"/>
+                        <div id="date-input">
+                            <div class="outer" tabindex="-1">
+                                <div class="inner">
+                                    <input type="text" id="day" class="small" ng-model="day" ng-format="" maxlength="2" tabindex="4"/>
+                                    <span class="divider">
+                                        /
+                                    </span>
+                                    <input type="text" id="month" class="small" ng-model="month" maxlength="2" tabindex="5"/>
+                                    <span class="divider">
+                                        /
+                                    </span>
+                                    <input type="text" id="year" ng-model="year" maxlength="4" tabindex="6"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="time-input">
+                            <div class="outer" tabindex="-1">
+                                <div class="inner">
+                                    <input type="text" id="hours" class="alpha" maxlength="2" tabindex="7" ng-model="hours"/>
+                                    <span class="divider">
+                                        :
+                                    </span>
+                                    <input type="text" id="minutes" class="beta" maxlength="2" tabindex="8" ng-model="minutes"/>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div id="time-input">
-                        <div class="outer" tabindex="-1">
-                            <div class="inner">
-                                <input type="text" id="hours" class="alpha" maxlength="2" tabindex="7" ng-model="hours"/>
-                                <span class="divider">
-                                    :
-                                </span>
-                                <input type="text" id="minutes" class="beta" maxlength="2" tabindex="8" ng-model="minutes"/>
+
+                    <div class="btn">
+                        <button type="submit" ng-disabled="!directionForm.$valid" ng-click="searchDirections()">
+                            <div class="icon-text center">
+                                <img src="../images/train.svg" alt="irail logo" width="40" class="icon"/>
+                                <span>Check train times</span>
                             </div>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="page">
+                <hr/>
+                <label for="station" class="label">Current departures and arrivals</label>
+                <input type="text" id="station" class="home" placeholder="Select station" ng-model="station"/>
+                <div class="btn">
+                    <button type="submit" ng-click="searchStations()">
+                        <div class="icon-text">
+                            <img src="../images/train.svg" alt="irail logo" width="40" class="icon"/>
+                            <span>Search by station</span>
                         </div>
-                    </div>
+                    </button>
                 </div>
-
-
-                <button type="submit" ng-disabled="!directionForm.$valid" ng-click="searchDirections()">
-                    <div class="icon-text">
-                        <img src="../images/train.svg" alt="irail logo" width="40" class="icon"/>
-                        <span>Check train times</span>
-                    </div>
-                </button>
-
-            </form>
-        </div>
-
-        <div class="page">
-            <hr/>
-            <label for="station" class="label">Current departures and arrivals</label>
-            <input type="text" id="station" class="home" placeholder="Select station" ng-model="station"/>
-            <button type="submit" ng-click="searchStations()">
-                <div class="icon-text">
-                    <img src="../images/train.svg" alt="irail logo" width="40" class="icon"/>
-                    <span>Search by station</span>
-                </div>
-            </button>
-        </div>
+            </div>
         </div>
 
         <div id="myrail-features" class="page eight columns omega">
@@ -93,33 +95,35 @@
             <ul>
                 <li class="icon-text">
                     <img src="../images/feature-plantrips.svg" alt="irail logo" width="40"/>
-                    <span>Plan your trips in a travel agenda</span>
+                    <p>Plan your trips in a travel agenda</p>
                     <br/>
                 </li>
                 <li class="icon-text">
                     <img src="../images/feature-checkin.svg" alt="irail logo" width="40"/>
-                    <span>Social check-ins</span>
+                    <p>Social check-ins</p>
                     <br/>
                 </li>
                 <li class="icon-text">
                     <img src="../images/feature-friend.svg" alt="irail logo" width="40"/>
-                    <span>Know when a friend is on the same train</span>
+                    <p>Know when a friend is on the same train</p>
                     <br/>
                 </li>
                 <li class="icon-text">
                     <img src="../images/feature-notifications.svg" alt="irail logo" width="40"/>
-                    <span>Receive social &amp; delay notifications</span>
+                    <p>Receive social &amp; delay notifications</p>
                     <br/>
                 </li>
                 <br/>
             </ul>
 
-            <button type="submit">
-                <div class="icon-text">
-                    <img src="../images/irail.svg" alt="irail logo" width="40" class="icon"/>
-                    <span>Enter MyRail</span>
-                </div>
-            </button>
+            <div class="btn">
+                <button type="submit">
+                    <div class="icon-text">
+                        <img src="../images/irail.svg" alt="irail logo" width="40" class="icon"/>
+                        <span>Enter MyRail</span>
+                    </div>
+                </button>
+            </div>
 
         </div>
     </div>
