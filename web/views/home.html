@@ -4,7 +4,7 @@
 
 
         <div class="eight columns alpha">
-            <div class="page active">
+            <div id="directions" class="page active">
                 <form id="search-route" novalidate name="directionForm">
 
                     <label for="departing" class="label">From</label>
@@ -69,7 +69,7 @@
                 </form>
             </div>
 
-            <div class="page">
+            <div id="stations" class="page">
                 <hr/>
                 <form id="search-station" name="stationForm">
                     <label for="station" class="label">Current departures and arrivals</label>
@@ -87,7 +87,7 @@
         </div>
 
         <div id="myrail-features" class="eight columns omega">
-            <div class="page">
+            <div id="myrail" class="page">
                 <h3>MyRail offers you free features!</h3>
                 <ul>
                     <li class="icon-text">
@@ -127,7 +127,7 @@
         <div id="tab-bar">
             <ul>
                 <li><a ng-click="directions()">Directions</a></li>
-                <li><a ng-click="trains()">Trains</a></li>
+                <li><a ng-click="stations()">Stations</a></li>
                 <li><a ng-click="myRail()">MyRail</a></li>
             </ul>
         </div>

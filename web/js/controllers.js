@@ -42,6 +42,27 @@ function DirectionsCtrl($scope, $location){
     $scope.searchStations = function(){
         $location.path('/station/' + $scope.station);
     }
+
+    //Tab bar functionality
+    //todo refactor to its own controller
+    $scope.directions = function(){
+        $("#directions").addClass("active");
+        $("#stations").removeClass("active");
+        $("#myrail").removeClass("active");
+    }
+
+    $scope.stations = function (){
+        $("#directions").removeClass("active");
+        $("#stations").addClass("active");
+        $("#myrail").removeClass("active");
+    }
+
+    $scope.myRail = function (){
+        $("#directions").removeClass("active");
+        $("#stations").removeClass("active");
+        $("#myrail").addClass("active");
+    }
+
 }
 
 // [/route/:fromStation/:toStation]
