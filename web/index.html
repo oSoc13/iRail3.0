@@ -29,6 +29,13 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
+
+    <!--[if !IE 7]>
+    <style type="text/css">
+        #wrapper {display:table;height:100%}
+    </style>
+    <![endif]-->
+
     <!-- Favicons
     ================================================== -->
     <link rel="shortcut icon" href="images/favicon.ico">
@@ -50,21 +57,6 @@
 
 </head>
 <body>
-
-    <div id="header">
-        <div class="container">
-            <div class="sixteen columns">
-                <div class="nav">
-                    <img class="logo" src="images/logo.svg"/>
-                    <span class="floatright"><a href="#" class="nav">Notifications <span class="white">(0)</span></a></span>
-                    <span class="floatright"><a href="#" class="nav">MyRail</a></span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div ng-view></div>
-    </div>
+    <div id="outer-wrapper" ng-view></div>
 </body>
 </html>

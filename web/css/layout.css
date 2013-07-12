@@ -17,6 +17,34 @@
 /* #Site Styles
 ================================================== */
 
+    /* sticky footer */
+    html, body, #outer-wrapper {
+        height: 100%;
+    }
+
+    #wrapper {min-height: 100%;}
+
+    #content {overflow:auto;
+        padding-bottom: 30px;}  /* must be same height as the footer */
+
+    #footer {position: relative;
+        margin-top: -30px; /* negative value of footer height */
+        height: 30px;
+        clear:both;
+        background-color: #ddd;
+    }
+
+    /*Opera Fix*/
+    body:before {
+        content:"";
+        height:100%;
+        float:left;
+        width:0;
+        margin-top:-32767px;
+    }
+
+    /* end sticky footer */
+
     body{
         font: 0.85em/1.5 'Lato', sans-serif;
     }
@@ -99,6 +127,11 @@
         margin-bottom: 6px;
         clear: both;
     }
+
+    #wrapper{
+        min-height: 100%;
+    }
+
 
 
     #search-route,
@@ -481,22 +514,3 @@ ui-autocomplete-item{
     }
 	
 	}
-
-
-/* #Font-Face
-================================================== */
-/* 	This is the proper syntax for an @font-face file
-		Just create a "fonts" folder at the root,
-		copy your FontName into code below and remove
-		comment brackets */
-
-/*	@font-face {
-	    font-family: 'FontName';
-	    src: url('../fonts/FontName.eot');
-	    src: url('../fonts/FontName.eot?iefix') format('eot'),
-	         url('../fonts/FontName.woff') format('woff'),
-	         url('../fonts/FontName.ttf') format('truetype'),
-	         url('../fonts/FontName.svg#webfontZam02nTh') format('svg');
-	    font-weight: normal;
-	    font-style: normal; }
-*/
