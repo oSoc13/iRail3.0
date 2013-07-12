@@ -32,6 +32,7 @@
         height: 30px;
         clear:both;
         background-color: #ddd;
+        line-height: 30px;
     }
 
     /*Opera Fix*/
