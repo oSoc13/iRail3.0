@@ -1,17 +1,11 @@
 <div class="sixteen columns">
     <div class="extramargin">
 
-        <div id="tab-bar">
-            <ul>
-                <li><a ng-click="directions()">Directions</a></li>
-                <li><a ng-click="trains()">Trains</a></li>
-                <li><a ng-click="myRail()">MyRail</a></li>
-            </ul>
-        </div>
+
 
         <div class="eight columns alpha">
             <div class="page active">
-                <form class="search-route" novalidate name="directionForm">
+                <form id="search-route" novalidate name="directionForm">
 
                     <label for="departing" class="label">From</label>
                     <input type="text" id="departing"  placeholder="Departure station" tabindex="1" ng-model="from" required auto-complete />
@@ -77,54 +71,65 @@
 
             <div class="page">
                 <hr/>
-                <label for="station" class="label">Current departures and arrivals</label>
-                <input type="text" id="station" class="home" placeholder="Select station" ng-model="station"/>
+                <form id="search-station" name="stationForm">
+                    <label for="station" class="label">Current departures and arrivals</label>
+                    <input type="text" id="station" class="home" placeholder="Select station" ng-model="station" required/>
+                    <div class="btn">
+                        <button type="submit" ng-disabled="!stationForm.$valid" ng-click="searchStations()">
+                            <div class="icon-text">
+                                <img src="../images/train.svg" alt="irail logo" width="40" class="icon"/>
+                                <span>Search by station</span>
+                            </div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="myrail-features" class="eight columns omega">
+            <div class="page">
+                <h3>MyRail offers you free features!</h3>
+                <ul>
+                    <li class="icon-text">
+                        <img src="../images/feature-plantrips.svg" alt="irail logo" width="40"/>
+                        <p>Plan your trips in a travel agenda</p>
+                        <br/>
+                    </li>
+                    <li class="icon-text">
+                        <img src="../images/feature-checkin.svg" alt="irail logo" width="40"/>
+                        <p>Social check-ins</p>
+                        <br/>
+                    </li>
+                    <li class="icon-text">
+                        <img src="../images/feature-friend.svg" alt="irail logo" width="40"/>
+                        <p>Know when a friend is on the same train</p>
+                        <br/>
+                    </li>
+                    <li class="icon-text">
+                        <img src="../images/feature-notifications.svg" alt="irail logo" width="40"/>
+                        <p>Receive social &amp; delay notifications</p>
+                        <br/>
+                    </li>
+                    <br/>
+                </ul>
+
                 <div class="btn">
-                    <button type="submit" ng-click="searchStations()">
+                    <button type="submit">
                         <div class="icon-text">
-                            <img src="../images/train.svg" alt="irail logo" width="40" class="icon"/>
-                            <span>Search by station</span>
+                            <img src="../images/irail.svg" alt="irail logo" width="40" class="icon"/>
+                            <span>Enter MyRail</span>
                         </div>
                     </button>
                 </div>
             </div>
         </div>
 
-        <div id="myrail-features" class="page eight columns omega">
-            <h3>MyRail offers you free features!</h3>
+        <div id="tab-bar">
             <ul>
-                <li class="icon-text">
-                    <img src="../images/feature-plantrips.svg" alt="irail logo" width="40"/>
-                    <p>Plan your trips in a travel agenda</p>
-                    <br/>
-                </li>
-                <li class="icon-text">
-                    <img src="../images/feature-checkin.svg" alt="irail logo" width="40"/>
-                    <p>Social check-ins</p>
-                    <br/>
-                </li>
-                <li class="icon-text">
-                    <img src="../images/feature-friend.svg" alt="irail logo" width="40"/>
-                    <p>Know when a friend is on the same train</p>
-                    <br/>
-                </li>
-                <li class="icon-text">
-                    <img src="../images/feature-notifications.svg" alt="irail logo" width="40"/>
-                    <p>Receive social &amp; delay notifications</p>
-                    <br/>
-                </li>
-                <br/>
+                <li><a ng-click="directions()">Directions</a></li>
+                <li><a ng-click="trains()">Trains</a></li>
+                <li><a ng-click="myRail()">MyRail</a></li>
             </ul>
-
-            <div class="btn">
-                <button type="submit">
-                    <div class="icon-text">
-                        <img src="../images/irail.svg" alt="irail logo" width="40" class="icon"/>
-                        <span>Enter MyRail</span>
-                    </div>
-                </button>
-            </div>
-
         </div>
     </div>
 </div>
