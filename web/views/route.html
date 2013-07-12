@@ -59,13 +59,13 @@
 
                 <div class="eight columns omega">
                     <div>
-                        <div id="navigation-buttongroup">
+                        <div id="navigation-buttongroup" class="btn">
                             <div>
                                 <button class="float alpha" ng-click="earlier()">
                                     <div class="icon-text"><img src="../images/earlier.svg"><span>Earlier</span></div>
                                 </button>
                                 <button class="float omega" ng-click="later()">
-                                    <div class="icon-text"><span>Later</span><img src="../images/later.svg"></div>
+                                    <div class="icon-text"><span>Later</span><img class="inverted" src="../images/later.svg"></div>
                                 </button>
                             </div>
                             <div>
@@ -73,23 +73,31 @@
                                     <div class="icon-text"><img src="../images/earliest.svg"><span>Earliest</span></div>
                                 </button>
                                 <button class="float omega"  ng-click="latest()">
-                                    <div class="icon-text"><span>Latest</span><img src="../images/latest.svg"></div>
+                                    <div class="icon-text"><span>Latest</span><img class="inverted"  src="../images/latest.svg"></div>
                                 </button>
                             </div>
                         </div>
                     </div>
 
-                    <div id="myrail" class="page">
-
+                    <div id="myrail" >
+                        <div class="btn">
+                            <button type="submit">
+                                <div class="icon-text">
+                                    <img src="../images/irail.svg" alt="irail logo" width="40" class="icon"/>
+                                    <span>Enter MyRail</span>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="btn">
+                            <button type="submit">
+                                <div class="icon-text">
+                                    <img src="../images/star.svg" alt="star" width="40" class="icon"/>
+                                    <span>Favorite Route</span>
+                                </div>
+                            </button>
+                        </div>
 
                     </div>
-                </div>
-
-                <div id="tab-bar">
-                    <ul>
-                        <li><a ng-click="routes()">Routes</a></li>
-                        <li><a ng-click="myRail()">MyRail</a></li>
-                    </ul>
                 </div>
 
             </div>

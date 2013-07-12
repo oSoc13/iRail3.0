@@ -301,13 +301,22 @@
         margin-left: 10px;
     }
 
+    .icon-text img.inverted{
+        float:right;
+    }
+
     .icon-text p,
     .icon-text span{
         padding-top: 5px;
+        line-height: 1;
+    }
+
+    li.icon-text{
+        height:40px;
     }
 
     #navigation-buttongroup button{
-        max-width: 40%;
+        max-width: 30%;
     }
     #navigation-buttongroup button.alpha{
         margin-right: 10px;
@@ -320,9 +329,6 @@
         display: none;
     }
 
-    button div.icon-text{
-        display: inline-block;
-    }
 
     #route-overview{
 
@@ -339,7 +345,6 @@
 
 
     span.radio{
-
         color: #757575;
     }
 
@@ -401,7 +406,11 @@
 
     #myrail-features li{
         margin-bottom: 30px;
+    }
+
+    #myrail-features li p{
         font-size: 1.25em;
+        line-height: 18px;
     }
 
     #myrail-features ul{
