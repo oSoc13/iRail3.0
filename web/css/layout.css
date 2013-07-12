@@ -37,6 +37,7 @@
 
     #footer p {
         margin:0;
+        font-size: 1em;
     }
 
     /*Opera Fix*/
@@ -69,7 +70,7 @@
         width:33%;
     }
 
-    .float{
+    .float-left{
         float: left;
     }
 
@@ -127,10 +128,15 @@
         font-size: 1em;
     }
 
-    label{
+    label,
+    p{
         font: 1.5em/1.5 'Lato', sans-serif;
         margin-bottom: 6px;
         clear: both;
+    }
+
+    span.accent{
+        color:#2c2c2c;
     }
 
     #wrapper{
@@ -274,27 +280,62 @@
     }
 
     /*
-    Buttons with icons
+    text with icons
     */
     .icon-text{
         display: block;
-        height:30px;
+        height: 30px;
+    }
+
+
+    .icon-text img,
+    .icon-text p,
+    .icon-text span{
+        float: left;
     }
 
     .icon-text img{
-        float:left;
-        width: 30px;
-        height: 30px;
+        width: 26px;
+        height: 26px;
         margin-right: 10px;
+        margin-left: 10px;
     }
 
     .icon-text p,
     .icon-text span{
         padding-top: 5px;
-        float:left;
     }
 
+    #navigation-buttongroup button{
+        max-width: 40%;
+    }
+    #navigation-buttongroup button.alpha{
+        margin-right: 10px;
+    }
+    #navigation-buttongroup button.omega{
+        margin-left:10px;
+    }
 
+    ul .closed{
+        display: none;
+    }
+
+    button div.icon-text{
+        display: inline-block;
+    }
+
+    #route-overview{
+
+    }
+
+    .route-general{
+        background-color: #eaeaea;
+        padding:.4em .6em;
+    }
+
+    .route-general ul{
+        background-color: #fff;
+    }
 
 
     span.radio{

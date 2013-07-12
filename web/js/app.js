@@ -61,7 +61,7 @@ app.directive('autoComplete', function($timeout, stationService) {
                 }, 0);
             }
         });
-    }
+    };
 
     return function(scope, iElement) {
         stationService.getResource(function(data){
@@ -70,19 +70,7 @@ app.directive('autoComplete', function($timeout, stationService) {
     };
 });
 
-app.directive('dateFix', function() {
-    return {
-        restrict: 'A',
-        require: 'ngModel',
-        link: function (scope, element, attr, ngModel) {
-            element.on('change', function() {
-                scope.$apply(function () {
-                    ngModel.$setViewValue(element.val());
-                });
-            });
-        }
-    };
-});
+
 
 app.config(function($httpProvider){
     delete $httpProvider.defaults.headers.common['X-Requested-With'];

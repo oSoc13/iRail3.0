@@ -16,6 +16,7 @@ function DirectionsCtrl($scope, $location){
     $scope.year = date.getFullYear();
     $scope.hours = date.getHours();
     $scope.minutes = date.getMinutes();
+    $scope.departure = "depart";
 
     $scope.switchFromTo = function(){
         var temp = $scope.from;
@@ -79,18 +80,37 @@ function RouteCtrl($scope, $routeParams, $http, $rootScope){
     };
 
 
-    url = $rootScope.iRailAPI + "/connections/?to=" + $routeParams.toStation +
+    var url = $rootScope.iRailAPI + "/connections/?to=" + $routeParams.toStation +
         "&from=" + $routeParams.fromStation +
         "&date=" + $routeParams.dateString +
         "&time=" + $routeParams.timeString +
         "&timeSel=" + $routeParams.timeSelection +
         "&format=json";
 
-    console.log(url);
-        //call  iRail api
+    //call  iRail api
     $http.get(url).success(function(data){
         $scope.possibleRoutes = parseConnectionData(data.connection);
     });
+
+
+    //opening a route
+    $scope.open = function(event){
+        var element = angular.element(event.srcElement);
+        element.removeClass("closed");
+
+    }
+
+
+    //tab bar
+    $scope.routes = function (){
+        $("#routes").addClass("active");
+        $("#myrail").removeClass("active");
+    };
+
+    $scope.myRail = function (){
+        $("#routes").removeClass("active");
+        $("#myrail").addClass("active");
+    };
 }
 
 
