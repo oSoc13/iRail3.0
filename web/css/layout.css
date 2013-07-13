@@ -111,7 +111,7 @@
     }
 
     a.nav:hover{
-        color: #6ec8c7;
+        color:#E94B3F;
     }
 
     div.nav{
@@ -123,7 +123,7 @@
     }
 
     span.highlight{
-        color: #16a085;
+        color:#E94B3F;
         font-weight: bold;
         font-size: 1em;
     }
@@ -295,9 +295,10 @@
     }
 
     .icon-text img{
-        width: 26px;
-        height: 26px;
+        width: 32px;
+        height: 32px;
         margin-right: 10px;
+        margin-top: -2px;
         margin-left: 10px;
     }
 
@@ -308,11 +309,10 @@
     .icon-text p,
     .icon-text span{
         padding-top: 5px;
-        line-height: 1;
     }
 
-    li.icon-text{
-        height:40px;
+    li.icon-text p{
+        clear: none;
     }
 
     #navigation-buttongroup button{
@@ -330,18 +330,83 @@
     }
 
 
+    /* collapsible list */
+
+    .route-general{
+        background-color: #eaeaea;
+
+    }
+
+    .route-general .list-detail{
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-top: 0;
+    }
+
+    .list-head{
+        padding-top: 5px;
+        padding-left: 5px;
+        padding-right: 5px;
+        font: 1.25em/1 'Lato', sans-serif;
+        display: table;
+        box-sizing: border-box;
+        width: 100%;
+        height:40px;
+        background-color: #eaeaea;
+        border: 1px solid #ccc;
+    }
+
+    .list-head__from-to {
+        display: table-cell;
+        width: 45%;
+    }
+
+    .list-head__duration {
+        display: table-cell;
+        width: 30%;
+    }
+
+    .list-head__nb-trains {
+        display: table-cell;
+        width: 15%;
+    }
+
+    .list-head__collapse-btn{
+        display: table-cell;
+        width: 10%;
+    }
+
+    .list-head img{
+       margin-right: 0;
+       margin-left: 0;
+    }
+
+    .list-detail{
+
+    }
+
+    .list-detail__route-head{
+
+    }
+
+    .list-detail__route-time{
+
+    }
+
+
+
+    /* end collapsible list */
+
+    span.red{
+        color:#E94B3F;
+    }
+
     #route-overview{
 
     }
 
-    .route-general{
-        background-color: #eaeaea;
-        padding:.4em .6em;
-    }
 
-    .route-general ul{
-        background-color: #fff;
-    }
 
 
     span.radio{
@@ -398,11 +463,13 @@
     }
 
     #switch-from-to{
-        width:30px;
-        height:30px;
-        padding:5px;
+        width:32px;
+        height:32px;
+        padding: 0;
         margin: 0;
     }
+
+
 
     #myrail-features li{
         margin-bottom: 30px;

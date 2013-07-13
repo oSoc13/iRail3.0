@@ -25,33 +25,52 @@
 
                         <ul id="route-overview">
                             <li class="route-general" ng-click="open($event)" ng-repeat="route in possibleRoutes">
-                                <span>{{ route.departure.time * 1000 | date:'HH:mm' }}</span> ->
-
-                                <span>{{ route.arrival.time * 1000 | date:'HH:mm' }}</span>
-                                <img src="../images/irail.sg"> {{ 1 + parseNbVias(route.vias) }}</span>
-                                <span><img src="../images/irail.sg">{{ route.duration * 1000 | date:'HH:mm' }}</span>
-                                <ul ng-class="{'closed' : $index > 0}">
-                                    <li>
-                                        {{ route.departure.vehicle }} Destination {{ route.departure.direction.name }}
-                                    </li>
-                                    <li>
-                                        {{ route.departure.time * 1000 | date:'HH:mm' }} {{ route.departure.station }} {{ route.departure.platform }}
-                                    </li>
-                                    <div ng-repeat="via in route.vias.via">
-                                        <li>
-                                            {{ via.arrival.time * 1000 | date:'HH:mm' }} {{ via.station }} {{ via.arrival.platform }}
-                                        </li>
-                                        <li>
-                                            {{ via.vehicle }} Destination {{ via.direction.name }}
-                                        </li>
-                                        <li>
-                                            {{ via.departure.time * 1000 | date:'HH:mm' }} {{ via.station }} {{ via.departure.platform }}
-                                        </li>
+                                <div class="list-head icon-text">
+                                    <div class="list-head__from-to">
+                                        <span>{{ route.departure.time * 1000 | date:'HH:mm' }}</span>
+                                        <img src="../images/grey-arrow.svg"/>
+                                        <span>{{ route.arrival.time * 1000 | date:'HH:mm' }}</span>
                                     </div>
-                                    <li>
+                                    <div class="list-head__duration">
+                                        <img src="../images/grey-clock.svg">
+                                        <span>{{ route.duration * 1000 | date:'HH:mm' }}</span>
+                                    </div>
+                                    <div class="list-head__nb-trains">
+                                        <img src="../images/grey-train.svg">
+                                        <span>{{ 1 + parseNbVias(route.vias) }}</span>
+                                    </div>
+                                    <div class="list-head__collapse-btn">
+                                        <img src="../images/button-up.png"/>
+                                    </div>
+                                </div>
+                                <div class="list-detail" ng-class="{'closed' : $index > 0}">
+                                    <div class="list-detail__route-head">
+                                        <span class="accent">{{ route.departure.vehicle }}</span> destination {{ route.departure.direction.name }}
+                                    </div>
+                                    <div class="list-detail__route-time">
+                                        <span class="red">{{ route.departure.time * 1000 | date:'HH:mm' }}</span>
+                                        <span>{{ route.departure.station }}</span>
+                                        <span class="list-detail__route-time__platform">{{ route.departure.platform }}</span>
+                                    </div>
+                                    <div ng-repeat="via in route.vias.via">
+                                        <div class="list-detail__route-time">
+                                            <span class="red">{{ via.arrival.time * 1000 | date:'HH:mm' }}</span>
+                                            <span>{{ via.station }}</span>
+                                            <span class="list-detail__route-time__platform">{{ via.arrival.platform }}</span>
+                                        </div>
+                                        <div class="list-detail__route-head">
+                                            <span class="accent">{{ via.vehicle }}</span> destination {{ via.direction.name }}
+                                        </div>
+                                        <div class="list-detail__route-time">
+                                            <span class="red">{{ via.departure.time * 1000 | date:'HH:mm' }}</span>
+                                            <span>{{ via.station }}</span>
+                                            <span class="list-detail__route-time__platform">{{ via.departure.platform }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="list-detail__route-time">
                                         {{ route.arrival.time * 1000 | date:'HH:mm' }} {{ route.arrival.station }} {{ route.arrival.platform }}
-                                    </li>
-                                </ul>
+                                    </div>
+                                </div>
                             </li>
                         </ul>
                     </div>
