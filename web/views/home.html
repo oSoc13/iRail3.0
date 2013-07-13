@@ -87,7 +87,7 @@
                         <hr/>
                         <form id="search-station" name="stationForm">
                             <label for="station" class="label">Current departures</label>
-                            <input type="text" id="station" class="home" placeholder="Select station" ng-model="station" required/>
+                            <input type="text" id="station" class="home" placeholder="Select station" ng-model="station" required auto-complete/>
                             <div class="btn">
                                 <button type="submit" ng-disabled="!stationForm.$valid" ng-click="searchStations()">
                                     <div class="icon-text">
