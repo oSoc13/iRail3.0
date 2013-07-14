@@ -382,19 +382,51 @@
        margin-left: 0;
     }
 
-    .list-detail{
-
+    .list-detail .btn{
+        text-align: center;
     }
 
-    .list-detail__route-head{
-
+    .list-detail button{
+        margin-bottom: 10px;
     }
 
     .list-detail__route-time{
-
+        font: 1.5em/1.5 'Lato', sans-serif;
+        display: table;
+        width: 100%;
     }
 
+    .list-detail__route-time.spacer{
+        margin-bottom: 10px;
+    }
 
+    .list-detail__route-time span{
+        display: table-cell;
+        width: 15%;
+    }
+
+    span.list-detail__route-time__station{
+        display: table-cell;
+        width: 75%;
+    }
+
+    div.list-detail__route-time__platform{
+        display: table-cell;
+        width: 10%;
+    }
+
+    .list-detail__route-time__platform div{
+        width:24px;
+        height:24px;
+        border: 1px solid #ccc;
+        border-radius: 2px;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        background-color: #eaeaea;
+        text-align: center;
+        line-height: 1.1;
+        color: #E94B3F;
+    }
 
     /* end collapsible list */
 

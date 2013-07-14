@@ -79,7 +79,6 @@ function RouteCtrl($scope, $routeParams, $http, $rootScope){
         return 0;
     };
 
-
     var url = $rootScope.iRailAPI + "/connections/?to=" + $routeParams.toStation +
         "&from=" + $routeParams.fromStation +
         "&date=" + $routeParams.dateString +
@@ -90,6 +89,7 @@ function RouteCtrl($scope, $routeParams, $http, $rootScope){
     //call  iRail api
     $http.get(url).success(function(data){
         $scope.possibleRoutes = parseConnectionData(data.connection);
+        console.log($scope.possibleRoutes);
     });
 
 

@@ -78,4 +78,10 @@ app.config(function($httpProvider){
 // Global (configuration) variables here.
 app.run(function($rootScope) {
     $rootScope.iRailAPI = "http://api.irail.be";
+
+    // parses iRail vehicle format
+    // e.g. from be.NMBS.IR2000 to IR2000
+    $rootScope.parseVehicleName = function(vehicle){
+        return vehicle.split('.')[2];
+    };
 });

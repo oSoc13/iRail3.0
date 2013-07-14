@@ -45,32 +45,51 @@
                                 </div>
                                 <div class="list-detail" ng-class="{'closed' : $index > 0}">
                                     <div class="list-detail__route-head">
-                                        <span class="accent">{{ route.departure.vehicle }}</span> destination {{ route.departure.direction.name }}
+                                        <span class="accent">{{ parseVehicleName(route.departure.vehicle) }}</span> destination {{ route.departure.direction.name }}
                                     </div>
                                     <div class="list-detail__route-time">
                                         <span class="red">{{ route.departure.time * 1000 | date:'HH:mm' }}</span>
-                                        <span>{{ route.departure.station }}</span>
-                                        <span class="list-detail__route-time__platform">{{ route.departure.platform }}</span>
+                                        <span class="list-detail__route-time__station">{{ route.departure.station }}</span>
+                                        <div class="list-detail__route-time__platform">
+                                            <div>{{ route.departure.platform }}</div>
+                                        </div>
                                     </div>
                                     <div ng-repeat="via in route.vias.via">
-                                        <div class="list-detail__route-time">
+                                        <div class="list-detail__route-time spacer">
                                             <span class="red">{{ via.arrival.time * 1000 | date:'HH:mm' }}</span>
-                                            <span>{{ via.station }}</span>
-                                            <span class="list-detail__route-time__platform">{{ via.arrival.platform }}</span>
+                                            <span class="list-detail__route-time__station">{{ via.station }}</span>
+                                            <div class="list-detail__route-time__platform">
+                                                <div>{{ via.arrival.platform }}</div>
+                                            </div>
                                         </div>
                                         <div class="list-detail__route-head">
-                                            <span class="accent">{{ via.vehicle }}</span> destination {{ via.direction.name }}
+                                            <span class="accent">{{ parseVehicleName(via.vehicle) }}</span> destination {{ via.direction.name }}
                                         </div>
                                         <div class="list-detail__route-time">
                                             <span class="red">{{ via.departure.time * 1000 | date:'HH:mm' }}</span>
-                                            <span>{{ via.station }}</span>
-                                            <span class="list-detail__route-time__platform">{{ via.departure.platform }}</span>
+                                            <span class="list-detail__route-time__station">{{ via.station }}</span>
+                                            <div class="list-detail__route-time__platform">
+                                                <div>{{ via.departure.platform }}</div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="list-detail__route-time">
-                                        {{ route.arrival.time * 1000 | date:'HH:mm' }} {{ route.arrival.station }} {{ route.arrival.platform }}
+                                    <div class="list-detail__route-time spacer">
+                                       <span class="red">{{ route.arrival.time * 1000 | date:'HH:mm' }}</span>
+                                       <span class="list-detail__route-time__station">{{ route.arrival.station }}</span>
+                                       <div class="list-detail__route-time__platform">
+                                           <div>{{ route.arrival.platform }}</div>
+                                       </div>
+                                    </div>
+                                    <div class="btn">
+                                        <button type="submit">
+                                            <div class="icon-text">
+                                                <img src="../images/irail.svg" alt="irail logo" width="40" class="icon"/>
+                                                <span>Check-in MyRail</span>
+                                            </div>
+                                        </button>
                                     </div>
                                 </div>
+
                             </li>
                         </ul>
                     </div>
