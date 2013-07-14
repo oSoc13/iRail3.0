@@ -6,17 +6,10 @@ It is made to enhance the current iRail experience (http://irail.be) and to add 
 This app is developed during open Summer of code 2013 (http://summerofcode.be).
 
 
-Features
---------
-The new features include the following:
-* Check-in on the train
-* Adding routes to a travel calendar
-
-
 Installation
 ------------
 This webapp uses AngularJS (http://angularjs.org). 
-It can be hosted on a typical web server (only tested on apache).
+It can be hosted on a typical web server. Use the /web folder as document root. 
 
 
 &copy; Copyright OKFN Belgium
