@@ -93,14 +93,25 @@ function RouteCtrl($scope, $routeParams, $http, $rootScope){
 
     //opening a collapse list
     $scope.open = function($event){
-        var details = angular.element.find(".list-detail")
+        var details = angular.element.find(".list-detail");
         for(var i = 0; i < details.length; i++){
             var currentDetail = details[i];
             $(currentDetail).hide(500);
         }
 
+        var buttons = angular.element.find(".list-head__collapse-btn");
+        for(var i = 0; i < buttons.length; i++){
+            var currentButton = buttons[i];
+            $(currentButton).removeClass("opened");
+            $(currentButton).addClass("closed");
+        }
+
         var element = $(".list-detail", $event.currentTarget);
         element.show(500);
+
+        var button = $(".list-head__collapse-btn", $event.currentTarget);
+        button.removeClass("closed");
+        button.addClass("opened");
     };
 }
 

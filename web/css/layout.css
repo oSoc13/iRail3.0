@@ -315,6 +315,15 @@
         clear: none;
     }
 
+    #myrail{
+        margin-left: 20px;
+    }
+
+    #navigation-buttongroup {
+        margin-top: 10px;
+        margin-left: 20px;
+    }
+
     #navigation-buttongroup button{
         max-width: 30%;
     }
@@ -325,10 +334,9 @@
         margin-left:10px;
     }
 
-    ul .closed{
+    .mobile-hr{
         display: none;
     }
-
 
     /* collapsible list */
 
@@ -375,6 +383,15 @@
     .list-head__collapse-btn{
         display: table-cell;
         width: 10%;
+        background-repeat: no-repeat;
+    }
+
+    .list-head__collapse-btn.closed{
+        background-image: url("../images/button-down.svg");
+    }
+
+    .list-head__collapse-btn.opened{
+        background-image: url("../images/button-up.svg");
     }
 
     .list-head img{
@@ -724,6 +741,20 @@ ui-autocomplete-item{
         #myrail-features li{
             margin-bottom: 10px;
         }
+
+        .mobile-hr{
+            display: block;
+        }
+
+        #myrail{
+            margin-left: 0;
+        }
+
+        #navigation-buttongroup {
+
+            margin-left: 0;
+        }
+
     }
 
 	/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
@@ -791,5 +822,18 @@ ui-autocomplete-item{
         margin-bottom: 10px;
     }
 
+
+    .mobile-hr{
+        display: block;
+    }
+
+    #myrail{
+        margin-left: 0;
+    }
+
+    #navigation-buttongroup {
+
+        margin-left: 0;
+    }
 
 	}

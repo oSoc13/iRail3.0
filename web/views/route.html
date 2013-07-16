@@ -39,11 +39,10 @@
                                         <img src="../images/grey-train.svg">
                                         <span class="accent">{{ 1 + parseNbVias(route.vias) }}</span>
                                     </div>
-                                    <div class="list-head__collapse-btn">
-                                        <img src="../images/button-up.png"/>
+                                    <div class="list-head__collapse-btn" ng-class="{'closed' : $index > 0, 'opened' : $index == 0}">
                                     </div>
                                 </div>
-                                <div class="list-detail" ng-class="{'closed' : $index > 0}">
+                                <div class="list-detail" ng-hide="$index > 0">
                                     <div class="list-detail__route-head">
                                         <span class="accent">{{ parseVehicleName(route.departure.vehicle) }}</span> destination {{ route.departure.direction.name }}
                                     </div>
@@ -96,6 +95,8 @@
                 </div>
 
                 <div class="eight columns omega">
+                    <hr class="mobile-hr" />
+
                     <div>
                         <div id="navigation-buttongroup" class="btn">
                             <div>
