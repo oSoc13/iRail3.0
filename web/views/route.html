@@ -27,17 +27,17 @@
                             <li class="route-general" ng-click="open($event)" ng-repeat="route in possibleRoutes">
                                 <div class="list-head icon-text">
                                     <div class="list-head__from-to">
-                                        <span>{{ route.departure.time * 1000 | date:'HH:mm' }}</span>
+                                        <span class="accent">{{ route.departure.time * 1000 | date:'HH:mm' }}</span>
                                         <img src="../images/grey-arrow.svg"/>
-                                        <span>{{ route.arrival.time * 1000 | date:'HH:mm' }}</span>
+                                        <span class="accent">{{ route.arrival.time * 1000 | date:'HH:mm' }}</span>
                                     </div>
                                     <div class="list-head__duration">
                                         <img src="../images/grey-clock.svg">
-                                        <span>{{ route.duration * 1000 | date:'HH:mm' }}</span>
+                                        <span class="accent">{{ route.duration * 1000 | date:'HH:mm' }}</span>
                                     </div>
                                     <div class="list-head__nb-trains">
                                         <img src="../images/grey-train.svg">
-                                        <span>{{ 1 + parseNbVias(route.vias) }}</span>
+                                        <span class="accent">{{ 1 + parseNbVias(route.vias) }}</span>
                                     </div>
                                     <div class="list-head__collapse-btn">
                                         <img src="../images/button-up.png"/>
@@ -84,7 +84,7 @@
                                         <button type="submit">
                                             <div class="icon-text">
                                                 <img src="../images/irail.svg" alt="irail logo" width="40" class="icon"/>
-                                                <span>Check-in MyRail</span>
+                                                <span class="red">Check-in MyRail</span>
                                             </div>
                                         </button>
                                     </div>

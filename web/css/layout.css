@@ -428,6 +428,22 @@
         color: #E94B3F;
     }
 
+
+    .list-head__time-delay{
+        display: table-cell;
+        width: 25%;
+    }
+
+    .list-head__to-station{
+        display: table-cell;
+        width: 70%;
+    }
+
+    .list-head__platform{
+        display: table-cell;
+        width: 5%;
+    }
+
     /* end collapsible list */
 
     span.red{
@@ -448,10 +464,6 @@
     button {
         width:250px;
         display: table-cell;
-
-        text-align: center;
-        vertical-align: middle;
-
         text-align: center;
         vertical-align: middle;
         height: 40px;
@@ -712,5 +724,23 @@ ui-autocomplete-item{
     [type="text"], input[type="password"], input[type="email"], textarea, select, #searchtime{
         margin-bottom: 10px;
     }
-	
+
+    #myrail-features li p{
+        font-size: 1.10em;
+    }
+
+    #navigation-buttongroup button {
+        max-width: 40%;
+    }
+
+    #navigation-buttongroup .icon-text img{
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    #myrail-features li{
+        margin-bottom: 10px;
+    }
+
+
 	}

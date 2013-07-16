@@ -3,7 +3,7 @@
         <div class="container">
             <div class="sixteen columns">
                 <div class="nav">
-                    <img class="logo" src="images/logo.svg"/>
+                    <img class="logo" src="../images/logo.svg"/>
                     <span class="floatright"><a href="#" class="nav">Notifications <span class="white">(0)</span></a></span>
                     <span class="floatright"><a href="#" class="nav">MyRail</a></span>
                 </div>
@@ -24,10 +24,17 @@
                         <ul id="route-overview">
                             <li class="route-general" ng-click="open($event)" ng-repeat="departure in liveboard.departure">
                                 <div class="list-head">
-                                    station: {{ departure.station }}
-                                    delay: {{ departure.delay | date:'mm'}}
-                                    time: {{ departure.time * 1000 | date:'HH:mm'}}
-                                    platform: {{ departure.platform }}
+                                    <div class="list-head__time-delay">
+                                        <span class="accent">{{ departure.time * 1000 | date:'HH:mm'}}</span>
+                                        <span class="red" ng-show="departure.delay> 0">+{{ departure.delay | date:'mm'}}M</span>
+                                    </div>
+                                    <div class="icon-text list-head__to-station">
+                                        <img src="../images/grey-arrow.svg"/>
+                                        <span class="accent">{{ departure.station }}</span>
+                                    </div>
+                                    <div class="list-head__platform">
+                                        {{ departure.platform }}
+                                    </div>
                                 </div>
                             </li>
                         </ul>
@@ -35,6 +42,17 @@
                 </div>
 
                 <div class="eight columns omega">
+
+                    <div id="navigation-buttongroup" class="btn">
+                        <div>
+                            <button class="float alpha" ng-click="earlier()">
+                                <div class="icon-text"><img src="../images/earlier.svg"><span>Earlier</span></div>
+                            </button>
+                            <button class="float omega" ng-click="later()">
+                                <div class="icon-text"><span>Later</span><img class="inverted" src="../images/later.svg"></div>
+                            </button>
+                        </div>
+                    </div>
 
                     <div id="myrail" >
                         <div class="btn">
