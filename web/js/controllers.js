@@ -89,27 +89,18 @@ function RouteCtrl($scope, $routeParams, $http, $rootScope){
     //call  iRail api
     $http.get(url).success(function(data){
         $scope.possibleRoutes = parseConnectionData(data.connection);
-        console.log($scope.possibleRoutes);
     });
 
+    //opening a collapse list
+    $scope.open = function($event){
+        var details = angular.element.find(".list-detail")
+        for(var i = 0; i < details.length; i++){
+            var currentDetail = details[i];
+            $(currentDetail).hide(500);
+        }
 
-    //opening a route
-    $scope.open = function(event){
-        var element = angular.element(event.srcElement);
-        element.removeClass("closed");
-
-    }
-
-
-    //tab bar
-    $scope.routes = function (){
-        $("#routes").addClass("active");
-        $("#myrail").removeClass("active");
-    };
-
-    $scope.myRail = function (){
-        $("#routes").removeClass("active");
-        $("#myrail").addClass("active");
+        var element = $(".list-detail", $event.currentTarget);
+        element.show(500);
     };
 }
 

@@ -516,7 +516,7 @@
 
 
     #myrail-features li{
-        margin-bottom: 30px;
+        margin-bottom: 20px;
     }
 
     #myrail-features li p{
@@ -617,6 +617,22 @@ ui-autocomplete-item{
             width:40px;
             height:40px;
         }
+        #myrail-features li p{
+            font-size: 1.10em;
+        }
+
+        #navigation-buttongroup button {
+            max-width: 40%;
+        }
+
+        #navigation-buttongroup .icon-text img{
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        #myrail-features li{
+            margin-bottom: 10px;
+        }
     }
 
 	/* All Mobile Sizes (devices and browser) */
@@ -637,6 +653,23 @@ ui-autocomplete-item{
         img.logo{
             width:40px;
             height:40px;
+        }
+
+        #myrail-features li p{
+            font-size: 1.10em;
+        }
+
+        #navigation-buttongroup button {
+            max-width: 40%;
+        }
+
+        #navigation-buttongroup .icon-text img{
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        #myrail-features li{
+            margin-bottom: 10px;
         }
 	}
 
@@ -674,6 +707,22 @@ ui-autocomplete-item{
         }
         div.page hr{
             display: none
+        }
+        #myrail-features li p{
+            font-size: 1.10em;
+        }
+
+        #navigation-buttongroup button {
+            max-width: 40%;
+        }
+
+        #navigation-buttongroup .icon-text img{
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        #myrail-features li{
+            margin-bottom: 10px;
         }
     }
 
