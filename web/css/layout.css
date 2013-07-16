@@ -387,11 +387,13 @@
     }
 
     .list-head__collapse-btn.closed{
-        background-image: url("../images/button-down.svg");
+        background-image:  url("../images/button-down.png");
+        background-image:  none, url("../images/button-down.svg"), url("../images/button-down.png");
     }
 
     .list-head__collapse-btn.opened{
-        background-image: url("../images/button-up.svg");
+        background-image:  url("../images/button-up.png");
+        background-image: none, url("../images/button-up.svg"), url("../images/button-up.png");
     }
 
     .list-head img{

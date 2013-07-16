@@ -22,7 +22,7 @@
                         </p>
 
                         <ul id="route-overview">
-                            <li class="route-general" ng-click="open($event)" ng-repeat="departure in liveboard.departure">
+                            <li class="route-general" ng-click="open($event)" ng-repeat="departure in liveboard.departure" on-finish-render>
                                 <div class="list-head">
                                     <div class="list-head__time-delay">
                                         <span class="accent">{{ departure.time * 1000 | date:'HH:mm'}}</span>
@@ -58,7 +58,7 @@
                         <div class="btn">
                             <button type="submit">
                                 <div class="icon-text">
-                                    <img src="../images/irail.svg" alt="irail logo" width="40" class="icon"/>
+                                    <img src="../images/myrail.svg" alt="irail logo" width="40" class="icon"/>
                                     <span>Enter MyRail</span>
                                 </div>
                             </button>

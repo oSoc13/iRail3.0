@@ -140,6 +140,11 @@ function RouteCtrl($scope, $routeParams, $http, $rootScope, $location){
             "depart"
         );
     };
+
+    // running png fallback after ng repeat render
+    $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+        pngFallback();
+    });
 }
 
 
@@ -153,6 +158,11 @@ function StationDetailCtrl($scope, $rootScope, $routeParams, $http){
     $http.get(url).success(function(data){
         $scope.liveboard = data.departures;
     });
+
+    // running png fallback after ng repeat render
+    $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+        pngFallback();
+    });
 }
 
 // [/train/:trainId]
@@ -165,6 +175,30 @@ function TrainCtrl($scope, $routeParams, $http, $rootScope){
     $http.get(url).success(function(data){
         $scope.stops = data.stops;
     });
+
+    // running png fallback after ng repeat render
+    $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+        pngFallback();
+    });
+}
+
+
+//dirty way to change svg to png if not supported (can't happen on page load because angular loads some stuff dynamically)
+function pngFallback(){
+    if (!Modernizr.svg) {
+        // wrap this in a closure to not expose any conflicts
+        (function() {
+            // grab all images. getElementsByTagName works with IE5.5 and up
+            var imgs = document.getElementsByTagName('img'),endsWithDotSvg = /.*\.svg$/,i = 0,l = imgs.length;
+            // quick for loop
+            for(; i < l; ++i) {
+                if(imgs[i].src.match(endsWithDotSvg)) {
+                    // replace the png suffix with the svg one
+                    imgs[i].src = imgs[i].src.slice(0, -3) + 'png';
+                }
+            }
+        })();
+    }
 }
 
 //parse the station json to an array of stationNames
