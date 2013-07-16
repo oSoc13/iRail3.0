@@ -22,7 +22,7 @@ function DirectionsCtrl($scope, $location){
         var temp = $scope.from;
         $scope.from = $scope.to;
         $scope.to = temp;
-    }
+    };
 
     $scope.searchDirections = function(){
         var dayString = addLeadingZeroIfNeeded($scope.day);
@@ -38,11 +38,11 @@ function DirectionsCtrl($scope, $location){
             hourString + minuteString + '/' +
             $scope.departure
         );
-    }
+    };
 
     $scope.searchStations = function(){
         $location.path('/station/' + $scope.station);
-    }
+    };
 
     //Tab bar functionality
     //todo refactor to its own controller
@@ -50,27 +50,28 @@ function DirectionsCtrl($scope, $location){
         $("#directions").addClass("active");
         $("#stations").removeClass("active");
         $("#myrail").removeClass("active");
-    }
+    };
 
     $scope.stations = function (){
         $("#directions").removeClass("active");
         $("#stations").addClass("active");
         $("#myrail").removeClass("active");
-    }
+    };
 
     $scope.myRail = function (){
         $("#directions").removeClass("active");
         $("#stations").removeClass("active");
         $("#myrail").addClass("active");
-    }
+    };
 
 }
 
 // [/route/:fromStation/:toStation]
-function RouteCtrl($scope, $routeParams, $http, $rootScope){
+function RouteCtrl($scope, $routeParams, $http, $rootScope, $location){
     $scope.toStation = $routeParams.toStation;
     $scope.fromStation = $routeParams.fromStation;
     $scope.routeDate = new Date();
+    $scope.date = $routeParams.dateString;
 
     $scope.parseNbVias = function(vias){
         if(vias){
@@ -81,7 +82,7 @@ function RouteCtrl($scope, $routeParams, $http, $rootScope){
 
     var url = $rootScope.iRailAPI + "/connections/?to=" + $routeParams.toStation +
         "&from=" + $routeParams.fromStation +
-        "&date=" + $routeParams.dateString +
+        "&date=" + $scope.date +
         "&time=" + $routeParams.timeString +
         "&timeSel=" + $routeParams.timeSelection +
         "&format=json";
@@ -112,6 +113,32 @@ function RouteCtrl($scope, $routeParams, $http, $rootScope){
         var button = $(".list-head__collapse-btn", $event.currentTarget);
         button.removeClass("closed");
         button.addClass("opened");
+    };
+
+    $scope.earlier = function(){
+        var firstArrive = new Date($scope.possibleRoutes[0].arrival.time*1000);
+        var firstArriveTime = (firstArrive.getHours()<10?'0':'') + firstArrive.getHours()+(firstArrive.getMinutes()<10?'0':'') + firstArrive.getMinutes();
+
+        $location.path('/route/' +
+            $scope.fromStation + '/' +
+            $scope.toStation + '/' +
+            $scope.date + '/' +
+            firstArriveTime + '/' +
+            "arrive"
+        );
+    };
+
+    $scope.later = function(){
+        var lastDeparture = new Date($scope.possibleRoutes[$scope.possibleRoutes.length - 1].departure.time*1000);
+        var lastDepartureTime = addLeadingZeroIfNeeded(lastDeparture.getHours()) + addLeadingZeroIfNeeded(lastDeparture.getMinutes());
+
+        $location.path('/route/' +
+            $scope.fromStation + '/' +
+            $scope.toStation + '/' +
+            $scope.date + '/' +
+            lastDepartureTime + '/' +
+            "depart"
+        );
     };
 }
 
@@ -180,6 +207,6 @@ function addLeadingZeroIfNeeded(data){
 //Use this when minifying
 
 DirectionsCtrl.$inject= ['$scope', '$location'];
-RouteCtrl.$inject= ['$scope', '$routeParams', '$http', '$rootScope'];
+RouteCtrl.$inject= ['$scope', '$routeParams', '$http', '$rootScope', '$location'];
 StationDetailCtrl.$inject= ['$scope','$rootScope', '$routeParams', '$http'];
 TrainCtrl.$inject= ['$scope', '$routeParams', '$http', '$rootScope'];
