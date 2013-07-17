@@ -70,6 +70,12 @@ function DirectionsCtrl($scope, $location){
 function RouteCtrl($scope, $routeParams, $http, $rootScope, $location){
     $scope.toStation = $routeParams.toStation;
     $scope.fromStation = $routeParams.fromStation;
+
+    var day = parseInt($routeParams.dateString.substring(0, 2));
+    var month = parseInt($routeParams.dateString.substring(2,4));
+    var year = parseInt("20" + $routeParams.dateString.substring(4,6));
+    $scope.routeDate = new Date(year, month - 1, day);
+
     $scope.date = $routeParams.dateString;
 
     $scope.parseNbVias = function(vias){
@@ -89,7 +95,6 @@ function RouteCtrl($scope, $routeParams, $http, $rootScope, $location){
     //call  iRail api
     $http.get(url).success(function(data){
         $scope.possibleRoutes = parseConnectionData(data.connection);
-        $scope.routeDate = new Date($scope.possibleRoutes[0].arrival.time*1000);
     });
 
     //opening a collapse list
@@ -172,7 +177,6 @@ function RouteCtrl($scope, $routeParams, $http, $rootScope, $location){
         var dayString = addLeadingZeroIfNeeded(nextDay.getDate());
         var monthString = addLeadingZeroIfNeeded(nextDay.getMonth() + 1);
         var yearString = nextDay.getFullYear().toString().substr(2);
-        console.log(yearString);
         $location.path('/route/' +
             $scope.fromStation + '/' +
             $scope.toStation + '/' +

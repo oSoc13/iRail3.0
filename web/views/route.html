@@ -22,7 +22,7 @@
                             <br/>
                             On <span class="accent">{{ routeDate | date:'EEEE d MMMM y' }}</span>
                         </p>
-
+                        <div id="spinner"><img src="../images/ajax-loader.gif" width="32" height="32"> </div>
                         <ul id="route-overview">
                             <li class="route-general" ng-click="open($event)" ng-repeat="route in possibleRoutes" on-finish-render>
                                 <div class="list-head icon-text">

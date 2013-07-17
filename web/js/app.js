@@ -4,13 +4,20 @@
 var app = angular.module('iRail', ['ngResource']);
 
 //App routes definition
-app.config(['$routeProvider', function($routeProvider){
+app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider){
         $routeProvider.
             when('/', {templateUrl: 'views/home.html', controller: DirectionsCtrl}).
             when('/route/:fromStation/:toStation/:dateString/:timeString/:timeSelection', {templateUrl: 'views/route.html', controller: RouteCtrl}).
             when('/train/:trainId', {templateUrl: 'views/train.html', controller: TrainCtrl}).
             when('/station/:stationName', {templateUrl: 'views/station-liveboard.html', controller: StationDetailCtrl}).
             otherwise({redirectTo: '/'});
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+        $httpProvider.responseInterceptors.push('httpInterceptor');
+        var spinnerFunction = function (data, headersGetter) {
+            $('#spinner').show();
+            return data;
+        };
+        $httpProvider.defaults.transformRequest.push(spinnerFunction);
     }]);
 
 app.factory('stationService', function($resource, $cacheFactory, $rootScope) {
@@ -43,12 +50,28 @@ app.factory('stationService', function($resource, $cacheFactory, $rootScope) {
     }
 });
 
+app.factory('httpInterceptor', function ($q, $window) {
+    return function (promise) {
+        return promise.then(function (response) {
+            // do something on success
+            // todo hide the spinner
+            $('#spinner').hide();
+            return response;
+        }, function (response) {
+            // do something on error
+            // todo hide the spinner
+            $('#spinner').hide();
+            return $q.reject(response);
+        });
+    };
+});
+
 app.directive('autoComplete', function($timeout, stationService) {
 
     /*
-     * Apply jquery autocomplete on given element with given data as resource
+     * Apply jquery auto complete on given element with given data as resource
      *
-     * @param data: autocomplete source
+     * @param data: auto complete source
      * @param iElement: jquery object
      */
     var addAutocompleteToElement = function(data, iElement){
@@ -85,9 +108,7 @@ app.directive('onFinishRender', function ($timeout) {
 
 
 
-app.config(function($httpProvider){
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
-});
+
 // Global (configuration) variables here.
 app.run(function($rootScope) {
     $rootScope.iRailAPI = "http://api.irail.be";
