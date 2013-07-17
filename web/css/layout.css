@@ -345,6 +345,10 @@
 
     }
 
+    .route-general:hover .list-head{
+        background-color: #f1f1f1;
+    }
+
     .route-general .list-detail{
         background-color: #fff;
         padding: 5px;
