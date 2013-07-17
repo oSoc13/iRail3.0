@@ -70,7 +70,6 @@ function DirectionsCtrl($scope, $location){
 function RouteCtrl($scope, $routeParams, $http, $rootScope, $location){
     $scope.toStation = $routeParams.toStation;
     $scope.fromStation = $routeParams.fromStation;
-    $scope.routeDate = new Date();
     $scope.date = $routeParams.dateString;
 
     $scope.parseNbVias = function(vias){
@@ -90,6 +89,7 @@ function RouteCtrl($scope, $routeParams, $http, $rootScope, $location){
     //call  iRail api
     $http.get(url).success(function(data){
         $scope.possibleRoutes = parseConnectionData(data.connection);
+        $scope.routeDate = new Date($scope.possibleRoutes[0].arrival.time*1000);
     });
 
     //opening a collapse list
@@ -115,14 +115,21 @@ function RouteCtrl($scope, $routeParams, $http, $rootScope, $location){
         button.addClass("opened");
     };
 
+
+    // earlier, later, earliest, latest buttons
+
+
     $scope.earlier = function(){
+        var dayString = addLeadingZeroIfNeeded($scope.routeDate.getDate());
+        var monthString = addLeadingZeroIfNeeded($scope.routeDate.getMonth()+1);
+        var yearString = $scope.routeDate.getFullYear().toString().substr(2);
         var firstArrive = new Date($scope.possibleRoutes[0].arrival.time*1000);
         var firstArriveTime = (firstArrive.getHours()<10?'0':'') + firstArrive.getHours()+(firstArrive.getMinutes()<10?'0':'') + firstArrive.getMinutes();
 
         $location.path('/route/' +
             $scope.fromStation + '/' +
             $scope.toStation + '/' +
-            $scope.date + '/' +
+            dayString + monthString + yearString + '/' +
             firstArriveTime + '/' +
             "arrive"
         );
@@ -131,13 +138,47 @@ function RouteCtrl($scope, $routeParams, $http, $rootScope, $location){
     $scope.later = function(){
         var lastDeparture = new Date($scope.possibleRoutes[$scope.possibleRoutes.length - 1].departure.time*1000);
         var lastDepartureTime = addLeadingZeroIfNeeded(lastDeparture.getHours()) + addLeadingZeroIfNeeded(lastDeparture.getMinutes());
+        var dayString = addLeadingZeroIfNeeded(lastDeparture.getDate());
+        var monthString = addLeadingZeroIfNeeded(lastDeparture.getMonth()+1);
+        var yearString = lastDeparture.getFullYear().toString().substr(2);
+
 
         $location.path('/route/' +
             $scope.fromStation + '/' +
             $scope.toStation + '/' +
-            $scope.date + '/' +
+            dayString + monthString + yearString + '/' +
             lastDepartureTime + '/' +
             "depart"
+        );
+    };
+
+
+    $scope.earliest = function(){
+        var dayString = addLeadingZeroIfNeeded($scope.routeDate.getDate());
+        var monthString = addLeadingZeroIfNeeded($scope.routeDate.getMonth() +1);
+        var yearString = $scope.routeDate.getFullYear().toString().substr(2);
+        $location.path('/route/' +
+            $scope.fromStation + '/' +
+            $scope.toStation + '/' +
+            dayString + monthString + yearString + '/' +
+            "0300" + '/' +
+            "depart"
+        );
+    };
+
+    $scope.latest = function(){
+        var nextDay = new Date($scope.routeDate);
+        nextDay.setDate(nextDay.getDate() + 1);
+        var dayString = addLeadingZeroIfNeeded(nextDay.getDate());
+        var monthString = addLeadingZeroIfNeeded(nextDay.getMonth() + 1);
+        var yearString = nextDay.getFullYear().toString().substr(2);
+        console.log(yearString);
+        $location.path('/route/' +
+            $scope.fromStation + '/' +
+            $scope.toStation + '/' +
+            dayString + monthString + yearString + '/' +
+            "0300" + '/' +
+            "arrive"
         );
     };
 
