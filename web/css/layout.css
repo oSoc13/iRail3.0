@@ -37,6 +37,7 @@
 
     #footer p {
         margin:0;
+        font-size: 1em;
     }
 
     /*Opera Fix*/
@@ -69,7 +70,7 @@
         width:33%;
     }
 
-    .float{
+    .float-left{
         float: left;
     }
 
@@ -110,7 +111,7 @@
     }
 
     a.nav:hover{
-        color: #6ec8c7;
+        color:#E94B3F;
     }
 
     div.nav{
@@ -122,15 +123,20 @@
     }
 
     span.highlight{
-        color: #16a085;
+        color:#E94B3F;
         font-weight: bold;
         font-size: 1em;
     }
 
-    label{
+    label,
+    p{
         font: 1.5em/1.5 'Lato', sans-serif;
         margin-bottom: 6px;
         clear: both;
+    }
+
+    span.accent{
+        color:#2c2c2c;
     }
 
     #wrapper{
@@ -273,42 +279,220 @@
         box-shadow: none;
     }
 
+    #spinner{
+        margin-top:40px;
+        text-align: center;
+        display: none;
+    }
+
     /*
-    Buttons with icons
+    text with icons
     */
     .icon-text{
         display: block;
-        height:30px;
+        height: 30px;
+    }
+
+
+    .icon-text img,
+    .icon-text p,
+    .icon-text span{
+        float: left;
     }
 
     .icon-text img{
-        float:left;
-        width: 30px;
-        height: 30px;
+        width: 32px;
+        height: 32px;
         margin-right: 10px;
+        margin-top: -2px;
+        margin-left: 10px;
+    }
+
+    .icon-text img.inverted{
+        float:right;
     }
 
     .icon-text p,
     .icon-text span{
         padding-top: 5px;
-        float:left;
+    }
+
+    li.icon-text p{
+        clear: none;
+    }
+
+    #myrail{
+        margin-left: 20px;
+    }
+
+    #navigation-buttongroup {
+        margin-top: 10px;
+        margin-left: 20px;
+    }
+
+    #navigation-buttongroup button{
+        max-width: 30%;
+    }
+    #navigation-buttongroup button.alpha{
+        margin-right: 10px;
+    }
+    #navigation-buttongroup button.omega{
+        margin-left:10px;
+    }
+
+    .mobile-hr{
+        display: none;
+    }
+
+    /* collapsible list */
+
+    .route-general{
+        background-color: #eaeaea;
+
+    }
+
+    .list-head:hover {
+        background-color: #f1f1f1;
+    }
+
+    .route-general .list-detail{
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-top: 0;
+    }
+
+    .list-head{
+        padding-top: 5px;
+        padding-left: 5px;
+        padding-right: 5px;
+        font: 1.25em/1 'Lato', sans-serif;
+        display: table;
+        box-sizing: border-box;
+        width: 100%;
+        height:40px;
+        background-color: #eaeaea;
+        border: 1px solid #ccc;
+    }
+
+    .list-head__from-to {
+        display: table-cell;
+        width: 45%;
+    }
+
+    .list-head__duration {
+        display: table-cell;
+        width: 30%;
+    }
+
+    .list-head__nb-trains {
+        display: table-cell;
+        width: 15%;
+    }
+
+    .list-head__collapse-btn{
+        display: table-cell;
+        width: 10%;
+        background-repeat: no-repeat;
+    }
+
+    .list-head__collapse-btn.closed{
+        background-image:  url("../images/button-down.png");
+        background-image:  none, url("../images/button-down.svg"), url("../images/button-down.png");
+    }
+
+    .list-head__collapse-btn.opened{
+        background-image:  url("../images/button-up.png");
+        background-image: none, url("../images/button-up.svg"), url("../images/button-up.png");
+    }
+
+    .list-head img{
+       margin-right: 0;
+       margin-left: 0;
+    }
+
+    .list-detail .btn{
+        text-align: center;
+    }
+
+    .list-detail button{
+        margin-bottom: 10px;
+    }
+
+    .list-detail__route-time{
+        font: 1.5em/1.5 'Lato', sans-serif;
+        display: table;
+        width: 100%;
+    }
+
+    .list-detail__route-time.spacer{
+        margin-bottom: 10px;
+    }
+
+    .list-detail__route-time span{
+        display: table-cell;
+        width: 15%;
+    }
+
+    span.list-detail__route-time__station{
+        display: table-cell;
+        width: 75%;
+    }
+
+    div.list-detail__route-time__platform{
+        display: table-cell;
+        width: 10%;
+    }
+
+    .list-detail__route-time__platform div{
+        width:24px;
+        height:24px;
+        border: 1px solid #ccc;
+        border-radius: 2px;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        background-color: #eaeaea;
+        text-align: center;
+        line-height: 1.1;
+        color: #E94B3F;
+    }
+
+
+    .list-head__time-delay{
+        display: table-cell;
+        width: 25%;
+    }
+
+    .list-head__to-station{
+        display: table-cell;
+        width: 70%;
+    }
+
+    .list-head__platform{
+        display: table-cell;
+        width: 5%;
+    }
+
+    /* end collapsible list */
+
+    span.red{
+        color:#E94B3F;
+    }
+
+    #route-overview{
+
     }
 
 
 
 
     span.radio{
-
         color: #757575;
     }
 
     button {
         width:250px;
         display: table-cell;
-
-        text-align: center;
-        vertical-align: middle;
-
         text-align: center;
         vertical-align: middle;
         height: 40px;
@@ -352,15 +536,21 @@
     }
 
     #switch-from-to{
-        width:30px;
-        height:30px;
-        padding:5px;
+        width:32px;
+        height:32px;
+        padding: 0;
         margin: 0;
     }
 
+
+
     #myrail-features li{
-        margin-bottom: 30px;
+        margin-bottom: 20px;
+    }
+
+    #myrail-features li p{
         font-size: 1.25em;
+        line-height: 18px;
     }
 
     #myrail-features ul{
@@ -456,6 +646,22 @@ ui-autocomplete-item{
             width:40px;
             height:40px;
         }
+        #myrail-features li p{
+            font-size: 1.10em;
+        }
+
+        #navigation-buttongroup button {
+            max-width: 40%;
+        }
+
+        #navigation-buttongroup .icon-text img{
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        #myrail-features li{
+            margin-bottom: 10px;
+        }
     }
 
 	/* All Mobile Sizes (devices and browser) */
@@ -476,6 +682,23 @@ ui-autocomplete-item{
         img.logo{
             width:40px;
             height:40px;
+        }
+
+        #myrail-features li p{
+            font-size: 1.10em;
+        }
+
+        #navigation-buttongroup button {
+            max-width: 40%;
+        }
+
+        #navigation-buttongroup .icon-text img{
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        #myrail-features li{
+            margin-bottom: 10px;
         }
 	}
 
@@ -514,6 +737,36 @@ ui-autocomplete-item{
         div.page hr{
             display: none
         }
+        #myrail-features li p{
+            font-size: 1.10em;
+        }
+
+        #navigation-buttongroup button {
+            max-width: 40%;
+        }
+
+        #navigation-buttongroup .icon-text img{
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        #myrail-features li{
+            margin-bottom: 10px;
+        }
+
+        .mobile-hr{
+            display: block;
+        }
+
+        #myrail{
+            margin-left: 0;
+        }
+
+        #navigation-buttongroup {
+
+            margin-left: 0;
+        }
+
     }
 
 	/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
@@ -563,5 +816,36 @@ ui-autocomplete-item{
     [type="text"], input[type="password"], input[type="email"], textarea, select, #searchtime{
         margin-bottom: 10px;
     }
-	
+
+    #myrail-features li p{
+        font-size: 1.10em;
+    }
+
+    #navigation-buttongroup button {
+        max-width: 40%;
+    }
+
+    #navigation-buttongroup .icon-text img{
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    #myrail-features li{
+        margin-bottom: 10px;
+    }
+
+
+    .mobile-hr{
+        display: block;
+    }
+
+    #myrail{
+        margin-left: 0;
+    }
+
+    #navigation-buttongroup {
+
+        margin-left: 0;
+    }
+
 	}

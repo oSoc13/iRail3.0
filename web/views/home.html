@@ -3,7 +3,7 @@
         <div class="container">
             <div class="sixteen columns">
                 <div class="nav">
-                    <img class="logo" src="images/logo.svg"/>
+                    <img class="logo" src="../images/logo.svg"/>
                     <span class="floatright"><a href="#" class="nav">Notifications <span class="white">(0)</span></a></span>
                     <span class="floatright"><a href="#" class="nav">MyRail</a></span>
                 </div>
@@ -15,8 +15,6 @@
         <div class="sixteen columns">
             <div class="extramargin">
 
-
-
                 <div class="eight columns alpha">
                     <div id="directions" class="page active">
                         <form id="search-route" novalidate name="directionForm">
@@ -24,7 +22,7 @@
                             <label for="departing" class="label">From</label>
                             <input type="text" id="departing"  placeholder="Departure station" tabindex="1" ng-model="from" required auto-complete />
 
-                            <label for="destination" class="label float">To</label>
+                            <label for="destination" class="label float-left">To</label>
                             <div id="switch-button">
                                 <button id="switch-from-to" tabindex="3" ng-click="switchFromTo()"><img src="../images/arrow.svg" alt="switch"/> </button>
                             </div>
@@ -86,8 +84,8 @@
                     <div id="stations" class="page">
                         <hr/>
                         <form id="search-station" name="stationForm">
-                            <label for="station" class="label">Current departures and arrivals</label>
-                            <input type="text" id="station" class="home" placeholder="Select station" ng-model="station" required/>
+                            <label for="station" class="label">Current departures</label>
+                            <input type="text" id="station" class="home" placeholder="Select station" ng-model="station" required auto-complete/>
                             <div class="btn">
                                 <button type="submit" ng-disabled="!stationForm.$valid" ng-click="searchStations()">
                                     <div class="icon-text">
@@ -105,22 +103,22 @@
                         <h3>MyRail offers you free features!</h3>
                         <ul>
                             <li class="icon-text">
-                                <img src="../images/feature-plantrips.svg" alt="irail logo" width="40"/>
+                                <img src="../images/feature-plantrips.svg" alt="irail logo"/>
                                 <p>Plan your trips in a travel agenda</p>
-                                <br/>
+
                             </li>
                             <li class="icon-text">
-                                <img src="../images/feature-checkin.svg" alt="irail logo" width="40"/>
+                                <img src="../images/feature-checkin.svg" alt="irail logo"/>
                                 <p>Social check-ins</p>
                                 <br/>
                             </li>
                             <li class="icon-text">
-                                <img src="../images/feature-friend.svg" alt="irail logo" width="40"/>
-                                <p>Know when a friend is on the same train</p>
+                                <img src="../images/feature-friend.svg" alt="irail logo"/>
+                                <p>Know when a friend is on the train</p>
                                 <br/>
                             </li>
                             <li class="icon-text">
-                                <img src="../images/feature-notifications.svg" alt="irail logo" width="40"/>
+                                <img src="../images/feature-notifications.svg" alt="irail logo"/>
                                 <p>Receive social &amp; delay notifications</p>
                                 <br/>
                             </li>
@@ -130,7 +128,7 @@
                         <div class="btn">
                             <button type="submit">
                                 <div class="icon-text">
-                                    <img src="../images/irail.svg" alt="irail logo" width="40" class="icon"/>
+                                    <img src="../images/myrail.svg" alt="irail logo" width="40" class="icon"/>
                                     <span>Enter MyRail</span>
                                 </div>
                             </button>

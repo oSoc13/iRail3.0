@@ -16,12 +16,13 @@ function DirectionsCtrl($scope, $location){
     $scope.year = date.getFullYear();
     $scope.hours = date.getHours();
     $scope.minutes = date.getMinutes();
+    $scope.departure = "depart";
 
     $scope.switchFromTo = function(){
         var temp = $scope.from;
         $scope.from = $scope.to;
         $scope.to = temp;
-    }
+    };
 
     $scope.searchDirections = function(){
         var dayString = addLeadingZeroIfNeeded($scope.day);
@@ -37,11 +38,11 @@ function DirectionsCtrl($scope, $location){
             hourString + minuteString + '/' +
             $scope.departure
         );
-    }
+    };
 
     $scope.searchStations = function(){
         $location.path('/station/' + $scope.station);
-    }
+    };
 
     //Tab bar functionality
     //todo refactor to its own controller
@@ -49,27 +50,33 @@ function DirectionsCtrl($scope, $location){
         $("#directions").addClass("active");
         $("#stations").removeClass("active");
         $("#myrail").removeClass("active");
-    }
+    };
 
     $scope.stations = function (){
         $("#directions").removeClass("active");
         $("#stations").addClass("active");
         $("#myrail").removeClass("active");
-    }
+    };
 
     $scope.myRail = function (){
         $("#directions").removeClass("active");
         $("#stations").removeClass("active");
         $("#myrail").addClass("active");
-    }
+    };
 
 }
 
 // [/route/:fromStation/:toStation]
-function RouteCtrl($scope, $routeParams, $http, $rootScope){
+function RouteCtrl($scope, $routeParams, $http, $rootScope, $location){
     $scope.toStation = $routeParams.toStation;
     $scope.fromStation = $routeParams.fromStation;
-    $scope.routeDate = new Date();
+
+    var day = parseInt($routeParams.dateString.substring(0, 2));
+    var month = parseInt($routeParams.dateString.substring(2,4));
+    var year = parseInt("20" + $routeParams.dateString.substring(4,6));
+    $scope.routeDate = new Date(year, month - 1, day);
+
+    $scope.date = $routeParams.dateString;
 
     $scope.parseNbVias = function(vias){
         if(vias){
@@ -78,18 +85,110 @@ function RouteCtrl($scope, $routeParams, $http, $rootScope){
         return 0;
     };
 
-
-    url = $rootScope.iRailAPI + "/connections/?to=" + $routeParams.toStation +
+    var url = $rootScope.iRailAPI + "/connections/?to=" + $routeParams.toStation +
         "&from=" + $routeParams.fromStation +
-        "&date=" + $routeParams.dateString +
+        "&date=" + $scope.date +
         "&time=" + $routeParams.timeString +
         "&timeSel=" + $routeParams.timeSelection +
         "&format=json";
 
-    console.log(url);
-        //call  iRail api
+    //call  iRail api
     $http.get(url).success(function(data){
         $scope.possibleRoutes = parseConnectionData(data.connection);
+    });
+
+    //opening a collapse list
+    $scope.open = function($event){
+        var details = angular.element.find(".list-detail");
+        for(var i = 0; i < details.length; i++){
+            var currentDetail = details[i];
+            $(currentDetail).hide(500);
+        }
+
+        var buttons = angular.element.find(".list-head__collapse-btn");
+        for(var i = 0; i < buttons.length; i++){
+            var currentButton = buttons[i];
+            $(currentButton).removeClass("opened");
+            $(currentButton).addClass("closed");
+        }
+
+        var element = $(".list-detail", $event.currentTarget);
+        element.show(500);
+
+        var button = $(".list-head__collapse-btn", $event.currentTarget);
+        button.removeClass("closed");
+        button.addClass("opened");
+    };
+
+
+    // earlier, later, earliest, latest buttons
+
+
+    $scope.earlier = function(){
+        var dayString = addLeadingZeroIfNeeded($scope.routeDate.getDate());
+        var monthString = addLeadingZeroIfNeeded($scope.routeDate.getMonth()+1);
+        var yearString = $scope.routeDate.getFullYear().toString().substr(2);
+        var firstArrive = new Date($scope.possibleRoutes[0].arrival.time*1000);
+        var firstArriveTime = (firstArrive.getHours()<10?'0':'') + firstArrive.getHours()+(firstArrive.getMinutes()<10?'0':'') + firstArrive.getMinutes();
+
+        $location.path('/route/' +
+            $scope.fromStation + '/' +
+            $scope.toStation + '/' +
+            dayString + monthString + yearString + '/' +
+            firstArriveTime + '/' +
+            "arrive"
+        );
+    };
+
+    $scope.later = function(){
+        var lastDeparture = new Date($scope.possibleRoutes[$scope.possibleRoutes.length - 1].departure.time*1000);
+        var lastDepartureTime = addLeadingZeroIfNeeded(lastDeparture.getHours()) + addLeadingZeroIfNeeded(lastDeparture.getMinutes());
+        var dayString = addLeadingZeroIfNeeded(lastDeparture.getDate());
+        var monthString = addLeadingZeroIfNeeded(lastDeparture.getMonth()+1);
+        var yearString = lastDeparture.getFullYear().toString().substr(2);
+
+
+        $location.path('/route/' +
+            $scope.fromStation + '/' +
+            $scope.toStation + '/' +
+            dayString + monthString + yearString + '/' +
+            lastDepartureTime + '/' +
+            "depart"
+        );
+    };
+
+
+    $scope.earliest = function(){
+        var dayString = addLeadingZeroIfNeeded($scope.routeDate.getDate());
+        var monthString = addLeadingZeroIfNeeded($scope.routeDate.getMonth() +1);
+        var yearString = $scope.routeDate.getFullYear().toString().substr(2);
+        $location.path('/route/' +
+            $scope.fromStation + '/' +
+            $scope.toStation + '/' +
+            dayString + monthString + yearString + '/' +
+            "0300" + '/' +
+            "depart"
+        );
+    };
+
+    $scope.latest = function(){
+        var nextDay = new Date($scope.routeDate);
+        nextDay.setDate(nextDay.getDate() + 1);
+        var dayString = addLeadingZeroIfNeeded(nextDay.getDate());
+        var monthString = addLeadingZeroIfNeeded(nextDay.getMonth() + 1);
+        var yearString = nextDay.getFullYear().toString().substr(2);
+        $location.path('/route/' +
+            $scope.fromStation + '/' +
+            $scope.toStation + '/' +
+            dayString + monthString + yearString + '/' +
+            "0300" + '/' +
+            "arrive"
+        );
+    };
+
+    // running png fallback after ng repeat render
+    $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+        pngFallback();
     });
 }
 
@@ -104,6 +203,11 @@ function StationDetailCtrl($scope, $rootScope, $routeParams, $http){
     $http.get(url).success(function(data){
         $scope.liveboard = data.departures;
     });
+
+    // running png fallback after ng repeat render
+    $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+        pngFallback();
+    });
 }
 
 // [/train/:trainId]
@@ -116,6 +220,30 @@ function TrainCtrl($scope, $routeParams, $http, $rootScope){
     $http.get(url).success(function(data){
         $scope.stops = data.stops;
     });
+
+    // running png fallback after ng repeat render
+    $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+        pngFallback();
+    });
+}
+
+
+//dirty way to change svg to png if not supported (can't happen on page load because angular loads some stuff dynamically)
+function pngFallback(){
+    if (!Modernizr.svg) {
+        // wrap this in a closure to not expose any conflicts
+        (function() {
+            // grab all images. getElementsByTagName works with IE5.5 and up
+            var imgs = document.getElementsByTagName('img'),endsWithDotSvg = /.*\.svg$/,i = 0,l = imgs.length;
+            // quick for loop
+            for(; i < l; ++i) {
+                if(imgs[i].src.match(endsWithDotSvg)) {
+                    // replace the png suffix with the svg one
+                    imgs[i].src = imgs[i].src.slice(0, -3) + 'png';
+                }
+            }
+        })();
+    }
 }
 
 //parse the station json to an array of stationNames
@@ -158,6 +286,6 @@ function addLeadingZeroIfNeeded(data){
 //Use this when minifying
 
 DirectionsCtrl.$inject= ['$scope', '$location'];
-RouteCtrl.$inject= ['$scope', '$routeParams', '$http', '$rootScope'];
+RouteCtrl.$inject= ['$scope', '$routeParams', '$http', '$rootScope', '$location'];
 StationDetailCtrl.$inject= ['$scope','$rootScope', '$routeParams', '$http'];
 TrainCtrl.$inject= ['$scope', '$routeParams', '$http', '$rootScope'];

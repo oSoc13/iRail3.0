@@ -1,36 +1,153 @@
-<p>Departure station : {{ fromStation }}</p>
-<p>Arrival station : {{ toStation }}</p>
-<p>Date: {{ routeDate | date:'EEEE d MMMM y' }}</p>
-
-
-<ul>
-    <li ng-repeat="route in possibleRoutes">
-        <p>departure time: {{ route.departure.time * 1000 | date:'HH:mm' }}</p>
-        <p>arrival time: {{ route.arrival.time * 1000 | date:'HH:mm' }}</p>
-        <p>duration: {{ route.duration * 1000 | date:'HH:mm' }}</p>
-        <p>nb trains: {{ 1 + parseNbVias(route.vias) }}</p>
-        <h1>Details</h1>
-        <ul>
-            <li>
-                {{ route.departure.vehicle }} Destination {{ route.departure.direction.name }}
-            </li>
-            <li>
-                {{ route.departure.time * 1000 | date:'HH:mm' }} {{ route.departure.station }} {{ route.departure.platform }}
-            </li>
-            <div ng-repeat="via in route.vias.via">
-                <li>
-                    {{ via.arrival.time * 1000 | date:'HH:mm' }} {{ via.station }} {{ via.arrival.platform }}
-                </li>
-                <li>
-                    {{ via.vehicle }} Destination {{ via.direction.name }}
-                </li>
-                <li>
-                    {{ via.departure.time * 1000 | date:'HH:mm' }} {{ via.station }} {{ via.departure.platform }}
-                </li>
+<div id="wrapper">
+    <div id="header">
+        <div class="container">
+            <div class="sixteen columns">
+                <div class="nav">
+                    <img class="logo" src="../images/logo.svg"/>
+                    <span class="floatright"><a href="#" class="nav">Notifications <span class="white">(0)</span></a></span>
+                    <span class="floatright"><a href="#" class="nav">MyRail</a></span>
+                </div>
             </div>
-            <li>
-                {{ route.arrival.time * 1000 | date:'HH:mm' }} {{ route.arrival.station }} {{ route.arrival.platform }}
-            </li>
-        </ul>
-    </li>
-</ul>
+        </div>
+    </div>
+
+    <div id="content" class="container">
+        <div class="sixteen columns">
+            <div class="extramargin">
+                <div class="eight columns alpha">
+                    <div id="routes" class="page active">
+
+                        <p>
+                            From <span class="accent">{{ fromStation }}</span> to <span class="accent">{{ toStation }}</span>
+                            <br/>
+                            On <span class="accent">{{ routeDate | date:'EEEE d MMMM y' }}</span>
+                        </p>
+                        <div id="spinner"><img src="../images/ajax-loader.gif" width="32" height="32"> </div>
+                        <ul id="route-overview">
+                            <li class="route-general" ng-click="open($event)" ng-repeat="route in possibleRoutes" on-finish-render>
+                                <div class="list-head icon-text">
+                                    <div class="list-head__from-to">
+                                        <span class="accent">{{ route.departure.time * 1000 | date:'HH:mm' }}</span>
+                                        <img src="../images/grey-arrow.svg"/>
+                                        <span class="accent">{{ route.arrival.time * 1000 | date:'HH:mm' }}</span>
+                                    </div>
+                                    <div class="list-head__duration">
+                                        <img src="../images/grey-clock.svg">
+                                        <span class="accent">{{ route.duration * 1000 | date:'HH:mm' }}</span>
+                                    </div>
+                                    <div class="list-head__nb-trains">
+                                        <img src="../images/grey-train.svg">
+                                        <span class="accent">{{ 1 + parseNbVias(route.vias) }}</span>
+                                    </div>
+                                    <div class="list-head__collapse-btn" ng-class="{'closed' : $index > 0, 'opened' : $index == 0}">
+                                    </div>
+                                </div>
+                                <div class="list-detail" ng-hide="$index > 0">
+                                    <div class="list-detail__route-head">
+                                        <span class="accent">{{ parseVehicleName(route.departure.vehicle) }}</span> destination {{ route.departure.direction.name }}
+                                    </div>
+                                    <div class="list-detail__route-time">
+                                        <span class="red">{{ route.departure.time * 1000 | date:'HH:mm' }}</span>
+                                        <span class="list-detail__route-time__station">{{ route.departure.station }}</span>
+                                        <div class="list-detail__route-time__platform">
+                                            <div>{{ route.departure.platform }}</div>
+                                        </div>
+                                    </div>
+                                    <div ng-repeat="via in route.vias.via">
+                                        <div class="list-detail__route-time spacer">
+                                            <span class="red">{{ via.arrival.time * 1000 | date:'HH:mm' }}</span>
+                                            <span class="list-detail__route-time__station">{{ via.station }}</span>
+                                            <div class="list-detail__route-time__platform">
+                                                <div>{{ via.arrival.platform }}</div>
+                                            </div>
+                                        </div>
+                                        <div class="list-detail__route-head">
+                                            <span class="accent">{{ parseVehicleName(via.vehicle) }}</span> destination {{ via.direction.name }}
+                                        </div>
+                                        <div class="list-detail__route-time">
+                                            <span class="red">{{ via.departure.time * 1000 | date:'HH:mm' }}</span>
+                                            <span class="list-detail__route-time__station">{{ via.station }}</span>
+                                            <div class="list-detail__route-time__platform">
+                                                <div>{{ via.departure.platform }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="list-detail__route-time spacer">
+                                       <span class="red">{{ route.arrival.time * 1000 | date:'HH:mm' }}</span>
+                                       <span class="list-detail__route-time__station">{{ route.arrival.station }}</span>
+                                       <div class="list-detail__route-time__platform">
+                                           <div>{{ route.arrival.platform }}</div>
+                                       </div>
+                                    </div>
+                                    <div class="btn">
+                                        <button type="submit">
+                                            <div class="icon-text">
+                                                <img src="../images/myrail.svg" alt="irail logo" width="40" class="icon"/>
+                                                <span class="red">Check-in MyRail</span>
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="eight columns omega">
+                    <hr class="mobile-hr" />
+
+                    <div>
+                        <div id="navigation-buttongroup" class="btn">
+                            <div>
+                                <button class="float alpha" ng-click="earlier()">
+                                    <div class="icon-text"><img src="../images/earlier.svg"><span>Earlier</span></div>
+                                </button>
+                                <button class="float omega" ng-click="later()">
+                                    <div class="icon-text"><span>Later</span><img class="inverted" src="../images/later.svg"></div>
+                                </button>
+                            </div>
+                            <div>
+                                <button class="float alpha" ng-click="earliest()">
+                                    <div class="icon-text"><img src="../images/earliest.svg"><span>Earliest</span></div>
+                                </button>
+                                <button class="float omega"  ng-click="latest()">
+                                    <div class="icon-text"><span>Latest</span><img class="inverted"  src="../images/latest.svg"></div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="myrail" >
+                        <div class="btn">
+                            <button type="submit">
+                                <div class="icon-text">
+                                    <img src="../images/myrail.svg" alt="irail logo" width="40" class="icon"/>
+                                    <span>Enter MyRail</span>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="btn">
+                            <button type="submit">
+                                <div class="icon-text">
+                                    <img src="../images/star.svg" alt="star" width="40" class="icon"/>
+                                    <span>Favorite Route</span>
+                                </div>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <div class="container">
+        <div class="eight columns">
+            <p><a href="#">Find out more</a> about iRail</p>
+        </div>
+    </div>
+</div>
+
