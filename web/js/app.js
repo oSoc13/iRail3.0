@@ -66,6 +66,22 @@ app.factory('httpInterceptor', function ($q, $window) {
     };
 });
 
+
+/*
+ * A replace function that replaces the matched regex result with the given replacement
+ * input: given by AngularJS
+ * regex: a regex string (without the starting and ending forward slash, e.g.: '[ ]\\[.*\\]$')
+ * replacement: the string that replaces a match
+ */
+app.filter('replace', function() {
+    return function(input, regex, replacement) {
+        var patt = new RegExp(regex);
+        var out = input.replace(patt, replacement);
+        console.log(out);
+        return out;
+    };
+});
+
 app.directive('autoComplete', function($timeout, stationService) {
 
     /*
