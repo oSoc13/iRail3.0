@@ -1,0 +1,15 @@
+/* Smaller than standard 960 (devices and browsers) */
+@media only screen and (max-width: 959px) {
+    #header{
+      height: 90px;
+    }
+    .nav span.floatright{
+      float: right;
+      margin-left: 15px;
+      padding-top:15px;
+    }
+    img.logo{
+      width:50px;
+      height:50px;
+    }
+}

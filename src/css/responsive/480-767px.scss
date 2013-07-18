@@ -1,0 +1,66 @@
+/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    #header{
+      height: 60px;
+    }
+    div.nav{
+      margin-top: 10px;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+    .nav span.floatright{
+      float: right;
+      margin-left: 15px;
+      padding-top:10px;
+
+    }
+
+    .btn{
+      text-align: center;
+    }
+
+    #tab-bar{
+      display: block;
+    }
+
+    div.page{
+      display: none;
+    }
+
+    div.page.active{
+      display: block;
+    }
+    div.page hr{
+      display: none
+    }
+    #myrail-features li p{
+      font-size: 1.10em;
+    }
+
+    #navigation-buttongroup button {
+      max-width: 40%;
+    }
+
+    #navigation-buttongroup .icon-text img{
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    #myrail-features li{
+      margin-bottom: 10px;
+    }
+
+    .mobile-hr{
+      display: block;
+    }
+
+    #myrail{
+      margin-left: 0;
+    }
+
+    #navigation-buttongroup {
+
+      margin-left: 0;
+    }
+
+}

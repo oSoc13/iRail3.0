@@ -1,0 +1,31 @@
+/* Tablet Portrait size to standard 960 (devices and browsers) */
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+    #header{
+      height: 80px;
+    }
+    .nav span.floatright{
+      float: right;
+      margin-left: 15px;
+      padding-top:15px;
+    }
+    img.logo{
+      width:40px;
+      height:40px;
+    }
+    #myrail-features li p{
+      font-size: 1.10em;
+    }
+
+    #navigation-buttongroup button {
+      max-width: 40%;
+    }
+
+    #navigation-buttongroup .icon-text img{
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    #myrail-features li{
+      margin-bottom: 10px;
+    }
+}

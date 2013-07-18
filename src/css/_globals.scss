@@ -1,0 +1,12 @@
+$red: #e74636;
+$black: #2d2d2d;
+$dark-grey: #7e7e7e;
+$border-color: #cccccc;
+$bg-color: #f1f1f1;
+
+@mixin transition($duration){
+  -webkit-transition: $duration;
+  -moz-transition: $duration;
+  -o-transition: $duration;
+  transition: $duration;
+}

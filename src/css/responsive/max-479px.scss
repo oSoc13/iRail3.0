@@ -1,0 +1,83 @@
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+@media only screen and (max-width: 479px) {
+
+    .btn{
+      text-align: center;
+    }
+
+    #tab-bar{
+      display: block;
+    }
+
+    div.page{
+      display: none;
+    }
+
+    div.page.active{
+      display: block;
+    }
+
+    img.logo{
+      width:30px;
+      height:30px;
+    }
+
+    .nav span.floatright{
+      float: right;
+      margin-left: 15px;
+      padding-top:10px;
+
+    }
+    div.page hr{
+      display: none
+    }
+
+    #header{
+      height: 50px;
+    }
+
+    div.nav{
+      margin-top: 10px;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+
+    [type="text"], input[type="password"], input[type="email"], textarea, select, #searchtime{
+      margin-bottom: 10px;
+    }
+
+    #myrail-features li p{
+      font-size: 1.10em;
+    }
+
+    #navigation-buttongroup button {
+      max-width: 40%;
+    }
+
+    #navigation-buttongroup .icon-text img{
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    #myrail-features li{
+      margin-bottom: 10px;
+    }
+
+    .list-head{
+      font-size: 1em;
+    }
+
+    .mobile-hr{
+      display: block;
+    }
+
+    #myrail{
+      margin-left: 0;
+    }
+
+    #navigation-buttongroup {
+
+      margin-left: 0;
+    }
+
+}
