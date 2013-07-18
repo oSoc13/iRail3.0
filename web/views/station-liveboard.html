@@ -21,19 +21,21 @@
                             Current departures at <span class="accent">{{ stationName }}</span>
                         </p>
                         <div id="spinner"><img src="../images/ajax-loader.gif" width="32" height="32"> </div>
-                        <ul id="route-overview">
-                            <li class="route-general" ng-click="open($event)" ng-repeat="departure in liveboard.departure" on-finish-render>
-                                <div class="list-head">
-                                    <div class="list-head__time-delay">
-                                        <span class="accent">{{ departure.time * 1000 | date:'HH:mm'}}</span>
-                                        <span class="red" ng-show="departure.delay> 0">+{{ departure.delay | date:'mm'}}M</span>
-                                    </div>
-                                    <div class="icon-text list-head__to-station">
-                                        <img src="../images/grey-arrow.svg"/>
-                                        <span class="accent">{{ departure.station }}</span>
+                        <ul id="liveboard">
+                            <li ng-repeat="departure in liveboard.departure" on-finish-render>
+                                <div class="list-head icon-text">
+                                    <div class="list-head--wrapper">
+                                        <div class="list-head__time-delay">
+                                            <span class="accent">{{ departure.time * 1000 | date:'HH:mm'}}</span>
+                                            <span class="red" ng-show="departure.delay > 0">+{{ departure.delay | date:'mm'}}M</span>
+                                        </div>
+                                        <div class="icon-text list-head__to-station">
+                                            <img src="../images/grey-arrow.svg"/>
+                                            <span class="accent">{{ departure.station | replace:'[ ]\\[.*\\]$':'' }}</span>
+                                        </div>
                                     </div>
                                     <div class="list-head__platform">
-                                        {{ departure.platform }}
+                                        <span class="accent">{{ departure.platform }}</span>
                                     </div>
                                 </div>
                             </li>
