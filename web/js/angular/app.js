@@ -12,6 +12,8 @@ app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpPro
             when('/station/:stationName', {templateUrl: 'views/station-liveboard.html', controller: StationDetailCtrl}).
             otherwise({redirectTo: '/'});
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
+        //intercept http requests from the provider and show a spinner when this happens
         $httpProvider.responseInterceptors.push('httpInterceptor');
         var spinnerFunction = function (data, headersGetter) {
             $('#spinner').show();
@@ -50,7 +52,37 @@ app.factory('stationService', function($resource, $cacheFactory, $rootScope) {
     }
 });
 
-app.factory('httpInterceptor', function ($q, $window) {
+app.factory('utilityService', function (){
+    return {
+        addLeadingZeroIfNeeded: function(data){
+            if(data < 10){
+                return "0" + data.toString();
+            }
+            return data.toString();
+        },
+
+        //change svg to png if not supported (can't happen on page load because angular loads some stuff dynamically)
+        pngFallback: function(){
+            if (!Modernizr.svg) {
+                // wrap this in a closure to not expose any conflicts
+                (function() {
+                    // grab all images. getElementsByTagName works with IE5.5 and up
+                    var imgs = document.getElementsByTagName('img'),endsWithDotSvg = /.*\.svg$/,i = 0,l = imgs.length;
+                    // quick for loop
+                    for(; i < l; ++i) {
+                        if(imgs[i].src.match(endsWithDotSvg)) {
+                            // replace the png suffix with the svg one
+                            imgs[i].src = imgs[i].src.slice(0, -3) + 'png';
+                        }
+                    }
+                })();
+            }
+        }
+    }
+
+});
+
+app.factory('httpInterceptor', function ($q) {
     return function (promise) {
         return promise.then(function (response) {
             // do something on success
