@@ -11,7 +11,7 @@
  *      :time -> the time in 24h format with leading zeroes
  *      :timeSelection -> 'arrive' or 'depart'
  */
-function RouteCtrl($scope, $routeParams, $http, $rootScope, $location, utilityService){
+var RouteCtrl = ['$scope', '$routeParams', '$http', '$rootScope', '$location', 'utilityService' ,function ($scope, $routeParams, $http, $rootScope, $location, utilityService){
     $scope.toStation = $routeParams.toStation;
     $scope.fromStation = $routeParams.fromStation;
 
@@ -156,7 +156,4 @@ function RouteCtrl($scope, $routeParams, $http, $rootScope, $location, utilitySe
         return connectionData;
     }
 
-}
-
-// manual injection for minification
-RouteCtrl.$inject= ['$scope', '$routeParams', '$http', '$rootScope', '$location', 'utilityService'];
+}];

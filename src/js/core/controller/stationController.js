@@ -4,7 +4,7 @@
 /*
  * The Stationcontroller handles all requests to '/station/:stationName' and renders the liveboard of that station
  */
-function StationDetailCtrl($scope, $rootScope, $routeParams, $http, utilityService){
+var StationDetailCtrl = ['$scope','$rootScope', '$routeParams', '$http', 'utilityService', function StationDetailCtrl($scope, $rootScope, $routeParams, $http, utilityService){
     $scope.stationName = $routeParams.stationName;
 
     url = $rootScope.iRailAPI + "/liveboard/?station=" + $scope.stationName + "&fast=true&format=json";
@@ -18,7 +18,4 @@ function StationDetailCtrl($scope, $rootScope, $routeParams, $http, utilityServi
     $scope.$on('ngRepeatFinished', function() {
         utilityService.pngFallback();
     });
-}
-
-//Use this when minifying
-StationDetailCtrl.$inject= ['$scope','$rootScope', '$routeParams', '$http', 'utilityService'];
+}];

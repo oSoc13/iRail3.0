@@ -6,7 +6,7 @@
  * with
  *      :trainId the train name following the iRail convention (e.g.: BE.NMBS.IR2000)
  */
-function TrainCtrl($scope, $routeParams, $http, $rootScope, utilityService){
+var TrainCtrl = ['$scope', '$routeParams', '$http', '$rootScope', 'utilityService', function($scope, $routeParams, $http, $rootScope, utilityService){
     $scope.trainNumber = $routeParams.trainId;//todo regex to get only the number
 
     var url = $rootScope.iRailAPI + "/vehicle/?id=" + $routeParams.trainId + "&fast=true&format=json";
@@ -20,7 +20,4 @@ function TrainCtrl($scope, $routeParams, $http, $rootScope, utilityService){
     $scope.$on('ngRepeatFinished', function() {
         utilityService.pngFallback();
     });
-}
-
-// manual injection for minification
-TrainCtrl.$inject= ['$scope', '$routeParams', '$http', '$rootScope', 'utilityService'];
+}];

@@ -4,7 +4,7 @@
 /*
  * The controller for the homepage, it handles the requests to the '/' route
  */
-function DirectionsCtrl($scope, $location, utilityService){
+var DirectionsCtrl = ['$scope', '$location', 'utilityService', function($scope, $location, utilityService){
     var date = new Date();
 
     // scope variable definition and initialization
@@ -63,8 +63,4 @@ function DirectionsCtrl($scope, $location, utilityService){
         $("#stations").removeClass("active");
         $("#myrail").addClass("active");
     };
-}
-
-
-// manual injection for minification
-DirectionsCtrl.$inject= ['$scope', '$location', 'utilityService'];
+}];
