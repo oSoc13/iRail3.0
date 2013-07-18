@@ -351,7 +351,7 @@
 
     }
 
-    .list-head:hover {
+    #route-overview .list-head:hover {
         background-color: #f1f1f1;
     }
 
@@ -362,10 +362,8 @@
         border-top: 0;
     }
 
-    .list-head{
-        padding-top: 5px;
-        padding-left: 5px;
-        padding-right: 5px;
+    .list-head {
+
         font: 1.25em/1 'Lato', sans-serif;
         display: table;
         box-sizing: border-box;
@@ -457,21 +455,48 @@
         color: #E94B3F;
     }
 
+    .list-head--wrapper{
+        display: table;
+        width: 90%;
+        padding-top: 5px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    #route-overview .list-head--wrapper{
+        width: 100%;
+    }
+
 
     .list-head__time-delay{
         display: table-cell;
         width: 25%;
     }
 
+.list-head__time-delay span{
+    height:25px;
+}
+
     .list-head__to-station{
         display: table-cell;
+        word-wrap: break-word;
         width: 70%;
     }
 
     .list-head__platform{
+
         display: table-cell;
         width: 5%;
+        background-color: #ffffff;
+        padding-top: 5px;
+        padding-left: 5px;
+        padding-right: 5px;
     }
+
+.list-head__platform span{
+    height:25px;
+    text-align: center;
+}
 
     /* end collapsible list */
 
@@ -834,6 +859,9 @@ ui-autocomplete-item{
         margin-bottom: 10px;
     }
 
+    .list-head{
+        font-size: 1em;
+    }
 
     .mobile-hr{
         display: block;
