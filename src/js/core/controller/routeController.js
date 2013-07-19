@@ -68,59 +68,37 @@ var RouteCtrl = ['$scope', '$routeParams', '$http', '$rootScope', '$location', '
     };
 
 
-    // earlier, later, earliest, latest buttons
+    // get earlier routes
     $scope.earlier = function(){
         var dateString = utilityService.getIrailDateString($scope.routeDate);
         var firstArrive = new Date($scope.possibleRoutes[0].arrival.time*1000);
         var timeString = utilityService.getIrailTimeString(firstArrive);
 
-        $location.path('/route/' +
-            $scope.fromStation + '/' +
-            $scope.toStation + '/' +
-            dateString + '/' +
-            timeString + '/' +
-            "arrive"
-        );
+        changeLookupDate(dateString, timeString, "arrive");
     };
 
+    // get later routes
     $scope.later = function(){
         var lastDeparture = new Date($scope.possibleRoutes[$scope.possibleRoutes.length - 1].departure.time*1000);
         var dateString = utilityService.getIrailDateString(lastDeparture);
         var timeString = utilityService.getIrailTimeString(lastDeparture);
 
-        $location.path('/route/' +
-            $scope.fromStation + '/' +
-            $scope.toStation + '/' +
-            dateString + '/' +
-            timeString + '/' +
-            "depart"
-        );
+        changeLookupDate(dateString, timeString, "depart");
     };
 
-
+    // get earliest routes
     $scope.earliest = function(){
         var dateString = utilityService.getIrailDateString($scope.routeDate);
-        $location.path('/route/' +
-            $scope.fromStation + '/' +
-            $scope.toStation + '/' +
-            dateString + '/' +
-            "0300" + '/' +
-            "depart"
-        );
+        changeLookupDate(dateString, "0300", "depart");
     };
 
+    // get latest routes
     $scope.latest = function(){
         var nextDay = new Date($scope.routeDate);
         nextDay.setDate(nextDay.getDate() + 1);
         var dateString = utilityService.getIrailDateString(nextDay);
 
-        $location.path('/route/' +
-            $scope.fromStation + '/' +
-            $scope.toStation + '/' +
-            dateString + '/' +
-            "0300" + '/' +
-            "arrive"
-        );
+        changeLookupDate(dateString, "0300", "arrive");
     };
 
     // running png fallback after ng repeat render
@@ -146,6 +124,17 @@ var RouteCtrl = ['$scope', '$routeParams', '$http', '$rootScope', '$location', '
         }
 
         return connectionData;
+    }
+
+    // utility function to change the route lookup parameters and redo the request to the iRail api
+    function changeLookupDate(dateString, timeString, timeSelect){
+        $location.path('/route/' +
+            $scope.fromStation + '/' +
+            $scope.toStation + '/' +
+            dateString + '/' +
+            timeString + '/' +
+            timeSelect
+        );
     }
 
 }];
