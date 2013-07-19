@@ -9,13 +9,14 @@ Installation
 ------------
 * Use the **client** folder as document root in your web server. If you don't, images will not show up!
 
-Developing
+Development
 ----------
 * Edit the javascript and css files in the **src** folder.
+* The html files can be edited in the client folder.
 * Run 'ant build' from the command line
 * The javascript and css files in the client folder will be updated
 
-**Note:** you need to have 'sass' in your path to build successfully!
+**Note:** you need to have Sass installed and in your path to build successfully!
 
 Libraries used
 --------------
