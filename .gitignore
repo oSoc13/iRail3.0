@@ -38,3 +38,7 @@ $RECYCLE.BIN/
 
 .idea/
 
+
+### Sass
+
+.sass-cache
