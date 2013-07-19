@@ -7,6 +7,8 @@
         <property name="yui.dir" value="${devdir}/tools/yuicompressor.jar"/>
         <!--Source JS dir-->
         <property name="src.js.dir" value="${devdir}/js"/>
+        <!--Source css dir -->
+        <property name="src.css.dir" value="${devdir}/css"/>
         <!--Output dir-->
         <property name="build.dir" value="client"/>
         <!--Build version information -->
@@ -23,6 +25,7 @@
 
         <!--Recreate the build directories-->
         <mkdir dir="${build.dir}/js"/>
+        <mkdir dir="${build.dir}/css"/>
     </target>
 
 
@@ -65,8 +68,21 @@
         <echo>Finished</echo>
     </target>
 
+    <!-- compile css-->
+    <target name="-sass.compile" depends="-js.copy.libs"
+            description="compile css files with sass">
+        <apply executable="sass" parallel="false" dest="${build.dir}/css" verbose="true" force="true" failonerror="true">
+            <fileset dir="${src.css.dir}" includes="style.scss"/>
+            <arg path="${src.css.dir}/style.scss"/>
+            <arg path="${build.dir}/css/style.css"/>
+            <srcfile/>
+            <mapper type="glob" from="*.scss" to="*.css"/>
+        </apply>
+        <echo>Finished</echo>
+    </target>
+
     <!-- Clean -->
-    <target name="-clean" depends="-js.copy.libs"
+    <target name="-clean" depends="-sass.compile"
             description="Clean build directory">
         <delete includeemptydirs="true">
             <fileset dir="${build.dir}/js" defaultexcludes="false">
@@ -86,6 +102,7 @@
             -js.concatenate,
             -js.minify,
             -js.copy.libs,
+            -sass.compile,
             -clean">
     </target>
 </project>

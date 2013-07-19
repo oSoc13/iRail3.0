@@ -15,6 +15,8 @@
 /* #Site Styles
 ================================================== */
 
+    @import "globals";
+
     /* sticky footer */
     html, body, #outer-wrapper {
         height: 100%;
@@ -55,7 +57,7 @@
 
 	#header{
 		height: 100px;
-		background: #2d2d2d;
+		background: $black;
 	}
 
     #tab-bar ul{
@@ -100,7 +102,7 @@
     }
 
     a.nav{
-        color: #7e7e7e;
+        color: $dark-grey;
         text-decoration: none;
         -webkit-transition: 0.25s;
         -moz-transition: 0.25s;
@@ -109,7 +111,7 @@
     }
 
     a.nav:hover{
-        color:#E94B3F;
+        color: $red;
     }
 
     div.nav{
@@ -121,7 +123,7 @@
     }
 
     span.highlight{
-        color:#E94B3F;
+        color: $red;
         font-weight: bold;
         font-size: 1em;
     }
@@ -134,7 +136,7 @@
     }
 
     span.accent{
-        color:#2c2c2c;
+        color: $black;
     }
 
     #wrapper{
@@ -152,7 +154,7 @@
     #search-station input{
         width: 100%;
         height: 39px;
-        color: #757575;
+        color: $dark-grey;
         box-sizing: border-box;
         -moz-box-sizing: border-box;
     }
@@ -161,7 +163,7 @@
     #search-station select{
         width: 100%;
         height: 39px;
-        color: #757575;
+        color: $dark-grey;
         box-sizing: border-box;
         -moz-box-sizing: border-box;
     }
@@ -199,13 +201,10 @@
         width:100%;
         float: left;
         margin-bottom: 20px;
-        border:1px solid #ccc;
-        -moz-border-radius: 2px;
-        -webkit-border-radius: 2px;
-        border-radius: 2px;
+        border:1px solid $border-color;
+        @include border-radius(2px);
         background-color: #fff;
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
+        @include box-sizing(border-box);
         padding: 8px 4px 6px 4px;
         height: 39px;
         outline: 0;
@@ -238,9 +237,7 @@
         border: 1px solid #aaa;
         color: #444;
         outline: 0;
-        -moz-box-shadow: 0 0 3px rgba(0,0,0,.2);
-        -webkit-box-shadow: 0 0 3px rgba(0,0,0,.2);
-        box-shadow: 0 0 3px rgba(0,0,0,.2);
+        @include box-shadow(0, 0, 3px, rgba(0,0,0,.2));
     }
 
     #date-input .divider,
@@ -345,18 +342,18 @@
     /* collapsible list */
 
     .route-general{
-        background-color: #eaeaea;
+        background-color: $button-color;
 
     }
 
     #route-overview .list-head:hover {
-        background-color: #f1f1f1;
+        background-color: $content-bg;
     }
 
     .route-general .list-detail{
         background-color: #fff;
         padding: 5px;
-        border: 1px solid #ccc;
+        border: 1px solid $border-color;
         border-top: 0;
     }
 
@@ -367,8 +364,8 @@
         box-sizing: border-box;
         width: 100%;
         height:40px;
-        background-color: #eaeaea;
-        border: 1px solid #ccc;
+        background-color: $button-color;
+        border: 1px solid $border-color;
     }
 
     .list-head__from-to {
@@ -443,14 +440,14 @@
     .list-detail__route-time__platform div{
         width:24px;
         height:24px;
-        border: 1px solid #ccc;
+        border: 1px solid $border-color;
         border-radius: 2px;
         -webkit-border-radius: 2px;
         -moz-border-radius: 2px;
-        background-color: #eaeaea;
+        background-color: $button-color;
         text-align: center;
         line-height: 1.1;
-        color: #E94B3F;
+        color: $red;
     }
 
     .list-head--wrapper{

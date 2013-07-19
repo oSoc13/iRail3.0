@@ -872,7 +872,7 @@ a.nav {
   transition: 0.25s; }
 
 a.nav:hover {
-  color: #E94B3F; }
+  color: #e74636; }
 
 div.nav {
   margin-top: 20px; }
@@ -881,7 +881,7 @@ div.extramargin {
   margin-top: 20px; }
 
 span.highlight {
-  color: #E94B3F;
+  color: #e74636;
   font-weight: bold;
   font-size: 1em; }
 
@@ -892,7 +892,7 @@ p {
   clear: both; }
 
 span.accent {
-  color: #2c2c2c; }
+  color: #2d2d2d; }
 
 #wrapper {
   min-height: 100%; }
@@ -905,7 +905,7 @@ span.accent {
 #search-station input {
   width: 100%;
   height: 39px;
-  color: #757575;
+  color: #7e7e7e;
   box-sizing: border-box;
   -moz-box-sizing: border-box; }
 
@@ -913,7 +913,7 @@ span.accent {
 #search-station select {
   width: 100%;
   height: 39px;
-  color: #757575;
+  color: #7e7e7e;
   box-sizing: border-box;
   -moz-box-sizing: border-box; }
 
@@ -945,13 +945,13 @@ Date and time input box
   width: 100%;
   float: left;
   margin-bottom: 20px;
-  border: 1px solid #ccc;
-  -moz-border-radius: 2px;
+  border: 1px solid #cccccc;
   -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
   border-radius: 2px;
   background-color: #fff;
-  box-sizing: border-box;
   -moz-box-sizing: border-box;
+  box-sizing: border-box;
   padding: 8px 4px 6px 4px;
   height: 39px;
   outline: 0;
@@ -1075,7 +1075,7 @@ li.icon-text p {
 .route-general .list-detail {
   background-color: #fff;
   padding: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc;
   border-top: 0; }
 
 .list-head {
@@ -1085,7 +1085,7 @@ li.icon-text p {
   width: 100%;
   height: 40px;
   background-color: #eaeaea;
-  border: 1px solid #ccc; }
+  border: 1px solid #cccccc; }
 
 .list-head__from-to {
   display: table-cell;
@@ -1145,14 +1145,14 @@ div.list-detail__route-time__platform {
 .list-detail__route-time__platform div {
   width: 24px;
   height: 24px;
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc;
   border-radius: 2px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   background-color: #eaeaea;
   text-align: center;
   line-height: 1.1;
-  color: #E94B3F; }
+  color: #e74636; }
 
 .list-head--wrapper {
   display: table;
