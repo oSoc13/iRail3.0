@@ -36,7 +36,6 @@
         height: 30px;
         clear:both;
         background-color: #ddd;
-        line-height: 30px;
     }
 
     #footer p {
@@ -191,7 +190,7 @@
 
     .date-input .inner span,
     .time-input .inner span{
-        line-height: 17px;
+        line-height: 1.063em;
     }
 
     .date-input input.small{
@@ -503,7 +502,7 @@
 
     #myrail-features li p{
         font-size: 1.25em;
-        line-height: 18px;
+        line-height: 1.125em;
     }
 
     #myrail-features ul{
