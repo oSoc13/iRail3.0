@@ -70,47 +70,40 @@ var RouteCtrl = ['$scope', '$routeParams', '$http', '$rootScope', '$location', '
 
     // earlier, later, earliest, latest buttons
     $scope.earlier = function(){
-        var dayString = utilityService.addLeadingZeroIfNeeded($scope.routeDate.getDate());
-        var monthString = utilityService.addLeadingZeroIfNeeded($scope.routeDate.getMonth()+1);
-        var yearString = $scope.routeDate.getFullYear().toString().substr(2);
+        var dateString = utilityService.getIrailDateString($scope.routeDate);
         var firstArrive = new Date($scope.possibleRoutes[0].arrival.time*1000);
-        var firstArriveTime = (firstArrive.getHours()<10?'0':'') + firstArrive.getHours()+(firstArrive.getMinutes()<10?'0':'') + firstArrive.getMinutes();
+        var timeString = utilityService.getIrailTimeString(firstArrive);
 
         $location.path('/route/' +
             $scope.fromStation + '/' +
             $scope.toStation + '/' +
-            dayString + monthString + yearString + '/' +
-            firstArriveTime + '/' +
+            dateString + '/' +
+            timeString + '/' +
             "arrive"
         );
     };
 
     $scope.later = function(){
         var lastDeparture = new Date($scope.possibleRoutes[$scope.possibleRoutes.length - 1].departure.time*1000);
-        var lastDepartureTime = utilityService.addLeadingZeroIfNeeded(lastDeparture.getHours()) + addLeadingZeroIfNeeded(lastDeparture.getMinutes());
-        var dayString = utilityService.addLeadingZeroIfNeeded(lastDeparture.getDate());
-        var monthString = addLeadingZeroIfNeeded(lastDeparture.getMonth()+1);
-        var yearString = lastDeparture.getFullYear().toString().substr(2);
-
+        var dateString = utilityService.getIrailDateString(lastDeparture);
+        var timeString = utilityService.getIrailTimeString(lastDeparture);
 
         $location.path('/route/' +
             $scope.fromStation + '/' +
             $scope.toStation + '/' +
-            dayString + monthString + yearString + '/' +
-            lastDepartureTime + '/' +
+            dateString + '/' +
+            timeString + '/' +
             "depart"
         );
     };
 
 
     $scope.earliest = function(){
-        var dayString = utilityService.addLeadingZeroIfNeeded($scope.routeDate.getDate());
-        var monthString = utilityService.addLeadingZeroIfNeeded($scope.routeDate.getMonth() +1);
-        var yearString = $scope.routeDate.getFullYear().toString().substr(2);
+        var dateString = utilityService.getIrailDateString($scope.routeDate);
         $location.path('/route/' +
             $scope.fromStation + '/' +
             $scope.toStation + '/' +
-            dayString + monthString + yearString + '/' +
+            dateString + '/' +
             "0300" + '/' +
             "depart"
         );
@@ -119,13 +112,12 @@ var RouteCtrl = ['$scope', '$routeParams', '$http', '$rootScope', '$location', '
     $scope.latest = function(){
         var nextDay = new Date($scope.routeDate);
         nextDay.setDate(nextDay.getDate() + 1);
-        var dayString = utilityService.addLeadingZeroIfNeeded(nextDay.getDate());
-        var monthString = utilityService.addLeadingZeroIfNeeded(nextDay.getMonth() + 1);
-        var yearString = nextDay.getFullYear().toString().substr(2);
+        var dateString = utilityService.getIrailDateString(nextDay);
+
         $location.path('/route/' +
             $scope.fromStation + '/' +
             $scope.toStation + '/' +
-            dayString + monthString + yearString + '/' +
+            dateString + '/' +
             "0300" + '/' +
             "arrive"
         );
