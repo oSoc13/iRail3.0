@@ -1,0 +1,108 @@
+<project name="iRail-webclient" default="build" basedir=".">
+
+    <target name="-load.properties"
+            description="Set properties for this build">
+        <property name="devdir" value="src"/>
+        <!--YUI Compressor location-->
+        <property name="yui.dir" value="${devdir}/tools/yuicompressor.jar"/>
+        <!--Source JS dir-->
+        <property name="src.js.dir" value="${devdir}/js"/>
+        <!--Source css dir -->
+        <property name="src.css.dir" value="${devdir}/css"/>
+        <!--Output dir-->
+        <property name="build.dir" value="client"/>
+        <!--Build version information -->
+        <property name="build.major" value="1"/>
+        <property name="build.minor" value="0"/>
+    </target>
+
+
+    <!--Create build directories-->
+    <target name="-init" depends="-load.properties"
+            description="Create build directory structure">
+        <!--Delete previous build files-->
+        <delete dir="${build.dir}/js"/>
+
+        <!--Recreate the build directories-->
+        <mkdir dir="${build.dir}/js"/>
+        <mkdir dir="${build.dir}/css"/>
+    </target>
+
+
+    <!--Concatenate JS files-->
+    <target name="-js.concatenate" depends="-init"
+            description="Concatenates specified Javascript files">
+        <!-- Core -->
+        <concat destfile="${build.dir}/js/irail.js">
+            <fileset
+                    dir="${src.js.dir}"
+                    includes="core/*.js,core/controller/*.js"/>
+        </concat>
+        <echo>Finished</echo>
+    </target>
+
+
+    <!--Minify JS files-->
+    <target name="-js.minify" depends="-js.concatenate"
+            description="Minifies JavaScript files">
+        <apply executable="java" parallel="false" dest="${build.dir}/js">
+            <fileset
+                    dir="${build.dir}/js"
+                    includes="*.js" />
+            <arg line="-jar"/>
+            <arg path="${yui.dir}"/>
+            <srcfile/>
+            <arg line="-o"/>
+            <mapper type="glob" from="*.js" to="*.min.js"/>
+            <targetfile/>
+        </apply>
+        <echo>Finished</echo>
+    </target>
+
+    <target name="-js.copy.libs" depends="-js.minify"
+            description="Copies (minified) libraries to build dir">
+        <copy description="" todir="${build.dir}/js">
+            <fileset dir="${src.js.dir}/libs" includes="*.js">
+            </fileset>
+        </copy>
+        <echo>Finished</echo>
+    </target>
+
+    <!-- compile css-->
+    <target name="-sass.compile" depends="-js.copy.libs"
+            description="compile css files with sass">
+        <apply executable="sass" parallel="false" dest="${build.dir}/css" verbose="true" force="true" failonerror="true">
+            <fileset dir="${src.css.dir}" includes="style.scss"/>
+            <arg path="${src.css.dir}/style.scss"/>
+            <arg path="${build.dir}/css/style.css"/>
+            <srcfile/>
+            <mapper type="glob" from="*.scss" to="*.css"/>
+        </apply>
+        <echo>Finished</echo>
+    </target>
+
+    <!-- Clean -->
+    <target name="-clean" depends="-sass.compile"
+            description="Clean build directory">
+        <delete includeemptydirs="true">
+            <fileset dir="${build.dir}/js" defaultexcludes="false">
+                <exclude name="irail.min.js" />
+                <exclude name="modernizr.min.js" />
+            </fileset>
+        </delete>
+        <echo>Finished</echo>
+    </target>
+
+    <!--Build-->
+    <target name="build"
+            description="Builds project files for production use"
+            depends="
+            -load.properties,
+            -init,
+            -js.concatenate,
+            -js.minify,
+            -js.copy.libs,
+            -sass.compile,
+            -clean">
+    </target>
+</project>

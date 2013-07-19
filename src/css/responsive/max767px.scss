@@ -1,0 +1,37 @@
+/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width: 767px) {
+    #header{
+      height: 70px;
+    }
+    .nav span.floatright{
+      float: right;
+      margin-left: 15px;
+      padding-top:15px;
+    }
+    div.nav{
+      margin-top: 10px;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+    img.logo{
+      width:40px;
+      height:40px;
+    }
+
+    #myrail-features li p{
+      font-size: 1.10em;
+    }
+
+    #navigation-buttongroup button {
+      max-width: 40%;
+    }
+
+    #navigation-buttongroup .icon-text img{
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    #myrail-features li{
+      margin-bottom: 10px;
+    }
+}

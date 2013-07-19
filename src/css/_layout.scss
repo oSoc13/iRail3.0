@@ -10,12 +10,14 @@
 /* Table of Content
 ==================================================
 	#Site Styles
-	#Page Styles
 	#Media Queries
-	#Font-Face */
 
 /* #Site Styles
 ================================================== */
+
+    @import "globals";
+
+    @import "element-styles";
 
     /* sticky footer */
     html, body, #outer-wrapper {
@@ -24,8 +26,10 @@
 
     #wrapper {min-height: 100%;}
 
-    #content {overflow:auto;
-        padding-bottom: 30px;}  /* must be same height as the footer */
+    #content {
+        overflow:auto;
+        padding-bottom: 30px; /* must be same height as the footer */
+    }
 
     #footer {position: relative;
         margin-top: -30px; /* negative value of footer height */
@@ -51,13 +55,9 @@
 
     /* end sticky footer */
 
-    body{
-        font: 0.85em/1.5 'Lato', sans-serif;
-    }
-
 	#header{
 		height: 100px;
-		background: #2d2d2d;
+		background: $black;
 	}
 
     #tab-bar ul{
@@ -102,7 +102,7 @@
     }
 
     a.nav{
-        color: #7e7e7e;
+        color: $dark-grey;
         text-decoration: none;
         -webkit-transition: 0.25s;
         -moz-transition: 0.25s;
@@ -111,7 +111,7 @@
     }
 
     a.nav:hover{
-        color:#E94B3F;
+        color: $red;
     }
 
     div.nav{
@@ -123,50 +123,17 @@
     }
 
     span.highlight{
-        color:#E94B3F;
+        color: $red;
         font-weight: bold;
         font-size: 1em;
     }
 
-    label,
-    p{
-        font: 1.5em/1.5 'Lato', sans-serif;
-        margin-bottom: 6px;
-        clear: both;
-    }
 
     span.accent{
-        color:#2c2c2c;
-    }
-
-    #wrapper{
-        min-height: 100%;
+        color: $black;
     }
 
 
-
-    #search-route,
-    #search-station{
-        max-width:400px;
-    }
-
-    #search-route input,
-    #search-station input{
-        width: 100%;
-        height: 39px;
-        color: #757575;
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-    }
-
-    #search-route select,
-    #search-station select{
-        width: 100%;
-        height: 39px;
-        color: #757575;
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-    }
 
     #tab-bar{
         display: none;
@@ -182,7 +149,6 @@
 
     #timeselect{
         float:left;
-
         display: table-cell;
         width:100%;
     }
@@ -191,71 +157,64 @@
         margin-bottom:20px;
     }
 
-    #date-input,
-    #time-input{
+    .date-input,
+    .time-input{
         display: table-cell;
     }
 
-    #date-input .outer,
-    #time-input .outer{
+    .date-input .outer,
+    .time-input .outer{
         width:100%;
         float: left;
         margin-bottom: 20px;
-        border:1px solid #ccc;
-        -moz-border-radius: 2px;
-        -webkit-border-radius: 2px;
-        border-radius: 2px;
+        border:1px solid $border-color;
+        @include border-radius(2px);
         background-color: #fff;
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
+        @include box-sizing(border-box);
         padding: 8px 4px 6px 4px;
         height: 39px;
         outline: 0;
         text-align: center;
     }
 
-    #date-input .inner,
-    #time-input .inner{
+    .date-input .inner,
+    .time-input .inner{
         height: 100%;
         max-width: 90px;
         margin-left: auto;
         margin-right: auto;
     }
 
-    #time-input .inner{
+    .time-input .inner{
         max-width: 45px;
     }
 
-    #date-input .inner span,
-    #time-input .inner span{
+    .date-input .inner span,
+    .time-input .inner span{
         line-height: 17px;
     }
 
-    #date-input input.small{
+    .date-input input.small{
         width:20px;
     }
 
-    #date-input .inner.focused,
-    #time-input .inner.focused{
+    .date-input .inner.focused,
+    .time-input .inner.focused{
         border: 1px solid #aaa;
         color: #444;
         outline: 0;
-        -moz-box-shadow: 0 0 3px rgba(0,0,0,.2);
-        -webkit-box-shadow: 0 0 3px rgba(0,0,0,.2);
-        box-shadow: 0 0 3px rgba(0,0,0,.2);
+        @include box-shadow(0, 0, 3px, rgba(0,0,0,.2));
     }
 
-    #date-input .divider,
-    #time-input .divider{
+    .date-input .divider,
+    .time-input .divider{
         float:left;
         height:auto;
-
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
+        @include box-sizing(border-box);
     }
 
-    #date-input input,
-    #time-input input{
+    .date-input input,
+    .time-input input{
         float: left;
         width: 40px;
         background: none;
@@ -264,16 +223,17 @@
         height: 19px;
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
+        @include box-sizing(border-box);
     }
 
-    #time-input input{
+
+
+    .time-input input{
         width: 20px;
     }
 
-    #date-input input:focus,
-    #time-input input:focus{
+    .date-input input:focus,
+    .time-input input:focus{
         outline: 0;
         border:0;
         box-shadow: none;
@@ -347,30 +307,28 @@
     /* collapsible list */
 
     .route-general{
-        background-color: #eaeaea;
-
+        background-color: $button-color;
     }
 
     #route-overview .list-head:hover {
-        background-color: #f1f1f1;
+        background-color: $content-bg;
     }
 
     .route-general .list-detail{
         background-color: #fff;
         padding: 5px;
-        border: 1px solid #ccc;
+        border: 1px solid $border-color;
         border-top: 0;
     }
 
     .list-head {
-
         font: 1.25em/1 'Lato', sans-serif;
         display: table;
-        box-sizing: border-box;
+        @include box-sizing(border-box);
         width: 100%;
         height:40px;
-        background-color: #eaeaea;
-        border: 1px solid #ccc;
+        background-color: $button-color;
+        border: 1px solid $border-color;
     }
 
     .list-head__from-to {
@@ -445,14 +403,12 @@
     .list-detail__route-time__platform div{
         width:24px;
         height:24px;
-        border: 1px solid #ccc;
-        border-radius: 2px;
-        -webkit-border-radius: 2px;
-        -moz-border-radius: 2px;
-        background-color: #eaeaea;
+        border: 1px solid $border-color;
+        @include border-radius(2px);
+        background-color: $button-color;
         text-align: center;
         line-height: 1.1;
-        color: #E94B3F;
+        color: $red;
     }
 
     .list-head--wrapper{
@@ -473,9 +429,9 @@
         width: 25%;
     }
 
-.list-head__time-delay span{
-    height:25px;
-}
+    .list-head__time-delay span{
+        height:25px;
+    }
 
     .list-head__to-station{
         display: table-cell;
@@ -493,10 +449,10 @@
         padding-right: 5px;
     }
 
-.list-head__platform span{
-    height:25px;
-    text-align: center;
-}
+    .list-head__platform span{
+        height:25px;
+        text-align: center;
+    }
 
     /* end collapsible list */
 
@@ -504,36 +460,10 @@
         color:#E94B3F;
     }
 
-    #route-overview{
-
-    }
-
-
-
-
     span.radio{
         color: #757575;
     }
 
-    button {
-        width:250px;
-        display: table-cell;
-        text-align: center;
-        vertical-align: middle;
-        height: 40px;
-        font: 1.25em/1 'Lato', sans-serif;
-        color: #757575;
-        padding-top: 5px;
-        background: #EAEAEA;
-        -webkit-transition: 0.25s;
-        -moz-transition: 0.25s;
-        -o-transition: 0.25s;
-        transition: 0.25s;
-    }
-
-    button:hover{
-        background: #f1f1f1;
-    }
 
     div.sidebar{
         float: right;
@@ -566,8 +496,6 @@
         padding: 0;
         margin: 0;
     }
-
-
 
     #myrail-features li{
         margin-bottom: 20px;
@@ -605,7 +533,7 @@ ui-autocomplete-item{
 
     margin: 0;
 
-    border: 1px solid #d9d9d9;
+    border: 1px solid $border-color;
     display:block;
     width:227px;
 }
@@ -621,259 +549,25 @@ ui-autocomplete-item{
     display:block;
     padding: .4em .6em;
     line-height:1.5;
-    color: #7e7e7e;
+    color: $dark-grey;
     zoom:1;
 }
 
 .ui-menu .ui-menu-item a.ui-state-focus {
     margin: -1px;
-    background-color: #eaeaea;
-    color: #2d2d2d;
+    background-color: $button-color;
+    color: $black;
 }
 
 .ui-helper-hidden-accessible{
     display:none;
 }
 
-/* #Page Styles
-================================================== */
-
 /* #Media Queries
 ================================================== */
 
-	/* Smaller than standard 960 (devices and browsers) */
-	@media only screen and (max-width: 959px) {
-        #header{
-            height: 90px;
-        }
-        .nav span.floatright{
-            float: right;
-            margin-left: 15px;
-            padding-top:15px;
-        }
-        img.logo{
-            width:50px;
-            height:50px;
-        }
-    }
-
-	/* Tablet Portrait size to standard 960 (devices and browsers) */
-	@media only screen and (min-width: 768px) and (max-width: 959px) {
-        #header{
-            height: 80px;
-        }
-        .nav span.floatright{
-            float: right;
-            margin-left: 15px;
-            padding-top:15px;
-        }
-        img.logo{
-            width:40px;
-            height:40px;
-        }
-        #myrail-features li p{
-            font-size: 1.10em;
-        }
-
-        #navigation-buttongroup button {
-            max-width: 40%;
-        }
-
-        #navigation-buttongroup .icon-text img{
-            margin-left: 0;
-            margin-right: 0;
-        }
-
-        #myrail-features li{
-            margin-bottom: 10px;
-        }
-    }
-
-	/* All Mobile Sizes (devices and browser) */
-	@media only screen and (max-width: 767px) {
-        #header{
-            height: 70px;
-        }
-        .nav span.floatright{
-            float: right;
-            margin-left: 15px;
-            padding-top:15px;
-        }
-        div.nav{
-            margin-top: 10px;
-            padding-left: 5px;
-            padding-right: 5px;
-        }
-        img.logo{
-            width:40px;
-            height:40px;
-        }
-
-        #myrail-features li p{
-            font-size: 1.10em;
-        }
-
-        #navigation-buttongroup button {
-            max-width: 40%;
-        }
-
-        #navigation-buttongroup .icon-text img{
-            margin-left: 0;
-            margin-right: 0;
-        }
-
-        #myrail-features li{
-            margin-bottom: 10px;
-        }
-	}
-
-	/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
-	@media only screen and (min-width: 480px) and (max-width: 767px) {
-        #header{
-            height: 60px;
-        }
-        div.nav{
-            margin-top: 10px;
-            padding-left: 5px;
-            padding-right: 5px;
-        }
-        .nav span.floatright{
-            float: right;
-            margin-left: 15px;
-            padding-top:10px;
-
-        }
-
-        .btn{
-            text-align: center;
-        }
-
-        #tab-bar{
-            display: block;
-        }
-
-        div.page{
-            display: none;
-        }
-
-        div.page.active{
-            display: block;
-        }
-        div.page hr{
-            display: none
-        }
-        #myrail-features li p{
-            font-size: 1.10em;
-        }
-
-        #navigation-buttongroup button {
-            max-width: 40%;
-        }
-
-        #navigation-buttongroup .icon-text img{
-            margin-left: 0;
-            margin-right: 0;
-        }
-
-        #myrail-features li{
-            margin-bottom: 10px;
-        }
-
-        .mobile-hr{
-            display: block;
-        }
-
-        #myrail{
-            margin-left: 0;
-        }
-
-        #navigation-buttongroup {
-
-            margin-left: 0;
-        }
-
-    }
-
-	/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
-	@media only screen and (max-width: 479px) {
-
-    .btn{
-        text-align: center;
-    }
-
-    #tab-bar{
-        display: block;
-    }
-
-    div.page{
-        display: none;
-    }
-
-    div.page.active{
-        display: block;
-    }
-
-    img.logo{
-        width:30px;
-        height:30px;
-    }
-
-    .nav span.floatright{
-		float: right;
-		margin-left: 15px;
-		padding-top:10px;
-
-	}
-    div.page hr{
-        display: none
-    }
-
-	#header{
-		height: 50px;
-	}
-
-	div.nav{
-		margin-top: 10px;
-		padding-left: 5px;
-		padding-right: 5px;
-	}
-
-    [type="text"], input[type="password"], input[type="email"], textarea, select, #searchtime{
-        margin-bottom: 10px;
-    }
-
-    #myrail-features li p{
-        font-size: 1.10em;
-    }
-
-    #navigation-buttongroup button {
-        max-width: 40%;
-    }
-
-    #navigation-buttongroup .icon-text img{
-        margin-left: 0;
-        margin-right: 0;
-    }
-
-    #myrail-features li{
-        margin-bottom: 10px;
-    }
-
-    .list-head{
-        font-size: 1em;
-    }
-
-    .mobile-hr{
-        display: block;
-    }
-
-    #myrail{
-        margin-left: 0;
-    }
-
-    #navigation-buttongroup {
-
-        margin-left: 0;
-    }
-
-	}
+	@import "responsive/max959px.scss";
+    @import "responsive/768-959px.scss";
+    @import "responsive/max767px.scss";
+    @import "responsive/480-767px.scss";
+    @import "responsive/max-479px.scss";

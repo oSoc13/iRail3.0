@@ -1,0 +1,30 @@
+$red: #e74636;
+$black: #2d2d2d;
+$dark-grey: #7e7e7e;
+$border-color: #cccccc;
+$content-bg: #f1f1f1;
+$button-color: #eaeaea;
+
+@mixin transition($duration){
+  -webkit-transition: $duration;
+  -moz-transition: $duration;
+  -o-transition: $duration;
+  transition: $duration;
+}
+
+@mixin border-radius($amount){
+  -webkit-border-radius: $amount;
+  -moz-border-radius: $amount;
+  border-radius: $amount;
+}
+
+@mixin box-sizing($value){
+  -moz-box-sizing: $value;
+  box-sizing: $value;
+}
+
+@mixin box-shadow($h-shadow, $v-shadow, $blur, $color){
+  -moz-box-shadow: $h-shadow $v-shadow $blur $color;
+  -webkit-box-shadow: $h-shadow $v-shadow $blur $color;
+  box-shadow: $h-shadow $v-shadow $blur $color;
+}
