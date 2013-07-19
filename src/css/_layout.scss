@@ -17,6 +17,8 @@
 
     @import "globals";
 
+    @import "element-styles";
+
     /* sticky footer */
     html, body, #outer-wrapper {
         height: 100%;
@@ -24,8 +26,10 @@
 
     #wrapper {min-height: 100%;}
 
-    #content {overflow:auto;
-        padding-bottom: 30px;}  /* must be same height as the footer */
+    #content {
+        overflow:auto;
+        padding-bottom: 30px; /* must be same height as the footer */
+    }
 
     #footer {position: relative;
         margin-top: -30px; /* negative value of footer height */
@@ -50,10 +54,6 @@
     }
 
     /* end sticky footer */
-
-    body{
-        font: 0.85em/1.5 'Lato', sans-serif;
-    }
 
 	#header{
 		height: 100px;
@@ -128,45 +128,12 @@
         font-size: 1em;
     }
 
-    label,
-    p{
-        font: 1.5em/1.5 'Lato', sans-serif;
-        margin-bottom: 6px;
-        clear: both;
-    }
 
     span.accent{
         color: $black;
     }
 
-    #wrapper{
-        min-height: 100%;
-    }
 
-
-
-    #search-route,
-    #search-station{
-        max-width:400px;
-    }
-
-    #search-route input,
-    #search-station input{
-        width: 100%;
-        height: 39px;
-        color: $dark-grey;
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-    }
-
-    #search-route select,
-    #search-station select{
-        width: 100%;
-        height: 39px;
-        color: $dark-grey;
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-    }
 
     #tab-bar{
         display: none;
@@ -182,7 +149,6 @@
 
     #timeselect{
         float:left;
-
         display: table-cell;
         width:100%;
     }
@@ -191,13 +157,13 @@
         margin-bottom:20px;
     }
 
-    #date-input,
-    #time-input{
+    .date-input,
+    .time-input{
         display: table-cell;
     }
 
-    #date-input .outer,
-    #time-input .outer{
+    .date-input .outer,
+    .time-input .outer{
         width:100%;
         float: left;
         margin-bottom: 20px;
@@ -211,46 +177,44 @@
         text-align: center;
     }
 
-    #date-input .inner,
-    #time-input .inner{
+    .date-input .inner,
+    .time-input .inner{
         height: 100%;
         max-width: 90px;
         margin-left: auto;
         margin-right: auto;
     }
 
-    #time-input .inner{
+    .time-input .inner{
         max-width: 45px;
     }
 
-    #date-input .inner span,
-    #time-input .inner span{
+    .date-input .inner span,
+    .time-input .inner span{
         line-height: 17px;
     }
 
-    #date-input input.small{
+    .date-input input.small{
         width:20px;
     }
 
-    #date-input .inner.focused,
-    #time-input .inner.focused{
+    .date-input .inner.focused,
+    .time-input .inner.focused{
         border: 1px solid #aaa;
         color: #444;
         outline: 0;
         @include box-shadow(0, 0, 3px, rgba(0,0,0,.2));
     }
 
-    #date-input .divider,
-    #time-input .divider{
+    .date-input .divider,
+    .time-input .divider{
         float:left;
         height:auto;
-
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
+        @include box-sizing(border-box);
     }
 
-    #date-input input,
-    #time-input input{
+    .date-input input,
+    .time-input input{
         float: left;
         width: 40px;
         background: none;
@@ -259,16 +223,17 @@
         height: 19px;
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
+        @include box-sizing(border-box);
     }
 
-    #time-input input{
+
+
+    .time-input input{
         width: 20px;
     }
 
-    #date-input input:focus,
-    #time-input input:focus{
+    .date-input input:focus,
+    .time-input input:focus{
         outline: 0;
         border:0;
         box-shadow: none;
@@ -343,7 +308,6 @@
 
     .route-general{
         background-color: $button-color;
-
     }
 
     #route-overview .list-head:hover {
@@ -358,10 +322,9 @@
     }
 
     .list-head {
-
         font: 1.25em/1 'Lato', sans-serif;
         display: table;
-        box-sizing: border-box;
+        @include box-sizing(border-box);
         width: 100%;
         height:40px;
         background-color: $button-color;
@@ -441,9 +404,7 @@
         width:24px;
         height:24px;
         border: 1px solid $border-color;
-        border-radius: 2px;
-        -webkit-border-radius: 2px;
-        -moz-border-radius: 2px;
+        @include border-radius(2px);
         background-color: $button-color;
         text-align: center;
         line-height: 1.1;
@@ -468,9 +429,9 @@
         width: 25%;
     }
 
-.list-head__time-delay span{
-    height:25px;
-}
+    .list-head__time-delay span{
+        height:25px;
+    }
 
     .list-head__to-station{
         display: table-cell;
@@ -488,10 +449,10 @@
         padding-right: 5px;
     }
 
-.list-head__platform span{
-    height:25px;
-    text-align: center;
-}
+    .list-head__platform span{
+        height:25px;
+        text-align: center;
+    }
 
     /* end collapsible list */
 
@@ -499,36 +460,10 @@
         color:#E94B3F;
     }
 
-    #route-overview{
-
-    }
-
-
-
-
     span.radio{
         color: #757575;
     }
 
-    button {
-        width:250px;
-        display: table-cell;
-        text-align: center;
-        vertical-align: middle;
-        height: 40px;
-        font: 1.25em/1 'Lato', sans-serif;
-        color: #757575;
-        padding-top: 5px;
-        background: #EAEAEA;
-        -webkit-transition: 0.25s;
-        -moz-transition: 0.25s;
-        -o-transition: 0.25s;
-        transition: 0.25s;
-    }
-
-    button:hover{
-        background: #f1f1f1;
-    }
 
     div.sidebar{
         float: right;
@@ -561,8 +496,6 @@
         padding: 0;
         margin: 0;
     }
-
-
 
     #myrail-features li{
         margin-bottom: 20px;
@@ -600,7 +533,7 @@ ui-autocomplete-item{
 
     margin: 0;
 
-    border: 1px solid #d9d9d9;
+    border: 1px solid $border-color;
     display:block;
     width:227px;
 }
@@ -616,14 +549,14 @@ ui-autocomplete-item{
     display:block;
     padding: .4em .6em;
     line-height:1.5;
-    color: #7e7e7e;
+    color: $dark-grey;
     zoom:1;
 }
 
 .ui-menu .ui-menu-item a.ui-state-focus {
     margin: -1px;
-    background-color: #eaeaea;
-    color: #2d2d2d;
+    background-color: $button-color;
+    color: $black;
 }
 
 .ui-helper-hidden-accessible{
@@ -638,9 +571,3 @@ ui-autocomplete-item{
     @import "responsive/max767px.scss";
     @import "responsive/480-767px.scss";
     @import "responsive/max-479px.scss";
-
-
-
-
-
-
