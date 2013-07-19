@@ -1,5 +1,7 @@
 //contains the standard html element styles
 
+@import "globals";
+
 body{
     font-size:100%;
     font: 0.85em/1.5 'Lato', sans-serif;
@@ -38,9 +40,9 @@ button {
     vertical-align: middle;
     height: 40px;
     font: 1.25em/1 'Lato', sans-serif;
-    color: #757575;
+    color: $dark-grey;
     padding-top: 5px;
-    background: #EAEAEA;
+    background: $button-color;
     @include transition(0.25s);
 }
 

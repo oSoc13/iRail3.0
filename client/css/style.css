@@ -793,6 +793,7 @@ or wrap each row of columns in a <div class="row"> */
 /* #Site Styles
 ================================================== */
 body {
+  font-size: 100%;
   font: 0.85em/1.5 'Lato', sans-serif; }
 
 label,
@@ -825,9 +826,9 @@ button {
   vertical-align: middle;
   height: 40px;
   font: 1.25em/1 'Lato', sans-serif;
-  color: #757575;
+  color: #7e7e7e;
   padding-top: 5px;
-  background: #EAEAEA;
+  background: #eaeaea;
   -webkit-transition: 0.25s;
   -moz-transition: 0.25s;
   -o-transition: 0.25s;
@@ -854,8 +855,7 @@ html, body, #outer-wrapper {
   /* negative value of footer height */
   height: 30px;
   clear: both;
-  background-color: #ddd;
-  line-height: 30px; }
+  background-color: #ddd; }
 
 #footer p {
   margin: 0;
@@ -981,7 +981,7 @@ Date and time input box
 
 .date-input .inner span,
 .time-input .inner span {
-  line-height: 17px; }
+  line-height: 1.063em; }
 
 .date-input input.small {
   width: 20px; }
@@ -1238,7 +1238,7 @@ p.smaller {
 
 #myrail-features li p {
   font-size: 1.25em;
-  line-height: 18px; }
+  line-height: 1.125em; }
 
 #myrail-features ul {
   margin: 0; }
@@ -1413,7 +1413,11 @@ ui-autocomplete-item {
     margin-left: 0; }
 
   #navigation-buttongroup {
-    margin-left: 0; } }
+    margin-left: 0; }
+
+  .list-head--wrapper {
+    padding-left: 0px;
+    padding-right: 0px; } }
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (max-width: 479px) {
   .btn {
@@ -1474,4 +1478,8 @@ ui-autocomplete-item {
     margin-left: 0; }
 
   #navigation-buttongroup {
-    margin-left: 0; } }
+    margin-left: 0; }
+
+  .list-head--wrapper {
+    padding-left: 0px;
+    padding-right: 0px; } }
