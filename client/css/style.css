@@ -1084,13 +1084,14 @@ li.icon-text p {
 #route-overview .list-head:hover {
   background-color: #f1f1f1; }
 
-.route-general .list-detail {
+.list-detail {
   background-color: #fff;
   padding: 5px;
   border: 1px solid #cccccc;
   border-top: 0; }
 
 .list-head {
+  margin: 20px 0 0 0;
   font: 1.25em/1 'Lato', sans-serif;
   display: table;
   -moz-box-sizing: border-box;

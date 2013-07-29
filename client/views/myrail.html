@@ -1,0 +1,52 @@
+<div class="eight columns alpha">
+    <p>Hi, <span class="accent">{{ username }}</span>, welcome to MyRail</p>
+    <div id="favorite-routes">
+        <div class="list-head icon-text">
+            <img src="../images/star.svg"/><span>Favorite Routes</span>
+        </div>
+        <div class="list-detail">
+            <!-- static placeholders -->
+            <ul>
+                <li ng-repeat="route in plannedRoutes" class="icon-text"><span>{{ route.from }}</span><img src="../images/grey-arrow.svg"/><span>{{ route.to }}</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="trip-agenda">
+        <div class="list-head icon-text">
+            <img src="../images/star.svg"/><span>Trip agenda</span>
+        </div>
+        <div class="list-detail">
+
+        </div>
+    </div>
+</div>
+
+<div class="eight columns omega">
+    <hr class="mobile-hr" />
+
+    <div id="social-feed">
+        <p>Social feed</p>
+        <ul>
+            <li ng-repeat="feedLine in socialFeed">
+
+            </li>
+        </ul>
+    </div>
+
+    <hr />
+
+    <button type="submit">
+        <div class="icon-text">
+            <img src="../images/myrail.svg" alt="irail logo" width="40" class="icon"/>
+            <span>Invite friends</span>
+        </div>
+    </button>
+
+    <button type="submit">
+        <div class="icon-text">
+            <img src="../images/myrail.svg" alt="irail logo" width="40" class="icon"/>
+            <span>Profile options</span>
+        </div>
+    </button>
+</div>

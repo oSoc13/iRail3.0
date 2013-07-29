@@ -1,3 +1,4 @@
+//Colors
 $red: #e74636;
 $black: #2d2d2d;
 $dark-grey: #7e7e7e;
@@ -5,6 +6,10 @@ $border-color: #cccccc;
 $content-bg: #f1f1f1;
 $button-color: #eaeaea;
 
+//Dimensions
+$content-box-margins: 20px 0 0 0;
+
+//Mixins
 @mixin transition($duration){
   -webkit-transition: $duration;
   -moz-transition: $duration;

@@ -10,6 +10,7 @@ app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpPro
             when('/route/:fromStation/:toStation/:dateString/:timeString/:timeSelection', {templateUrl: 'views/route.html', controller: RouteCtrl}).
             when('/train/:trainId', {templateUrl: 'views/train.html', controller: TrainCtrl}).
             when('/station/:stationName', {templateUrl: 'views/station-liveboard.html', controller: StationDetailCtrl}).
+            when('/myrail', {templateUrl: 'views/myrail.html', controller: MyRailCtrl}).
             otherwise({redirectTo: '/'});
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
 

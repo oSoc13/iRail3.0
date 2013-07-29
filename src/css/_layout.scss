@@ -313,7 +313,7 @@
         background-color: $content-bg;
     }
 
-    .route-general .list-detail{
+    .list-detail{
         background-color: #fff;
         padding: 5px;
         border: 1px solid $border-color;
@@ -321,6 +321,7 @@
     }
 
     .list-head {
+        margin: $content-box-margins;
         font: 1.25em/1 'Lato', sans-serif;
         display: table;
         @include box-sizing(border-box);
