@@ -7,7 +7,9 @@
 
             <label for="destination" class="label float-left">To</label>
             <div id="switch-button">
-                <button id="switch-from-to" tabindex="3" ng-click="switchFromTo()"><img src="../images/arrow.svg" alt="switch"/> </button>
+                <button type="button" id="switch-from-to" tabindex="3" ng-click="switchFromTo()">
+                    <img src="../images/arrow.svg" alt="switch"/>
+                </button>
             </div>
             <input type="text" id="destination" placeholder="Destination" tabindex="2" ng-model="to" required auto-complete />
 
@@ -70,7 +72,7 @@
             <label for="station" class="label">Current departures</label>
             <input type="text" id="station" class="home" placeholder="Select station" ng-model="station" required auto-complete/>
             <div class="btn">
-                <button type="submit" ng-disabled="!stationForm.$valid" ng-click="searchStations()">
+                <button ng-disabled="!stationForm.$valid" ng-click="searchStations()">
                     <div class="icon-text">
                         <img src="../images/train.svg" alt="irail logo" width="40" class="icon"/>
                         <span>Search by station</span>
