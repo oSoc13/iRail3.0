@@ -1,7 +1,7 @@
 // Copyright OKFN Belgium
 // Author: Nik Torfs
 
-var app = angular.module('iRail', ['ngResource']);
+var app = angular.module('iRail', ['ngResource', 'LocalStorageModule']);
 
 //App routes definition
 app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider){

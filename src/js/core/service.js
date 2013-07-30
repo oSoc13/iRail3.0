@@ -73,5 +73,28 @@ app.factory('utilityService', function (){
             return hourString + minuteString;
         }
     }
-
 });
+
+// service to store new favorite routes
+// (might be better of as a directive)
+app.factory('favoriteRouteService', ['localStorageService', function(localstorageService){
+    return {
+        addFavorite: function( from, to ){
+            var favorites = JSON.parse(localstorageService.get('favoriteRoutes'));
+
+            if(!favorites){
+                favorites = [];
+            }
+
+            //duplicates
+            for(var i = 0; i < favorites.length; i++){
+                var element = favorites[i];
+                if(element.from == from && element.to == to){
+                    return;
+                }
+            }
+            favorites.push({'from': from, 'to': to});
+            localstorageService.add('favoriteRoutes', JSON.stringify(favorites));
+        }
+    }
+}]);
