@@ -92,7 +92,9 @@
         </div>
         <div class="list-detail">
             <ul>
-                <li ng-repeat="route in favoriteRoutes" class="icon-text"><span>{{ route.from }}</span><img src="../images/grey-arrow.svg"/><span>{{ route.to }}</span></li>
+                <li ng-repeat="route in favoriteRoutes" class="icon-text">
+                    <a href="#/route/{{ route.from }}/{{ route.to }}"><span>{{ route.from }}</span><img src="../images/grey-arrow.svg"/><span>{{ route.to }}</span></a>
+                </li>
             </ul>
         </div>
     </div>

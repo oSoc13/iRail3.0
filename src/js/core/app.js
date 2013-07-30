@@ -7,6 +7,7 @@ var app = angular.module('iRail', ['ngResource', 'LocalStorageModule']);
 app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider){
         $routeProvider.
             when('/', {templateUrl: 'views/home.html', controller: DirectionsCtrl}).
+            when('/route/:fromStation/:toStation', {templateUrl:'views/route.html', controller: RouteCtrl}).
             when('/route/:fromStation/:toStation/:dateString/:timeString/:timeSelection', {templateUrl: 'views/route.html', controller: RouteCtrl}).
             when('/train/:trainId', {templateUrl: 'views/train.html', controller: TrainCtrl}).
             when('/station/:stationName', {templateUrl: 'views/station-liveboard.html', controller: StationDetailCtrl}).

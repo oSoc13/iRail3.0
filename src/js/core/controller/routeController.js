@@ -17,12 +17,19 @@ var RouteCtrl = ['$scope', '$routeParams', '$http', '$rootScope', '$location', '
         $scope.toStation = $routeParams.toStation;
         $scope.fromStation = $routeParams.fromStation;
 
-        var day = parseInt($routeParams.dateString.substring(0, 2));
-        var month = parseInt($routeParams.dateString.substring(2,4));
-        var year = parseInt("20" + $routeParams.dateString.substring(4,6));
-        $scope.routeDate = new Date(year, month - 1, day);
+        if($routeParams.dateString){
+            var day = parseInt($routeParams.dateString.substring(0, 2));
+            var month = parseInt($routeParams.dateString.substring(2,4));
+            var year = parseInt("20" + $routeParams.dateString.substring(4,6));
+            $scope.routeDate = new Date(year, month - 1, day);
+            $scope.date = $routeParams.dateString;
+            $scope.time = $routeParams.timeString;
+        }else{
+            $scope.routeDate = new Date();
+            $scope.date = utilityService.getIrailDateString($scope.routeDate)
+            $scope.time = utilityService.getIrailTimeString($scope.routeDate)
 
-        $scope.date = $routeParams.dateString;
+        }
 
         // utility function to parse the vias to int so that math can be used in the view
         $scope.parseNbVias = function(vias){
@@ -36,7 +43,7 @@ var RouteCtrl = ['$scope', '$routeParams', '$http', '$rootScope', '$location', '
         var url = $rootScope.iRailAPI + "/connections/?to=" + $routeParams.toStation +
             "&from=" + $routeParams.fromStation +
             "&date=" + $scope.date +
-            "&time=" + $routeParams.timeString +
+            "&time=" + $scope.time +
             "&timeSel=" + $routeParams.timeSelection +
             "&format=json";
 
