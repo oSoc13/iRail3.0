@@ -95,6 +95,10 @@ app.factory('favoriteRouteService', ['localStorageService', function(localstorag
             }
             favorites.push({'from': from, 'to': to});
             localstorageService.add('favoriteRoutes', JSON.stringify(favorites));
+        },
+
+        getFavorites: function(){
+            return JSON.parse(localstorageService.get('favoriteRoutes'));
         }
     }
 }]);

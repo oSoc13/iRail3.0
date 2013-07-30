@@ -313,12 +313,13 @@
         background-color: $content-bg;
     }
 
-    .route-general .list-detail{
+    .list-detail{
         background-color: #fff;
         padding: 5px;
         border: 1px solid $border-color;
         border-top: 0;
     }
+
 
     .list-head {
         font: 1.25em/1 'Lato', sans-serif;
@@ -328,6 +329,7 @@
         height:40px;
         background-color: $button-color;
         border: 1px solid $border-color;
+        vertical-align: middle;
     }
 
     .list-head__from-to {
@@ -408,6 +410,10 @@
         text-align: center;
         line-height: 1.1;
         color: $red;
+    }
+
+    .list-detail ul{
+        margin-bottom: 0;
     }
 
     .list-head--wrapper{

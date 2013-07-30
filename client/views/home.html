@@ -83,40 +83,17 @@
     </div>
 </div>
 
-<div id="myrail-features" class="eight columns omega">
-    <div id="myrail" class="page">
-        <h3>MyRail offers you free features!</h3>
-        <ul>
-            <li class="icon-text">
-                <img src="../images/feature-plantrips.svg" alt="irail logo"/>
-                <p>Plan your trips in a travel agenda</p>
-
-            </li>
-            <li class="icon-text">
-                <img src="../images/feature-checkin.svg" alt="irail logo"/>
-                <p>Social check-ins</p>
-                <br/>
-            </li>
-            <li class="icon-text">
-                <img src="../images/feature-friend.svg" alt="irail logo"/>
-                <p>Know when a friend is on the train</p>
-                <br/>
-            </li>
-            <li class="icon-text">
-                <img src="../images/feature-notifications.svg" alt="irail logo"/>
-                <p>Receive social &amp; delay notifications</p>
-                <br/>
-            </li>
-            <br/>
-        </ul>
-
-        <div class="btn">
-            <button type="submit">
-                <div class="icon-text">
-                    <img src="../images/myrail.svg" alt="irail logo" width="40" class="icon"/>
-                    <span>Enter MyRail</span>
-                </div>
-            </button>
+<div class="eight columns omega">
+    <div id="favorite-routes">
+        <div class="list-head icon-text">
+            <div class="list-head--wrapper">
+                <img src="../images/star.svg"/><span>Favorite Routes</span>
+            </div>
+        </div>
+        <div class="list-detail">
+            <ul>
+                <li ng-repeat="route in favoriteRoutes" class="icon-text"><span>{{ route.from }}</span><img src="../images/grey-arrow.svg"/><span>{{ route.to }}</span></li>
+            </ul>
         </div>
     </div>
 </div>
