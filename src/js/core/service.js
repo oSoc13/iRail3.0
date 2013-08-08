@@ -97,6 +97,24 @@ app.factory('favoriteRouteService', ['localStorageService', function(localstorag
             localstorageService.add('favoriteRoutes', JSON.stringify(favorites));
         },
 
+        removeFavorite: function(from, to){
+            var favorites = JSON.parse(localstorageService.get('favoriteRoutes'));
+
+            if(!favorites){
+                return;
+            }
+
+            for( var i = 0; i < favorites.length; i++ ){
+                var element = favorites[i];
+
+                if(element.from == from && element.to == to){
+                    favorites.splice(i, 1);
+                    localstorageService.add('favoriteRoutes', JSON.stringify(favorites));
+                    return;
+                }
+            }
+        },
+
         getFavorites: function(){
             return JSON.parse(localstorageService.get('favoriteRoutes'));
         }

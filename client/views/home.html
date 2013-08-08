@@ -94,6 +94,7 @@
             <ul>
                 <li ng-repeat="route in favoriteRoutes" class="icon-text">
                     <a href="#/route/{{ route.from }}/{{ route.to }}"><span>{{ route.from }}</span><img src="../images/grey-arrow.svg"/><span>{{ route.to }}</span></a>
+                    <button type="button" ng-click="unFavorite(route.from, route.to)">remove</button>
                 </li>
             </ul>
         </div>
