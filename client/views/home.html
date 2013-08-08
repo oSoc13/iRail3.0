@@ -3,7 +3,7 @@
         <form id="search-route" novalidate name="directionForm">
 
             <label for="departing" class="label">From</label>
-            <input type="text" id="departing"  placeholder="Departure station" tabindex="1" ng-model="from" required auto-complete />
+            <input type="text" id="departing"  name="departing" placeholder="Departure station" tabindex="1" ng-model="from" required auto-complete on-enter="focus('destination', directionForm.departing.$valid)" />
 
             <label for="destination" class="label float-left">To</label>
             <div id="switch-button">

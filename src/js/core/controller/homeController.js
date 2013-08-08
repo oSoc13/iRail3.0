@@ -47,6 +47,13 @@ var DirectionsCtrl = ['$scope', '$location', 'utilityService', 'favoriteRouteSer
             $location.path('/station/' + $scope.station);
         };
 
+
+        $scope.focus = function(nextElementId, valid){
+            if(valid){
+                $("#" + nextElementId).focus();
+            }
+        };
+
         //Tab bar functionality
         $scope.directions = function(){
             $("#directions").addClass("active");
@@ -54,11 +61,13 @@ var DirectionsCtrl = ['$scope', '$location', 'utilityService', 'favoriteRouteSer
             $("#myrail").removeClass("active");
         };
 
+
         $scope.stations = function (){
             $("#directions").removeClass("active");
             $("#stations").addClass("active");
             $("#myrail").removeClass("active");
         };
+
 
         $scope.myRail = function (){
             $("#directions").removeClass("active");
