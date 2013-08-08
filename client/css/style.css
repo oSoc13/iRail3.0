@@ -809,6 +809,10 @@ input[type="text"] {
   width: 100%;
   height: 39px;
   color: #7e7e7e;
+  border: none;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
@@ -816,6 +820,10 @@ select {
   width: 100%;
   height: 39px;
   color: #7e7e7e;
+  border: none;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
@@ -829,13 +837,20 @@ button {
   color: #7e7e7e;
   padding-top: 5px;
   background: #eaeaea;
+  border: none;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  border-bottom: 1px solid #cccccc;
   -webkit-transition: 0.25s;
   -moz-transition: 0.25s;
   -o-transition: 0.25s;
   transition: 0.25s; }
 
 button:hover {
-  background: #f1f1f1; }
+  background: #eaeaea;
+  border: none;
+  border-bottom: 1px solid #888888; }
 
 /* sticky footer */
 html, body, #outer-wrapper {
@@ -1078,17 +1093,12 @@ li.icon-text p {
   display: none; }
 
 /* collapsible list */
-.route-general {
-  background-color: #eaeaea; }
-
 #route-overview .list-head:hover {
   background-color: #f1f1f1; }
 
 .route-general .list-detail {
   background-color: #fff;
-  padding: 5px;
-  border: 1px solid #cccccc;
-  border-top: 0; }
+  padding: 5px; }
 
 .list-head {
   font: 1.25em/1 'Lato', sans-serif;
@@ -1098,7 +1108,7 @@ li.icon-text p {
   width: 100%;
   height: 40px;
   background-color: #eaeaea;
-  border: 1px solid #cccccc; }
+  border-bottom: 1px solid #cccccc; }
 
 .list-head__from-to {
   display: table-cell;

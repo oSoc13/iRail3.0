@@ -22,6 +22,8 @@ input[type="text"]{
     width: 100%;
     height: 39px;
     color: $dark-grey;
+    border:none;
+    @include border-radius(0);
     @include box-sizing(border-box);
 }
 
@@ -29,6 +31,8 @@ select{
     width: 100%;
     height: 39px;
     color: $dark-grey;
+    border:none;
+    @include border-radius(0);
     @include box-sizing(border-box);
 }
 
@@ -43,9 +47,14 @@ button {
     color: $dark-grey;
     padding-top: 5px;
     background: $button-color;
+    border: none;
+    @include border-radius(0);
+    border-bottom: 1px solid $border-color;
     @include transition(0.25s);
 }
 
 button:hover{
-    background: #f1f1f1;
+    background: $button-color;
+    border: none;
+    border-bottom: 1px solid $border-hover-color;
 }
