@@ -27,6 +27,13 @@ input[type="text"]{
     @include box-sizing(border-box);
 }
 
+
+input[type="text"]:focus{
+    border:none;
+    @include border-radius(0);
+}
+
+
 select{
     width: 100%;
     height: 39px;
