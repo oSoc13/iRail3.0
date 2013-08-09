@@ -59,6 +59,11 @@ var DirectionsCtrl = ['$scope', '$location', 'utilityService', 'favoriteRouteSer
             favoriteRouteService.removeFavorite(from, to);
         };
 
+        // listen to a changeevent from the favorite service
+        $scope.$on('favoritesChanged', function() {
+            $scope.favoriteRoutes = favoriteRouteService.getFavorites();
+        });
+
         //Tab bar functionality
         $scope.directions = function(){
             $("#directions").addClass("active");

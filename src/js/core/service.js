@@ -77,7 +77,7 @@ app.factory('utilityService', function (){
 
 // service to store new favorite routes
 // (might be better of as a directive)
-app.factory('favoriteRouteService', ['localStorageService', function(localstorageService){
+app.factory('favoriteRouteService', ['localStorageService', '$rootScope', function(localstorageService, $rootScope){
     return {
         addFavorite: function( from, to ){
             var favorites = JSON.parse(localstorageService.get('favoriteRoutes'));
@@ -113,6 +113,7 @@ app.factory('favoriteRouteService', ['localStorageService', function(localstorag
                     return;
                 }
             }
+            $rootScope.$broadcast('favoritesChanged');
         },
 
         getFavorites: function(){
