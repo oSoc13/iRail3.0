@@ -47,6 +47,7 @@ var DirectionsCtrl = ['$scope', '$location', 'utilityService', function($scope, 
 
     $scope.focus = function(nextElementId, valid){
         if(valid){
+
             $("#" + nextElementId).focus();
         }
     };
