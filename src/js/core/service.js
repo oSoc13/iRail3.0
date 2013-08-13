@@ -98,6 +98,7 @@ app.factory('favoriteRouteService', ['localStorageService', '$rootScope', functi
         },
 
         removeFavorite: function(from, to){
+            //todo refactor to use exists function
             var favorites = JSON.parse(localstorageService.get('favoriteRoutes'));
 
             if(!favorites){
@@ -118,6 +119,24 @@ app.factory('favoriteRouteService', ['localStorageService', '$rootScope', functi
 
         getFavorites: function(){
             return JSON.parse(localstorageService.get('favoriteRoutes'));
+        },
+
+        exists: function(from, to){
+            var favorites = JSON.parse(localstorageService.get('favoriteRoutes'));
+
+            if(!favorites){
+                return false;
+            }
+
+            for( var i = 0; i < favorites.length; i++ ){
+                var element = favorites[i];
+
+                if(element.from == from && element.to == to){
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }]);

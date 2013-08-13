@@ -117,9 +117,19 @@ var RouteCtrl = ['$scope', '$routeParams', '$http', '$rootScope', '$location', '
             utilityService.pngFallback();
         });
 
-
+        // add the route to favorites
         $scope.favorite = function(){
             favoriteRouteService.addFavorite($scope.fromStation, $scope.toStation);
+        };
+
+        // Remove the route from the favorites
+        $scope.unfavorite = function(){
+            favoriteRouteService.removeFavorite($scope.fromStation, $scope.toStation);
+        };
+
+        // check if a route is favorited or not
+        $scope.alreadyFavorited = function(){
+            return favoriteRouteService.exists($scope.fromStation, $scope.toStation);
         };
 
         // Changing the format of the returned json to something that is a bit more logical
@@ -141,6 +151,8 @@ var RouteCtrl = ['$scope', '$routeParams', '$http', '$rootScope', '$location', '
 
             return connectionData;
         }
+
+
 
         // utility function to change the route lookup parameters and redo the request to the iRail api
         function changeLookupDate(dateString, timeString, timeSelect){

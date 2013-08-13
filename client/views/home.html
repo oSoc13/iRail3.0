@@ -7,7 +7,7 @@
 
             <label for="destination" class="label float-left">To</label>
             <div id="switch-button">
-                <button type="button" class="btn-small" tabindex="3" ng-click="switchFromTo()">
+                <button type="button" class="btn-icon" tabindex="3" ng-click="switchFromTo()">
                     <img src="../images/arrow.svg" alt="switch"/>
                 </button>
             </div>
@@ -95,7 +95,9 @@
                 <li ng-repeat="route in favoriteRoutes" class="icon-text">
                     <a href="#/route/{{ route.from }}/{{ route.to }}"><span>{{ route.from }}</span><img src="../images/grey-arrow.svg"/><span>{{ route.to }}</span></a>
                     <div class="float-right">
-                        <button type="button" ng-click="unFavorite(route.from, route.to)" class="btn-small"><span class="red">-</span></button>
+                        <button type="button" ng-click="unFavorite(route.from, route.to)" class="btn-icon">
+                            <img src="../images/remove.svg" alt="remove"/>
+                        </button>
                     </div>
                 </li>
             </ul>

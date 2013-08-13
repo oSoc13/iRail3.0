@@ -489,13 +489,19 @@
         margin-bottom: 20px;
     }
 
-    .btn-small{
+    .btn-icon{
         width:32px;
         height:32px;
         padding: 0;
         margin: 0;
-        text-align: center;
+        outline: 0;
     }
+
+.btn-icon img{
+    padding: 0;
+    margin: 0;
+
+}
 
     #myrail-features li{
         margin-bottom: 20px;

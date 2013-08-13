@@ -113,11 +113,19 @@
                 </div>
             </button>
         </div>
-        <div class="btn">
+        <div class="btn" ng-hide="alreadyFavorited()">
             <button type="button" ng-click="favorite()">
                 <div class="icon-text">
                     <img src="../images/star.svg" alt="star" width="40" class="icon"/>
                     <span>Favorite Route</span>
+                </div>
+            </button>
+        </div>
+        <div class="btn" ng-show="alreadyFavorited()">
+            <button type="button" ng-click="unfavorite()">
+                <div class="icon-text">
+                    <img src="../images/star.svg" alt="star" width="40" class="icon"/>
+                    <span>Remove Favorite</span>
                 </div>
             </button>
         </div>
