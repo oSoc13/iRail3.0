@@ -47,7 +47,6 @@ var DirectionsCtrl = ['$scope', '$location', 'utilityService', 'favoriteRouteSer
             $location.path('/station/' + $scope.station);
         };
 
-
         $scope.focus = function(nextElementId, valid){
             if(valid){
                 $("#" + nextElementId).focus();
