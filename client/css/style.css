@@ -1114,7 +1114,6 @@ li.icon-text p {
   width: 100%;
   height: 40px;
   background-color: #eaeaea;
-  border: 1px solid #cccccc;
   vertical-align: middle;
   border-bottom: 1px solid #cccccc; }
 
@@ -1248,11 +1247,12 @@ p.smaller {
 #searchtime {
   margin-bottom: 20px; }
 
-#switch-from-to {
+.btn-small {
   width: 32px;
   height: 32px;
   padding: 0;
-  margin: 0; }
+  margin: 0;
+  text-align: center; }
 
 #myrail-features li {
   margin-bottom: 20px; }
