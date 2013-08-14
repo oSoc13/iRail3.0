@@ -917,7 +917,7 @@ div.float-right {
   padding-top: 30px;
   font-size: 1em; }
 
-img.logo {
+img#logo {
   width: 60px;
   height: 60px; }
 
@@ -1095,8 +1095,16 @@ li.icon-text p {
 #navigation-buttongroup button.omega {
   margin-left: 10px; }
 
-.mobile-hr {
+.mobile-block {
   display: none; }
+
+#back-button,
+#back-button img {
+  width: 24px;
+  height: 41px; }
+
+#back-button {
+  margin-right: 10px; }
 
 /* collapsible list */
 #route-overview .list-head:hover {
@@ -1431,7 +1439,10 @@ ui-autocomplete-item {
   #myrail-features li {
     margin-bottom: 10px; }
 
-  .mobile-hr {
+  .mobile {
+    display: inline-block; }
+
+  .mobile-block {
     display: block; }
 
   #myrail {
@@ -1496,7 +1507,10 @@ ui-autocomplete-item {
   .list-head {
     font-size: 1em; }
 
-  .mobile-hr {
+  .mobile {
+    display: inline-block; }
+
+  .mobile-block {
     display: block; }
 
   #myrail {

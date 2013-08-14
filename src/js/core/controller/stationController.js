@@ -6,6 +6,7 @@
  */
 var StationDetailCtrl = ['$scope','$rootScope', '$routeParams', '$http', 'utilityService', function StationDetailCtrl($scope, $rootScope, $routeParams, $http, utilityService){
     $scope.stationName = $routeParams.stationName;
+    $rootScope.hasBackbutton = true;
 
     url = $rootScope.iRailAPI + "/liveboard/?station=" + $scope.stationName + "&fast=true&format=json";
 

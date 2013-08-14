@@ -63,4 +63,8 @@ app.run(['$rootScope', function($rootScope) {
     $rootScope.parseVehicleName = function(vehicle){
         return vehicle.split('.')[2];
     };
+
+    $rootScope.back = function(){
+        history.back();
+    };
 }]);

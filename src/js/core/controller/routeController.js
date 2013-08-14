@@ -17,6 +17,8 @@ var RouteCtrl = ['$scope', '$routeParams', '$http', '$rootScope', '$location', '
         $scope.toStation = $routeParams.toStation;
         $scope.fromStation = $routeParams.fromStation;
 
+        $rootScope.hasBackbutton = true;
+
         // maybe divide into two routes instead of checking which params are filled in //todo
         if($routeParams.dateString){
             var day = parseInt($routeParams.dateString.substring(0, 2));

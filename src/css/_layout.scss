@@ -90,7 +90,7 @@
         font-size: 1em;
     }
 
-    img.logo{
+    img#logo{
         width:60px;
         height:60px;
     }
@@ -299,8 +299,18 @@
         margin-left:10px;
     }
 
-    .mobile-hr{
+    .mobile-block{
         display: none;
+    }
+
+    #back-button,
+    #back-button img{
+        width: 24px;
+        height: 41px;
+    }
+
+    #back-button{
+        margin-right: 10px;
     }
 
     /* collapsible list */

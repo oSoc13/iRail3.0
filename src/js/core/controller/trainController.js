@@ -8,6 +8,7 @@
  */
 var TrainCtrl = ['$scope', '$routeParams', '$http', '$rootScope', 'utilityService', function($scope, $routeParams, $http, $rootScope, utilityService){
     $scope.trainNumber = $routeParams.trainId;//todo regex to get only the number
+    $rootScope.hasBackbutton = true;
 
     var url = $rootScope.iRailAPI + "/vehicle/?id=" + $routeParams.trainId + "&fast=true&format=json";
 

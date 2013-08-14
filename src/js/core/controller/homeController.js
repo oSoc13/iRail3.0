@@ -4,8 +4,8 @@
 /*
  * The controller for the homepage, it handles the requests to the '/' route
  */
-var DirectionsCtrl = ['$scope', '$location', 'utilityService', 'favoriteRouteService',
-    function($scope, $location, utilityService, favoriteRouteService){
+var DirectionsCtrl = ['$scope', '$location', 'utilityService', 'favoriteRouteService', '$rootScope',
+    function($scope, $location, utilityService, favoriteRouteService, $rootScope){
         var date = new Date();
 
         // scope variable definition and initialization
@@ -17,6 +17,8 @@ var DirectionsCtrl = ['$scope', '$location', 'utilityService', 'favoriteRouteSer
         $scope.minutes = date.getMinutes();
         $scope.departure = "depart";
         $scope.favoriteRoutes = favoriteRouteService.getFavorites();
+
+        $rootScope.hasBackbutton = false;
 
         // switch 'from' and 'to'
         $scope.switchFromTo = function(){

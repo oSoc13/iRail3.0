@@ -67,8 +67,11 @@
       font-size: 1em;
     }
 
-    .mobile-hr{
-      display: block;
+    .mobile{
+      display: inline-block;
+    }
+    .mobile-block{
+        display: block;
     }
 
     #myrail{
