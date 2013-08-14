@@ -802,6 +802,9 @@ p {
   margin-bottom: 6px;
   clear: both; }
 
+a {
+  cursor: pointer; }
+
 form {
   max-width: 400px; }
 
@@ -1095,6 +1098,7 @@ li.icon-text p {
 #navigation-buttongroup button.omega {
   margin-left: 10px; }
 
+.mobile,
 .mobile-block {
   display: none; }
 
