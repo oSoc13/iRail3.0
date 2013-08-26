@@ -1130,11 +1130,11 @@ li.icon-text p {
 
 .list-head__from-to {
   display: table-cell;
-  width: 45%; }
+  width: 40%; }
 
 .list-head__duration {
   display: table-cell;
-  width: 30%; }
+  width: 35%; }
 
 .list-head__nb-trains {
   display: table-cell;
@@ -1268,19 +1268,6 @@ p.smaller {
 .btn-icon img {
   padding: 0;
   margin: 0; }
-
-#myrail-features li {
-  margin-bottom: 20px; }
-
-#myrail-features li p {
-  font-size: 1.25em;
-  line-height: 1.125em; }
-
-#myrail-features ul {
-  margin: 0; }
-
-#myrail-features h3 {
-  margin-bottom: 20px; }
 
 /* Autocomplete
 ----------------------------------*/

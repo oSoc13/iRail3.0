@@ -19,6 +19,7 @@
                         <div class="list-head__duration">
                             <img src="../images/grey-clock.svg">
                             <span class="accent">{{ route.duration * 1000 | date:'HH:mm' }}</span>
+                            <span class="red" ng-show="route.departure.delay > 0">+{{ route.departure.delay / 60}}M</span>
                         </div>
                         <div class="list-head__nb-trains">
                             <img src="../images/grey-train.svg">

@@ -11,7 +11,7 @@
                     <div class="list-head--wrapper">
                         <div class="list-head__time-delay">
                             <span class="accent">{{ departure.time * 1000 | date:'HH:mm'}}</span>
-                            <span class="red" ng-show="departure.delay > 0">+{{ departure.delay | date:'mm'}}M</span>
+                            <span class="red" ng-show="departure.delay > 0">+{{ departure.delay / 60}}M</span>
                         </div>
                         <div class="icon-text list-head__to-station">
                             <img src="../images/grey-arrow.svg"/>
