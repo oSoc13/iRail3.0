@@ -63,6 +63,13 @@ var RouteCtrl = ['$scope', '$routeParams', '$http', '$rootScope', '$location', '
 
         //opening the collapsible list (should be refactored to a directive [TODO])
         $scope.open = function($event){
+            var button = $(".list-head__collapse-btn", $event.currentTarget);
+
+            // we don't want to open an already opened route
+            if(button.hasClass("opened")){
+                return;
+            }
+
             var details = angular.element.find(".list-detail");
             for(var i = 0; i < details.length; i++){
                 var currentDetail = details[i];
@@ -79,7 +86,6 @@ var RouteCtrl = ['$scope', '$routeParams', '$http', '$rootScope', '$location', '
             var element = $(".list-detail", $event.currentTarget);
             element.show(500);
 
-            var button = $(".list-head__collapse-btn", $event.currentTarget);
             button.removeClass("closed");
             button.addClass("opened");
         };
