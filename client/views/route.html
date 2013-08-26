@@ -99,23 +99,32 @@
         </div>
     </div>
 
-    <div class="right-col" >
-        <div class="btn" ng-hide="alreadyFavorited()">
-            <button type="button" ng-click="favorite()">
-                <div class="icon-text">
-                    <img src="../images/star.svg" alt="star" width="40" class="icon"/>
-                    <span>Favorite Route</span>
-                </div>
-            </button>
-        </div>
-        <div class="btn" ng-show="alreadyFavorited()">
-            <button type="button" ng-click="unfavorite()">
-                <div class="icon-text">
-                    <img src="../images/star.svg" alt="star" width="40" class="icon"/>
-                    <span>Remove Favorite</span>
-                </div>
-            </button>
-        </div>
+
+    <div class="btn right-col" ng-hide="alreadyFavorited()">
+        <button type="button" ng-click="favorite()">
+            <div class="icon-text">
+                <img src="../images/star.svg" width="40" class="icon"/>
+                <span>Favorite Route</span>
+            </div>
+        </button>
     </div>
+    <div class="btn right-col" ng-show="alreadyFavorited()">
+        <button type="button" ng-click="unfavorite()">
+            <div class="icon-text">
+                <img src="../images/star.svg" width="40" class="icon"/>
+                <span>Remove Favorite</span>
+            </div>
+        </button>
+    </div>
+
+    <div class="btn right-col">
+        <button type="button" ng-click="reverseTrip()">
+            <div class="icon-text">
+                <img src="../images/arrow.svg" width="40" class="icon" />
+                <span>Reverse Trip</span>
+            </div>
+        </button>
+    </div>
+
 </div>
 
