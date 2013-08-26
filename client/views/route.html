@@ -67,14 +67,6 @@
                            <div>{{ route.arrival.platform }}</div>
                        </div>
                     </div>
-                    <div class="btn">
-                        <button type="submit">
-                            <div class="icon-text">
-                                <img src="../images/myrail.svg" alt="irail logo" width="40" class="icon"/>
-                                <span class="red">Check-in MyRail</span>
-                            </div>
-                        </button>
-                    </div>
                 </div>
 
             </li>
@@ -86,7 +78,7 @@
     <hr class="mobile-block" />
 
     <div>
-        <div id="navigation-buttongroup" class="btn">
+        <div id="navigation-buttongroup" class="btn right-col">
             <div>
                 <button class="float alpha" ng-click="earlier()">
                     <div class="icon-text"><img src="../images/earlier.svg"><span>Earlier</span></div>
@@ -106,15 +98,7 @@
         </div>
     </div>
 
-    <div id="myrail" >
-        <div class="btn">
-            <button type="button">
-                <div class="icon-text">
-                    <img src="../images/myrail.svg" alt="irail logo" width="40" class="icon"/>
-                    <span>Enter MyRail</span>
-                </div>
-            </button>
-        </div>
+    <div class="right-col" >
         <div class="btn" ng-hide="alreadyFavorited()">
             <button type="button" ng-click="favorite()">
                 <div class="icon-text">
@@ -131,7 +115,6 @@
                 </div>
             </button>
         </div>
-
     </div>
 </div>
 

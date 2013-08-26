@@ -1082,12 +1082,11 @@ text with icons
 li.icon-text p {
   clear: none; }
 
-#myrail {
+.right-col {
   margin-left: 20px; }
 
 #navigation-buttongroup {
-  margin-top: 10px;
-  margin-left: 20px; }
+  margin-top: 10px; }
 
 #navigation-buttongroup button {
   max-width: 30%; }
