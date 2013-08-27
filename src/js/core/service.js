@@ -141,10 +141,10 @@ app.factory('favoriteRouteService', ['localStorageService', '$rootScope', functi
     }
 }]);
 
-app.factory('historyService', ['localstorageService', function(localstorageService){
+app.factory('historyService', ['localStorageService', function(localStorageService){
     return {
-        add: function(date, from, to, longitude, latitude){
-            var history = JSON.parse(localstorageService.get('history'));
+        add: function(date, from, to, latitude, longitude){
+            var history = JSON.parse(localStorageService.get('history'));
 
             if(!history){
                 history = [];
@@ -161,7 +161,7 @@ app.factory('historyService', ['localstorageService', function(localstorageServi
             };
 
             history.push(historyObject);
-            localstorageService.add('history', JSON.stringify(history));
+            localStorageService.add('history', JSON.stringify(history));
         }
     }
 }]);

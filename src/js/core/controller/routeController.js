@@ -11,8 +11,23 @@
  *      :time -> the time in 24h format with leading zeroes
  *      :timeSelection -> 'arrive' or 'depart'
  */
-var RouteCtrl = ['$scope', '$routeParams', '$http', '$rootScope', '$location', 'utilityService', 'favoriteRouteService' ,
-    function ($scope, $routeParams, $http, $rootScope, $location, utilityService, favoriteRouteService){
+var RouteCtrl = [
+    '$scope',
+    '$routeParams',
+    '$http',
+    '$rootScope',
+    '$location',
+    'utilityService',
+    'favoriteRouteService' ,
+    'historyService',
+    function ($scope,
+              $routeParams,
+              $http,
+              $rootScope,
+              $location,
+              utilityService,
+              favoriteRouteService,
+              historyService){
 
         $scope.toStation = $routeParams.toStation;
         $scope.fromStation = $routeParams.fromStation;
@@ -47,6 +62,8 @@ var RouteCtrl = ['$scope', '$routeParams', '$http', '$rootScope', '$location', '
             return 0;
         };
 
+        //save this route to the history
+        saveToHistory();
 
         var url = $rootScope.iRailAPI + "/connections/?to=" + $routeParams.toStation +
             "&from=" + $routeParams.fromStation +
@@ -183,5 +200,25 @@ var RouteCtrl = ['$scope', '$routeParams', '$http', '$rootScope', '$location', '
             $location.path(url);
         }
 
+        function saveToHistory(){
+            var timestamp = new Date();
+
+            if(Modernizr.geolocation){
+                navigator.geolocation.getCurrentPosition(function(position){
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+
+                    historyService.add(timestamp, $scope.fromStation, $scope.toStation, latitude, longitude);
+                }, function(err){
+                    //geolocation failed
+                },
+                {
+                    enableHighAccuracy: false
+                })
+            }else{
+                // no geolocation ---> provide fallback
+
+            }
+        }
     }
 ];
