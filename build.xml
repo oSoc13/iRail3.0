@@ -36,7 +36,7 @@
         <concat destfile="${build.dir}/js/irail.js">
             <fileset
                     dir="${src.js.dir}"
-                    includes="core/*.js,core/controller/*.js"/>
+                    includes="core/*.js,core/controller/*.js,core/prefill/build/bundle.js"/>
         </concat>
         <echo>Finished</echo>
     </target>

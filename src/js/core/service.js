@@ -80,11 +80,7 @@ app.factory('utilityService', function (){
 app.factory('favoriteRouteService', ['localStorageService', '$rootScope', function(localstorageService, $rootScope){
     return {
         addFavorite: function( from, to ){
-            var favorites = JSON.parse(localstorageService.get('favoriteRoutes'));
-
-            if(!favorites){
-                favorites = [];
-            }
+            var favorites = this.get();
 
             //duplicates
             for(var i = 0; i < favorites.length; i++){
@@ -118,7 +114,12 @@ app.factory('favoriteRouteService', ['localStorageService', '$rootScope', functi
         },
 
         getFavorites: function(){
-            return JSON.parse(localstorageService.get('favoriteRoutes'));
+            var favorites = JSON.parse(localstorageService.get('favoriteRoutes'));
+
+            if(!favorites){
+                favorites = [];
+            }
+            return favorites;
         },
 
         exists: function(from, to){
@@ -144,11 +145,7 @@ app.factory('favoriteRouteService', ['localStorageService', '$rootScope', functi
 app.factory('historyService', ['localStorageService', function(localStorageService){
     return {
         add: function(date, from, to, latitude, longitude){
-            var history = JSON.parse(localStorageService.get('history'));
-
-            if(!history){
-                history = [];
-            }
+            var history = this.get();
 
             var historyObject = {
                 'datetime': date,
@@ -162,6 +159,16 @@ app.factory('historyService', ['localStorageService', function(localStorageServi
 
             history.push(historyObject);
             localStorageService.add('history', JSON.stringify(history));
+        },
+
+        get : function(){
+            var history = JSON.parse(localStorageService.get('history'));
+
+            if(!history){
+                history = [];
+            }
+
+            return history;
         }
     }
 }]);

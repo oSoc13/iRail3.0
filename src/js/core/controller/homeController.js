@@ -6,10 +6,10 @@
  */
 var DirectionsCtrl = ['$scope', '$location', 'utilityService', 'favoriteRouteService', '$rootScope',
     function($scope, $location, utilityService, favoriteRouteService, $rootScope){
-        var date = new Date();
-
         // scope variable definition and initialization
         // (so that angular fills in some nice default values in the page)
+        var date = new Date();
+
         $scope.day = date.getDate();
         $scope.month = date.getMonth() + 1;
         $scope.year = date.getFullYear();
@@ -19,6 +19,24 @@ var DirectionsCtrl = ['$scope', '$location', 'utilityService', 'favoriteRouteSer
         $scope.favoriteRoutes = favoriteRouteService.getFavorites();
 
         $rootScope.hasBackbutton = false;
+
+        if($rootScope.prefill){
+            if(Modernizr.geolocation){
+                navigator.geolocation.getCurrentPosition(function(position){
+                    var guessed = $rootScope.prefill.guess(date, position.coords.longitude, position.coords.latitude);
+                    $scope.from = guessed.from;
+                    $scope.to = guessed.to;
+                    $scope.$apply();
+                })
+            }else{
+                //fallback
+            }
+
+        }
+
+
+
+
 
         // switch 'from' and 'to'
         $scope.switchFromTo = function(){

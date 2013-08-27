@@ -56,7 +56,7 @@ app.filter('replace', function() {
 });
 
 // Global (configuration) variables here.
-app.run(['$rootScope', function($rootScope) {
+app.run(['$rootScope', 'historyService', function($rootScope, historyService) {
     $rootScope.iRailAPI = "http://api.irail.be";
 
     // parses iRail vehicle format
@@ -68,4 +68,10 @@ app.run(['$rootScope', function($rootScope) {
     $rootScope.back = function(){
         history.back();
     };
+
+    //prefill global so that we don't train the data every time a controller is loaded
+    var prefill = new Prefill();
+    prefill.prepare(historyService.get(), function(){
+        $rootScope.prefill = prefill;
+    })
 }]);
