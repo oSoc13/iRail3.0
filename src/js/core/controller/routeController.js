@@ -183,5 +183,20 @@ var RouteCtrl = ['$scope', '$routeParams', '$http', '$rootScope', '$location', '
             $location.path(url);
         }
 
+
+        $scope.reverseTrip = function(){
+
+
+
+            var url = '/route/' +
+                $scope.toStation + '/' +
+                $scope.fromStation + '/' +
+                $scope.date + '/' +
+                $scope.time + '/' +
+                "depart";
+
+
+            $location.path(url);
+        }
     }
 ];
