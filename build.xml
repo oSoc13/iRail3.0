@@ -88,6 +88,7 @@
             <fileset dir="${build.dir}/js" defaultexcludes="false">
                 <exclude name="irail.min.js" />
                 <exclude name="modernizr.min.js" />
+                <exclude name="geoPosition.js" />
             </fileset>
         </delete>
         <echo>Finished</echo>

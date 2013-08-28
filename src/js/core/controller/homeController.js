@@ -20,22 +20,7 @@ var DirectionsCtrl = ['$scope', '$location', 'utilityService', 'favoriteRouteSer
 
         $rootScope.hasBackbutton = false;
 
-        if($rootScope.prefill){
-            if(Modernizr.geolocation){
-                navigator.geolocation.getCurrentPosition(function(position){
-                    var guessed = $rootScope.prefill.guess(date, position.coords.longitude, position.coords.latitude);
-                    $scope.from = guessed.from;
-                    $scope.to = guessed.to;
-                    $scope.$apply();
-                })
-            }else{
-                //fallback
-            }
-
-        }
-
-
-
+        doPrefill();
 
 
         // switch 'from' and 'to'
@@ -103,5 +88,37 @@ var DirectionsCtrl = ['$scope', '$location', 'utilityService', 'favoriteRouteSer
             $("#stations").removeClass("active");
             $("#myrail").addClass("active");
         };
+
+        function doPrefill(){
+            if($rootScope.prefill){
+                if(Modernizr.geolocation){
+                    navigator.geolocation.getCurrentPosition(positionFound, geolocation_error, {enableHighAccuracy:false})
+                }else{
+                    yepnope({
+                        load: 'js/geoPosition.js',
+                        callback: function(){
+                            if (geoPosition.init()){
+                                geoPosition.getCurrentPosition(positionFound, geolocation_error, {enableHighAccuracy:false});
+                            }
+                        }
+                    });
+
+                }
+
+            }
+
+
+        }
+
+        function positionFound(position){
+            var guessed = $rootScope.prefill.guess(date, position.coords.longitude, position.coords.latitude);
+            $scope.from = guessed.from;
+            $scope.to = guessed.to;
+            $scope.$apply();
+        }
+
+        function geolocation_error(){
+            console.error("geolocation not available");
+        }
     }
 ];
