@@ -4,8 +4,8 @@
 /*
  * The controller for the homepage, it handles the requests to the '/' route
  */
-var DirectionsCtrl = ['$scope', '$location', 'utilityService', 'favoriteRouteService', '$rootScope',
-    function($scope, $location, utilityService, favoriteRouteService, $rootScope){
+var DirectionsCtrl = ['$scope', '$location', 'utilityService', 'favoriteRouteService', '$rootScope', 'geolocationService',
+    function($scope, $location, utilityService, favoriteRouteService, $rootScope, geolocationService){
         // scope variable definition and initialization
         // (so that angular fills in some nice default values in the page)
         var date = new Date();
@@ -91,34 +91,14 @@ var DirectionsCtrl = ['$scope', '$location', 'utilityService', 'favoriteRouteSer
 
         function doPrefill(){
             if($rootScope.prefill){
-                if(Modernizr.geolocation){
-                    navigator.geolocation.getCurrentPosition(positionFound, geolocation_error, {enableHighAccuracy:false})
-                }else{
-                    yepnope({
-                        load: 'js/geoPosition.js',
-                        callback: function(){
-                            if (geoPosition.init()){
-                                geoPosition.getCurrentPosition(positionFound, geolocation_error, {enableHighAccuracy:false});
-                            }
-                        }
-                    });
 
-                }
-
+                geolocationService.getCurrentPosition(function(position){
+                    var guessed = $rootScope.prefill.guess(date, position.coords.longitude, position.coords.latitude);
+                    $scope.from = guessed.from;
+                    $scope.to = guessed.to;
+                    $scope.$apply();
+                }, {enableHighAccuracy: false});
             }
-
-
-        }
-
-        function positionFound(position){
-            var guessed = $rootScope.prefill.guess(date, position.coords.longitude, position.coords.latitude);
-            $scope.from = guessed.from;
-            $scope.to = guessed.to;
-            $scope.$apply();
-        }
-
-        function geolocation_error(){
-            console.error("geolocation not available");
         }
     }
 ];

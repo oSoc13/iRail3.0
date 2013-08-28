@@ -70,8 +70,11 @@ app.run(['$rootScope', 'historyService', function($rootScope, historyService) {
     };
 
     //prefill global so that we don't train the data every time a controller is loaded
-    var prefill = new Prefill();
-    prefill.prepare(historyService.get(), function(){
-        $rootScope.prefill = prefill;
-    })
+    var history = historyService.get();
+    if(history == null || !(history.length == 0)){
+        var prefill = new Prefill();
+        prefill.prepare(historyService.get(), function(){
+            $rootScope.prefill = prefill;
+        })
+    }
 }]);

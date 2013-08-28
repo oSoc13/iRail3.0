@@ -20,6 +20,7 @@ var RouteCtrl = [
     'utilityService',
     'favoriteRouteService' ,
     'historyService',
+    'geolocationService',
     function ($scope,
               $routeParams,
               $http,
@@ -27,7 +28,8 @@ var RouteCtrl = [
               $location,
               utilityService,
               favoriteRouteService,
-              historyService){
+              historyService,
+              geolocationService){
 
         $scope.toStation = $routeParams.toStation;
         $scope.fromStation = $routeParams.fromStation;
@@ -203,29 +205,12 @@ var RouteCtrl = [
         function saveToHistory(){
             var timestamp = new Date();
 
-            if(Modernizr.geolocation){
-                navigator.geolocation.getCurrentPosition(positionFound, geolocation_error, {enableHighAccuracy: false});
-            }else{
-                yepnope({
-                    load: 'js/geoPosition.js',
-                    callback: function(){
-                        if (geoPosition.init()){
-                            geoPosition.getCurrentPosition(positionFound, geolocation_error, {enableHighAccuracy:false});
-                        }
-                    }
-                });
-            }
-        }
+            geolocationService.getCurrentPosition(function(position){
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
 
-        function positionFound(position){
-            var latitude = position.coords.latitude;
-            var longitude = position.coords.longitude;
-
-            historyService.add(timestamp, $scope.fromStation, $scope.toStation, latitude, longitude);
-        }
-
-        function geolocation_error(){
-            console.error("no geolocation")
+                historyService.add(timestamp, $scope.fromStation, $scope.toStation, latitude, longitude);
+            }, {enableHighAccuracy:false});
         }
     }
 ];

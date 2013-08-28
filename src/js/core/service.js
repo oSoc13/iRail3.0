@@ -172,3 +172,31 @@ app.factory('historyService', ['localStorageService', function(localStorageServi
         }
     }
 }]);
+
+// Service abstracting geolocation and the geolocation fallback
+app.factory('geolocationService', function(){
+    return {
+        getCurrentPosition: function(callback, options){
+            if(Modernizr.geolocation){
+                navigator.geolocation.getCurrentPosition(positionFound, geolocation_error, options);
+            }else{
+                yepnope({
+                    load: 'js/geoPosition.js',
+                    callback: function(){
+                        if (geoPosition.init()){
+                            geoPosition.getCurrentPosition(positionFound, geolocation_error, options);
+                        }
+                    }
+                });
+            }
+
+            function positionFound(position){
+                callback(position)
+            }
+        }
+    };
+
+    function geolocation_error(){
+        console.error("Geolocation is not available");
+    }
+});
