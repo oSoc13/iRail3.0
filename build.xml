@@ -36,7 +36,7 @@
         <concat destfile="${build.dir}/js/irail.js">
             <fileset
                     dir="${src.js.dir}"
-                    includes="core/*.js,core/controller/*.js"/>
+                    includes="core/*.js,core/controller/*.js,core/prefill/build/bundle.js"/>
         </concat>
         <echo>Finished</echo>
     </target>
@@ -88,6 +88,7 @@
             <fileset dir="${build.dir}/js" defaultexcludes="false">
                 <exclude name="irail.min.js" />
                 <exclude name="modernizr.min.js" />
+                <exclude name="geoPosition.js" />
             </fileset>
         </delete>
         <echo>Finished</echo>

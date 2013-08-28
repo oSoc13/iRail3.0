@@ -11,8 +11,25 @@
  *      :time -> the time in 24h format with leading zeroes
  *      :timeSelection -> 'arrive' or 'depart'
  */
-var RouteCtrl = ['$scope', '$routeParams', '$http', '$rootScope', '$location', 'utilityService', 'favoriteRouteService' ,
-    function ($scope, $routeParams, $http, $rootScope, $location, utilityService, favoriteRouteService){
+var RouteCtrl = [
+    '$scope',
+    '$routeParams',
+    '$http',
+    '$rootScope',
+    '$location',
+    'utilityService',
+    'favoriteRouteService' ,
+    'historyService',
+    'geolocationService',
+    function ($scope,
+              $routeParams,
+              $http,
+              $rootScope,
+              $location,
+              utilityService,
+              favoriteRouteService,
+              historyService,
+              geolocationService){
 
         $scope.toStation = $routeParams.toStation;
         $scope.fromStation = $routeParams.fromStation;
@@ -47,6 +64,10 @@ var RouteCtrl = ['$scope', '$routeParams', '$http', '$rootScope', '$location', '
             return 0;
         };
 
+        //save this route to the history
+        saveToHistory();
+        //update neural net
+        updatePrefill();
 
         var url = $rootScope.iRailAPI + "/connections/?to=" + $routeParams.toStation +
             "&from=" + $routeParams.fromStation +
@@ -184,19 +205,55 @@ var RouteCtrl = ['$scope', '$routeParams', '$http', '$rootScope', '$location', '
         }
 
 
+
         $scope.reverseTrip = function(){
+            //todo keep selected route index in a variable
+            //find selected route
+            var route = null;
+            var buttons = angular.element.find(".list-head__collapse-btn");
+            for(var i = 0; i < buttons.length; i++){
+                var currentButton = buttons[i];
+                if($(currentButton).hasClass("opened")){
+                    route = $scope.possibleRoutes[i]
+                    break;
+                }
+            }
 
-
+            var date = new Date(route.arrival.time * 1000);
+            var departure_date = utilityService.getIrailDateString(date);
+            var departure_time = utilityService.getIrailTimeString(date);
 
             var url = '/route/' +
-                $scope.toStation + '/' +
-                $scope.fromStation + '/' +
-                $scope.date + '/' +
-                $scope.time + '/' +
+                route.arrival.station + '/' +
+                route.departure.station + '/' +
+                departure_date + '/' +
+                departure_time + '/' +
                 "depart";
 
 
             $location.path(url);
+        };
+
+        function saveToHistory(){
+            var timestamp = new Date();
+
+            geolocationService.getCurrentPosition(function(position){
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
+
+                historyService.add(timestamp, $scope.fromStation, $scope.toStation, latitude, longitude);
+            }, {enableHighAccuracy:false});
         }
-    }
-];
+
+        function updatePrefill(){
+            var history = historyService.get();
+
+            if(history == null || !(history.length == 0)){
+                var prefill = new Prefill();
+                prefill.prepare(historyService.get(), function(){
+                    $rootScope.prefill = prefill;
+                })
+            }
+        }
+
+    }];

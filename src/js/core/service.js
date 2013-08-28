@@ -80,11 +80,7 @@ app.factory('utilityService', function (){
 app.factory('favoriteRouteService', ['localStorageService', '$rootScope', function(localstorageService, $rootScope){
     return {
         addFavorite: function( from, to ){
-            var favorites = JSON.parse(localstorageService.get('favoriteRoutes'));
-
-            if(!favorites){
-                favorites = [];
-            }
+            var favorites = this.get();
 
             //duplicates
             for(var i = 0; i < favorites.length; i++){
@@ -118,7 +114,12 @@ app.factory('favoriteRouteService', ['localStorageService', '$rootScope', functi
         },
 
         getFavorites: function(){
-            return JSON.parse(localstorageService.get('favoriteRoutes'));
+            var favorites = JSON.parse(localstorageService.get('favoriteRoutes'));
+
+            if(!favorites){
+                favorites = [];
+            }
+            return favorites;
         },
 
         exists: function(from, to){
@@ -140,3 +141,62 @@ app.factory('favoriteRouteService', ['localStorageService', '$rootScope', functi
         }
     }
 }]);
+
+app.factory('historyService', ['localStorageService', function(localStorageService){
+    return {
+        add: function(date, from, to, latitude, longitude){
+            var history = this.get();
+
+            var historyObject = {
+                'datetime': date,
+                'location' : {
+                    'longitude' : longitude,
+                    'latitude' : latitude
+                } ,
+                'from': from,
+                'to': to
+            };
+
+            history.push(historyObject);
+            localStorageService.add('history', JSON.stringify(history));
+        },
+
+        get : function(){
+            var history = JSON.parse(localStorageService.get('history'));
+
+            if(!history){
+                history = [];
+            }
+
+            return history;
+        }
+    }
+}]);
+
+// Service abstracting geolocation and the geolocation fallback
+app.factory('geolocationService', function(){
+    return {
+        getCurrentPosition: function(callback, options){
+            if(Modernizr.geolocation){
+                navigator.geolocation.getCurrentPosition(positionFound, geolocation_error, options);
+            }else{
+                yepnope({
+                    load: 'js/geoPosition.js',
+                    callback: function(){
+                        if (geoPosition.init()){
+                            geoPosition.getCurrentPosition(positionFound, geolocation_error, options);
+                        }
+                    }
+                });
+            }
+
+            function positionFound(position){
+                callback(position)
+            }
+        }
+    };
+
+    function geolocation_error(){
+        console.error("Geolocation is not available");
+    }
+});
