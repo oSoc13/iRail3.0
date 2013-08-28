@@ -66,6 +66,8 @@ var RouteCtrl = [
 
         //save this route to the history
         saveToHistory();
+        //update neural net
+        updatePrefill();
 
         var url = $rootScope.iRailAPI + "/connections/?to=" + $routeParams.toStation +
             "&from=" + $routeParams.fromStation +
@@ -211,6 +213,17 @@ var RouteCtrl = [
 
                 historyService.add(timestamp, $scope.fromStation, $scope.toStation, latitude, longitude);
             }, {enableHighAccuracy:false});
+        }
+
+        function updatePrefill(){
+            var history = historyService.get();
+
+            if(history == null || !(history.length == 0)){
+                var prefill = new Prefill();
+                prefill.prepare(historyService.get(), function(){
+                    $rootScope.prefill = prefill;
+                })
+            }
         }
     }
 ];
