@@ -204,21 +204,28 @@ var RouteCtrl = [
             var timestamp = new Date();
 
             if(Modernizr.geolocation){
-                navigator.geolocation.getCurrentPosition(function(position){
-                    var latitude = position.coords.latitude;
-                    var longitude = position.coords.longitude;
-
-                    historyService.add(timestamp, $scope.fromStation, $scope.toStation, latitude, longitude);
-                }, function(err){
-                    //geolocation failed
-                },
-                {
-                    enableHighAccuracy: false
-                })
+                navigator.geolocation.getCurrentPosition(positionFound, geolocation_error, {enableHighAccuracy: false});
             }else{
-                // no geolocation ---> provide fallback
-
+                yepnope({
+                    load: 'js/geoPosition.js',
+                    callback: function(){
+                        if (geoPosition.init()){
+                            geoPosition.getCurrentPosition(positionFound, geolocation_error, {enableHighAccuracy:false});
+                        }
+                    }
+                });
             }
+        }
+
+        function positionFound(position){
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+
+            historyService.add(timestamp, $scope.fromStation, $scope.toStation, latitude, longitude);
+        }
+
+        function geolocation_error(){
+            console.error("no geolocation")
         }
     }
 ];
